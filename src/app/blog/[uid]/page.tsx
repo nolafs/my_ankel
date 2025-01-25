@@ -61,7 +61,7 @@ export default async function Page({params}: Props) {
                     href={`/blog?category=test`}
                     className="rounded-full border border-dotted border-gray-300 bg-gray-50 px-2 text-sm/6 font-medium text-gray-500"
                   >
-                  test
+                    {post.category && 'data' in post.category && (post.category.data as { name:string }).name}
                   </Link>
 
               </div>
