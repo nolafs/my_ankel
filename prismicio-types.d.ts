@@ -9,6 +9,17 @@ type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
  */
 interface AuthorDocumentData {
   /**
+   * Profile Image field in *Author*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.profile_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  profile_image: prismic.ImageField<never>;
+
+  /**
    * Name field in *Author*
    *
    * - **Field Type**: Text

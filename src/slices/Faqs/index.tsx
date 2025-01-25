@@ -1,7 +1,7 @@
 import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
-import { Bounded } from '@components/Bounded';
-import { SectionFaqs } from '@rocket-house-productions/features';
+import { Bounded } from '@/components/bounded';
+import { SectionFaqs } from '@/components/features/section-faqs/section-faqs';
 import { createClient } from '@/prismicio';
 import { AllDocumentTypes } from '../../../prismicio-types';
 
