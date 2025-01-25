@@ -1,0 +1,103 @@
+.navbar-area {
+  @apply fixed z-[40] w-full transform-gpu backdrop-blur-sm;
+
+  .dropdown-toggle {
+    @apply relative;
+    @apply mr-[15px];
+
+    &::after {
+      @apply top-1/2;
+      @apply absolute;
+      content: "\ea29";
+      @apply leading-none;
+      @apply -right-[18px];
+      @apply -translate-y-2/4;
+      font: {
+        family: boxicons;
+        weight: normal;
+      }
+    }
+  }
+
+  ul {
+    li {
+      ul {
+        li {
+          .dropdown-toggle {
+            @apply mr-0;
+            @apply pr-[15px];
+
+            &::after {
+              @apply -right-[3px];
+              @apply mt-0;
+            }
+          }
+
+          &:hover {
+            ul {
+              @apply opacity-100;
+              @apply visible;
+
+              li {
+                ul {
+                  @apply opacity-0;
+                  @apply invisible;
+                }
+
+                &:hover {
+                  ul {
+                    @apply opacity-100;
+                    @apply visible;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  a.active {
+    @apply text-[#0a64bc];
+  }
+
+  &.isSticky {
+    @apply fixed;
+    @apply top-0;
+    @apply left-0;
+    @apply z-[40];
+    @apply right-0;
+    @apply bg-white;
+    box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
+    animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+  }
+}
+
+.hidden {
+  &.block {
+    display: block !important;
+  }
+
+  &.inline-block {
+    display: inline-block !important;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    background: rgba(255, 255, 255, 0);
+    box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0);
+    transform: translateZ(0);
+  }
+  50% {
+    background: rgba(255, 255, 255, 0);
+    box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
+    transform: translateZ(0);
+  }
+}

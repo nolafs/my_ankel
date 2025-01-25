@@ -1,6 +1,6 @@
-import {GradientBackground} from '@/components/gradient';
-import {Container} from '@/components/container';
-import {Heading, Lead, Subheading} from '@/components/text';
+import {GradientBackground} from '@/components/ui/gradient';
+import {Container} from '@/components/ui/container';
+import {Heading, Lead, Subheading} from '@/components/ui/text';
 
 export default function HomePage() {
   return (

@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import cn from 'clsx';
 import { PrismicRichText } from '@prismicio/react';
-import { RichTextField } from '@prismicio/client';
+import { type RichTextField } from '@prismicio/client';
 
 type TProps = {
   className?: string;

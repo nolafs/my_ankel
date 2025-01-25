@@ -1,13 +1,16 @@
 import SectionTitle from '../section-title/section-title';
-import { KeyTextField, RichTextField } from '@prismicio/client';
+import { type KeyTextField, type RichTextField } from '@prismicio/client';
 import FaqItem from './faq-item';
+import type {FAQ} from '@/types/faq.type';
+
+
 
 interface SectionFagsProps {
   data: {
     headings: RichTextField | null | undefined;
     text?: KeyTextField | null | undefined;
     body: RichTextField | null | undefined;
-    faqs: any[];
+    faqs: FAQ[];
   };
 
   color?: 'A' | 'B' | 'C';

@@ -1,8 +1,8 @@
 import { Button } from '@/components/button'
-import { Container } from '@/components/container'
-import { GradientBackground } from '@/components/gradient'
-import { Link } from '@/components/link'
-import { Heading, Lead, Subheading } from '@/components/text'
+import { Container } from '@/components/ui/container'
+import { GradientBackground } from '@/components/ui/gradient'
+import { Link } from '@/components/ui/link'
+import { Heading, Lead, Subheading } from '@/components/ui/text'
 
 type Props = {
   params: Promise<{ uid: string }>
@@ -24,6 +24,7 @@ import { notFound } from 'next/navigation'
 import {createClient} from "@/prismicio";
 import {PrismicNextImage} from '@prismicio/next';
 import {PrismicRichText} from '@prismicio/react';
+import { ImageFieldImage } from '@prismicio/client'
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -39,7 +40,7 @@ async function FeaturedPosts() {
     pageSize: 3,
     page: 0,
     //filters: ['my.posts.featured', '==', 'true'],
-    fetchLinks: ['author.name','post_category.name'],
+    fetchLinks: ['author.name', 'author.profile_image','post_category.name'],
     orderings: [
       {
         field: "my.posts.published_date",
@@ -87,8 +88,17 @@ async function FeaturedPosts() {
                 <div className="mt-2 flex-1 text-sm/6 text-gray-500">
                   <PrismicRichText field={post.data.excerpt}/>
                 </div>
-                {post.data.author && 'data' in post.data.author && (
+                {post.data.author && 'data' in post.data.author &&  (
                     <div className="mt-6 flex items-center gap-3">
+                      {post.data.author && (
+                          <PrismicNextImage
+                              alt=""
+                              width={64}
+                              height={64}
+                              field={(post.data.author.data as { profile_image: ImageFieldImage}).profile_image}
+                              className="aspect-square size-6 rounded-full object-cover"
+                          />
+                      )}
                       <div className="text-sm/5 text-gray-700">
                         {(post.data.author.data as { name: string }).name || 'My Ankle'}
                       </div>
@@ -160,7 +170,7 @@ async function Posts({ page, category }: { page: number; category?: string }) {
   const posts = await client.getByType('posts', {
     pageSize: 10,
     page: 0,
-    fetchLinks: ['author.name', 'post_category.name'],
+    fetchLinks: ['author.name','author.profile_image', 'post_category.name'],
     orderings: [
       {
         field: "my.posts.published_date",
@@ -194,6 +204,15 @@ async function Posts({ page, category }: { page: number; category?: string }) {
             </div>
             {post.data.author && 'data' in post.data.author && (
                 <div className="mt-6 flex items-center gap-3">
+                  {post.data.author && (
+                      <PrismicNextImage
+                          alt=""
+                          width={64}
+                          height={64}
+                          field={(post.data.author.data as { profile_image: ImageFieldImage }).profile_image}
+                          className="aspect-square size-6 rounded-full object-cover"
+                      />
+                  )}
                   <div className="text-sm/5 text-gray-700">
                     {(post.data.author.data as { name: string }).name || 'My Ankle'}
                   </div>
@@ -311,15 +330,15 @@ export default async function Blog({ searchParams }: Props) {
       : undefined
 
   return (
-    <main className="overflow-hidden">
-      <GradientBackground />
+    <div className="overflow-hidden">
+
       <Container>
         <Subheading className="mt-16">Blog</Subheading>
         <Heading as="h1" className="mt-2">
           What’s happening at My Ankle.
         </Heading>
         <Lead className="mt-6 max-w-3xl">
-         Looking for resources on ankle pain? You're in the right place.
+         Looking for resources on ankle pain? You&apos;re in the right place.
         </Lead>
       </Container>
       {page === 1 && !category && <FeaturedPosts />}
@@ -329,7 +348,7 @@ export default async function Blog({ searchParams }: Props) {
         <Pagination page={page} category={category} />
 
       </Container>
-    </main>
+    </div>
   )
 }
 

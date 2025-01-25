@@ -1,5 +1,5 @@
 'use client';
-import { KeyTextField, RichTextField } from '@prismicio/client';
+import { type KeyTextField, type RichTextField } from '@prismicio/client';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';

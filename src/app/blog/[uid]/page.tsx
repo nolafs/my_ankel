@@ -1,8 +1,8 @@
 import { Button } from '@/components/button'
-import { Container } from '@/components/container'
-import { GradientBackground } from '@/components/gradient'
-import { Link } from '@/components/link'
-import { Heading, Subheading } from '@/components/text'
+import { Container } from '@/components/ui/container'
+import { GradientBackground } from '@/components/ui/gradient'
+import { Link } from '@/components/ui/link'
+import { Heading, Subheading } from '@/components/ui/text'
 import { createClient } from '@/prismicio'
 
 import { ChevronLeftIcon } from '@heroicons/react/16/solid'
@@ -41,8 +41,8 @@ export default async function Page({params}: Props) {
   }).then(response => response.data).catch(() => notFound());
 
   return (
-    <main className="overflow-hidden">
-      <GradientBackground />
+    <>
+
       <Container>
         <Subheading className="mt-16">
           {dayjs(post.publishing_date).format('dddd, MMMM D, YYYY')}
@@ -89,7 +89,7 @@ export default async function Page({params}: Props) {
           </div>
         </div>
       </Container>
-    </main>
+      </>
   )
 }
 

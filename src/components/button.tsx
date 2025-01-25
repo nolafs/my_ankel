@@ -1,6 +1,6 @@
 import * as Headless from '@headlessui/react'
 import { clsx } from 'clsx'
-import { Link } from './link'
+import { Link } from './ui/link'
 
 const variants = {
   primary: clsx(
