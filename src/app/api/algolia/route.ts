@@ -3,7 +3,7 @@ import {algoliasearch} from 'algoliasearch';
 import config from '../../../../slicemachine.config.json';
 import {asText} from '@prismicio/richtext';
 
-export const repositoryName =
+const repositoryName =
     process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT ?? config.repositoryName;
 
 export async function POST() {
@@ -26,7 +26,9 @@ export async function POST() {
     );
 
     // Get all articles from Prismic
-    const articles = await client.getAllByType("posts");
+    const articles = await client.getAllByType("posts", {
+      fetchLinks: ["category.title", 'tags.tag'],
+    });
 
 
 
@@ -36,8 +38,8 @@ export async function POST() {
       title: post.data.title, // Post title
       slug: post.uid, // Post URL slug
       image: post.data.feature_image, // Post featured image
-      category: post.data.category, // Post category
-      tags: post.tags, // Post tags
+      //category: post.data.category.data, // Post category
+      //tags: post.tags.data.map((v: { tag: { name: string } }) => v.tag.name), // Post tags
       text: asText(post.data.content).slice(0, 5000), // Post content transformed to search text
     }));
 
