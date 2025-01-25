@@ -14,6 +14,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import cn from 'clsx';
+import {Search} from '@/components/features/search/search';
 
 interface HeaderProps {
   navigation: NavigationProps;
@@ -74,6 +75,9 @@ export function Navigation({ navigation, logo}: HeaderProps) {
                     </PrismicNextLink>
                   </li>
                 ))}
+                <li className="group relative mx-[5px] py-[10px] first:ml-0 last:mr-0 lg:py-[5px] xl:mx-[10px] xl:py-[35px] 2xl:mx-[18px] 2xl:py-[30px]">
+                  <Search />
+                </li>
             </ul>
           </div>
 

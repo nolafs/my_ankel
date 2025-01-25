@@ -7,6 +7,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import SocialList from '../features/social-list/social-list';
+import {Gradient} from '@/components/ui/gradient';
+import {Container} from '@/components/ui/container';
 
 
 export interface FooterProps {
@@ -19,12 +21,14 @@ export interface FooterProps {
 
 export function Footer({ navigation, logo, secondaryNavigation, social, copyright }: FooterProps) {
   const copyRightDate = new Date().getFullYear();
-  return (
-    <footer aria-labelledby="footer-heading" className="bg-gray-900">
+  return (<footer>
+    <Gradient className="relative">
+    <div className="absolute inset-2 rounded-4xl z-0   bg-white/80" />
+      <Container>
       <h2 id="footer-heading" className="sr-only">
-        Footer
+        My Ankle
       </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-20 sm:pt-24 lg:px-8 lg:pt-32">
+      <div className="relative mx-auto z-40 max-w-7xl px-6 pb-8 pt-20 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="grid grid-cols-1 gap-8 xl:col-span-2">
             <div className="w-full">
@@ -48,7 +52,7 @@ export function Footer({ navigation, logo, secondaryNavigation, social, copyrigh
           </div>
           <div className="mt-10 flex flex-col space-y-10 xl:mt-0">
             <div>
-              <h3 className="text-lg font-bold leading-6 text-white">Newsletter</h3>
+              <h3 className="text-lg font-bold leading-6">Newsletter</h3>
               signup form
             </div>
             <div className={'w-full md:self-end'}>
@@ -64,10 +68,10 @@ export function Footer({ navigation, logo, secondaryNavigation, social, copyrigh
                   <li key={item.label}>
                     <PrismicNextLink
                         field={item.link}
-                    className="hover:text-primary text-base font-medium text-gray-500 transition-all">
+                        className="hover:text-primary text-base font-medium text-gray-500 transition-all">
                       {item.label}
-                  </PrismicNextLink>
-                </li>
+                    </PrismicNextLink>
+                  </li>
               ))}
             </ul>
           </div>
@@ -76,8 +80,11 @@ export function Footer({ navigation, logo, secondaryNavigation, social, copyrigh
           </p>
         </div>
       </div>
-    </footer>
-  );
+      </Container>
+    </Gradient>
+</footer>
+)
+  ;
 }
 
 export default Footer;
