@@ -1,0 +1,103 @@
+{
+  "format": "custom",
+  "id": "settings",
+  "label": "Settings",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "copyright_line": {
+        "type": "Text",
+        "config": {
+          "label": "Copyright Line",
+          "placeholder": ""
+        }
+      },
+      "contact_form_enquiries": {
+        "type": "Group",
+        "config": {
+          "label": "Contact Form Enquiries",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "value": {
+              "type": "Text",
+              "config": {
+                "label": "Value",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "secondary_navigation": {
+        "type": "Group",
+        "config": {
+          "label": "Secondary Navigation",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "social_media": {
+        "type": "Group",
+        "config": {
+          "label": "Social Media",
+          "repeat": true,
+          "fields": {
+            "type": {
+              "type": "Select",
+              "config": {
+                "label": "Type",
+                "placeholder": "",
+                "options": ["facebook", "instagram", "twitter", "gitHub", "youtube", "tiktok"]
+              }
+            },
+            "name": {
+              "type": "Text",
+              "config": {
+                "label": "Name",
+                "placeholder": ""
+              }
+            },
+            "url": {
+              "type": "Link",
+              "config": {
+                "label": "Url",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
