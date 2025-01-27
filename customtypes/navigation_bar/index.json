@@ -1,0 +1,29 @@
+{
+  "format": "custom",
+  "id": "navigation_bar",
+  "label": "Navigation Bar",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "navigation_items": {
+        "type": "Group",
+        "config": {
+          "label": "Navigation Items",
+          "repeat": true,
+          "fields": {
+            "navigation_item": {
+              "type": "Link",
+              "config": {
+                "label": "Navigation Item",
+                "select": "document",
+                "repeat": false,
+                "customtypes": ["navigation_element"]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -8,11 +8,11 @@ import CookieConsent from "@/components/features/cookie-consent/cookie-consent";
 import {GoogleAnalytics} from '@next/third-parties/google';
 import Footer from "@/components/layouts/footer";
 import {createClient} from '@/prismicio';
-import logo from '@/assets/logo.png';
-import Navigation from "@/components/layouts/navigation";
+import logo from '@/assets/myankle-logo.svg';
 import {GradientBackground} from '@/components/ui/gradient';
 import { SocialLinkItemType } from "@/types/socialLinkItem.type";
 import {LinkPrismicType} from '@/types';
+import NavigationSub from '@/components/layouts/navigation-sub';
 
 export const metadata: Metadata = {
   title: "My Ankel",
@@ -24,7 +24,14 @@ export default async function  RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const client = createClient();
-  const navigation = await client.getSingle('navigation');
+  const navigation = await client.getSingle('navigation_bar', {
+    fetchLinks: [
+        'navigation_element.label',
+        'navigation_element.link',
+        'navigation_element.subs',
+        'navigation_element.cta',
+    ],
+  });
   const settings = await client.getSingle('settings');
 
   const social: SocialLinkItemType[] | undefined = settings.data?.social_media?.map(item => ({
@@ -36,14 +43,14 @@ export default async function  RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-      <Navigation navigation={{items: navigation.data.links}} logo={logo}/>
+      <NavigationSub navigation={navigation.data} logo={logo}/>
       <GradientBackground/>
       <main className={'min-h-svh pt-16 overflow-hidden'}>
       {children}
       </main>
       {/* Footer consent */}
       <Footer
-          navigation={{items: navigation.data.links}}
+          navigation={navigation.data}
           logo={logo}
           secondaryNavigation={{items: settings.data.secondary_navigation}}
           social={social}

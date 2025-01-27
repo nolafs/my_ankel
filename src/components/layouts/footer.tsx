@@ -1,18 +1,16 @@
 import { NavigationProps, SocialLinkItemType } from '@/types';
 import { PrismicNextLink } from '@prismicio/next';
-import { PrismicText } from '@prismicio/react';
 import React from 'react';
-
 
 import Link from 'next/link';
 import Image from 'next/image';
 import SocialList from '../features/social-list/social-list';
-import {Gradient} from '@/components/ui/gradient';
-import {Container} from '@/components/ui/container';
-
+import { Gradient } from '@/components/ui/gradient';
+import { Container } from '@/components/ui/container';
+import { NavigationBarDocumentData, NavigationElementDocument } from '../../../prismicio-types';
 
 export interface FooterProps {
-  navigation: NavigationProps;
+  navigation: NavigationBarDocumentData;
   secondaryNavigation?: NavigationProps;
   social?: SocialLinkItemType[] | undefined;
   logo: any;
@@ -21,70 +19,83 @@ export interface FooterProps {
 
 export function Footer({ navigation, logo, secondaryNavigation, social, copyright }: FooterProps) {
   const copyRightDate = new Date().getFullYear();
-  return (<footer>
-    <Gradient className="relative">
-    <div className="absolute inset-2 rounded-4xl z-0   bg-white/80" />
-      <Container>
-      <h2 id="footer-heading" className="sr-only">
-        My Ankle
-      </h2>
-      <div className="relative mx-auto z-40 max-w-7xl px-6 pb-8 pt-20 sm:pt-24 lg:px-8 lg:pt-32">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-          <div className="grid grid-cols-1 gap-8 xl:col-span-2">
-            <div className="w-full">
-              <div>
+  return (
+    <footer>
+      <Gradient className="relative">
+        <div className="absolute inset-2 z-0 rounded-4xl bg-white/80" />
+        <Container className={'relative z-10'}>
+          <div className={'py-10'}>
+            <div className="mt-10 grid grid-cols-2 gap-y-10 pb-6 lg:grid-cols-6 lg:gap-8">
+              <div className="col-span-2 flex">
                 <Link href="/">
-                  <Image src={logo} className="inline" alt="logo"/>
+                  <h2 id="footer-heading" className="sr-only">
+                    My Ankle
+                  </h2>
+                  <Image src={logo} className="inline" alt="logo" />
                 </Link>
-                <ul role="list" className="just mt-10 flex flex-col gap-8 md:flex-row">
-                  {navigation?.items?.map(item => (
-                      <li key={item.label}>
+              </div>
+              <div className="col-span-2 grid grid-cols-2 gap-x-8 gap-y-12 lg:col-span-4 lg:grid-cols-subgrid">
+                {navigation?.navigation_items.map(item => {
+                  const navigationItem = item.navigation_item as unknown as NavigationElementDocument;
+                  return (
+                    <div key={navigationItem.data.label}>
+                      {navigationItem.data.subs[0]?.label ? (
+                        <>
+                          <div className={'mb-10'}>
+                            <PrismicNextLink
+                              field={navigationItem.data.link}
+                              className="text-base font-medium text-gray-400 transition-all hover:text-primary">
+                              {navigationItem.data.label}
+                            </PrismicNextLink>
+                          </div>
+                          <ul role="list" className="flex flex-col gap-2">
+                            {navigationItem.data.subs.map(subItem => (
+                              <li key={subItem.label}>
+                                <PrismicNextLink
+                                  field={subItem.link}
+                                  className="text-sm font-medium text-gray-700 transition-all hover:text-primary">
+                                  {subItem.label}
+                                </PrismicNextLink>
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      ) : (
                         <PrismicNextLink
-                            field={item.link}
-                            className="hover:text-primary text-base font-medium text-gray-400 transition-all">
-                          {item.label}
+                          field={navigationItem.data.link}
+                          className="text-base font-medium text-gray-400 transition-all hover:text-primary">
+                          {navigationItem.data.label}
                         </PrismicNextLink>
-                      </li>
+                      )}
+                    </div>
+                  );
+                })}
+                {social && <SocialList items={social} icons={true} variantList={0} variantButton={2} />}
+              </div>
+            </div>
+            <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
+              <div className="flex space-x-6 md:order-2">
+                <ul role="list" className="flex gap-8">
+                  {secondaryNavigation?.items?.map(item => (
+                    <li key={item.label}>
+                      <PrismicNextLink
+                        field={item.link}
+                        className="text-base font-medium text-gray-500 transition-all hover:text-primary">
+                        {item.label}
+                      </PrismicNextLink>
+                    </li>
                   ))}
                 </ul>
               </div>
+              <p className="mt-8 text-base leading-5 text-gray-400 md:order-1 md:mt-0">
+                &copy; {copyRightDate} {copyright}
+              </p>
             </div>
           </div>
-          <div className="mt-10 flex flex-col space-y-10 xl:mt-0">
-            <div>
-              <h3 className="text-lg font-bold leading-6">Newsletter</h3>
-              signup form
-            </div>
-            <div className={'w-full md:self-end'}>
-              <SocialList items={social} icons={true} variantList={0} variantButton={2}/>
-            </div>
-          </div>
-        </div>
-        <div
-            className="mt-16 border-t border-white/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
-          <div className="flex space-x-6 md:order-2">
-            <ul role="list" className="flex gap-8">
-              {secondaryNavigation?.items?.map(item => (
-                  <li key={item.label}>
-                    <PrismicNextLink
-                        field={item.link}
-                        className="hover:text-primary text-base font-medium text-gray-500 transition-all">
-                      {item.label}
-                    </PrismicNextLink>
-                  </li>
-              ))}
-            </ul>
-          </div>
-          <p className="mt-8 text-base leading-5 text-gray-400 md:order-1 md:mt-0">
-            &copy; {copyRightDate} {copyright}
-          </p>
-        </div>
-      </div>
-      </Container>
-    </Gradient>
-</footer>
-)
-  ;
+        </Container>
+      </Gradient>
+    </footer>
+  );
 }
 
 export default Footer;

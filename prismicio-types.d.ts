@@ -165,6 +165,101 @@ export type ContactDocument<Lang extends string = string> = prismic.PrismicDocum
   Lang
 >;
 
+/**
+ * Content for Download documents
+ */
+interface DownloadDocumentData {
+  /**
+   * name field in *Download*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: download.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Description field in *Download*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: download.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * File field in *Download*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: download.file
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  file: prismic.LinkToMediaField;
+}
+
+/**
+ * Download document from Prismic
+ *
+ * - **API ID**: `download`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DownloadDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<DownloadDocumentData>,
+  'download',
+  Lang
+>;
+
+/**
+ * Content for FAQ documents
+ */
+interface FaqDocumentData {
+  /**
+   * Heading field in *FAQ*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Body field in *FAQ*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.body
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+}
+
+/**
+ * FAQ document from Prismic
+ *
+ * - **API ID**: `faq`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FaqDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<FaqDocumentData>,
+  'faq',
+  Lang
+>;
+
 type HomeDocumentDataSlicesSlice = never;
 
 /**
@@ -327,58 +422,192 @@ export type LegalDocument<Lang extends string = string> = prismic.PrismicDocumen
 >;
 
 /**
- * Item in *Navigation → Links*
+ * Item in *Navigation Bar → Navigation Items*
  */
-export interface NavigationDocumentDataLinksItem {
+export interface NavigationBarDocumentDataNavigationItemsItem {
   /**
-   * Label field in *Navigation → Links*
+   * Navigation Item field in *Navigation Bar → Navigation Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_bar.navigation_items[].navigation_item
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  navigation_item: prismic.ContentRelationshipField<'navigation_element'>;
+}
+
+/**
+ * Content for Navigation Bar documents
+ */
+interface NavigationBarDocumentData {
+  /**
+   * Navigation Items field in *Navigation Bar*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_bar.navigation_items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  navigation_items: prismic.GroupField<Simplify<NavigationBarDocumentDataNavigationItemsItem>>;
+}
+
+/**
+ * Navigation Bar document from Prismic
+ *
+ * - **API ID**: `navigation_bar`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NavigationBarDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<NavigationBarDocumentData>,
+  'navigation_bar',
+  Lang
+>;
+
+/**
+ * Item in *Navigation Element → Subs*
+ */
+export interface NavigationElementDocumentDataSubsItem {
+  /**
+   * Icon field in *Navigation Element → Subs*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_element.subs[].icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * Label field in *Navigation Element → Subs*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.links[].label
+   * - **API ID Path**: navigation_element.subs[].label
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   label: prismic.KeyTextField;
 
   /**
-   * Link field in *Navigation → Links*
+   * Description field in *Navigation Element → Subs*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_element.subs[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Link field in *Navigation Element → Subs*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.links[].link
+   * - **API ID Path**: navigation_element.subs[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField;
 }
 
 /**
- * Content for Navigation documents
+ * Item in *Navigation Element → CTA*
  */
-interface NavigationDocumentData {
+export interface NavigationElementDocumentDataCtaItem {
   /**
-   * Links field in *Navigation*
+   * Url field in *Navigation Element → CTA*
    *
-   * - **Field Type**: Group
+   * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.links[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **API ID Path**: navigation_element.cta[].url
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  links: prismic.GroupField<Simplify<NavigationDocumentDataLinksItem>>;
+  url: prismic.LinkField;
+
+  /**
+   * Text field in *Navigation Element → CTA*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_element.cta[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Icon field in *Navigation Element → CTA*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_element.cta[].icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
 }
 
 /**
- * Navigation document from Prismic
+ * Content for Navigation Element documents
+ */
+interface NavigationElementDocumentData {
+  /**
+   * Label field in *Navigation Element*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_element.label
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *Navigation Element*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_element.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Subs field in *Navigation Element*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_element.subs[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  subs: prismic.GroupField<Simplify<NavigationElementDocumentDataSubsItem>>;
+
+  /**
+   * CTA field in *Navigation Element*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_element.cta[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  cta: prismic.GroupField<Simplify<NavigationElementDocumentDataCtaItem>>;
+}
+
+/**
+ * Navigation Element document from Prismic
  *
- * - **API ID**: `navigation`
- * - **Repeatable**: `false`
+ * - **API ID**: `navigation_element`
+ * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type NavigationDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
-  Simplify<NavigationDocumentData>,
-  'navigation',
+export type NavigationElementDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<NavigationElementDocumentData>,
+  'navigation_element',
   Lang
 >;
 
@@ -814,17 +1043,74 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
   Lang
 >;
 
+/**
+ * Content for Video documents
+ */
+interface VideoDocumentData {
+  /**
+   * Name field in *Video*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Description field in *Video*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Video Url field in *Video*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.video_url
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  video_url: prismic.EmbedField;
+}
+
+/**
+ * Video document from Prismic
+ *
+ * - **API ID**: `video`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type VideoDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<VideoDocumentData>,
+  'video',
+  Lang
+>;
+
 export type AllDocumentTypes =
   | AuthorDocument
   | ContactDocument
+  | DownloadDocument
+  | FaqDocument
   | HomeDocument
   | LegalDocument
-  | NavigationDocument
+  | NavigationBarDocument
+  | NavigationElementDocument
   | PageDocument
   | PostCategoryDocument
   | PostTagsDocument
   | PostsDocument
-  | SettingsDocument;
+  | SettingsDocument
+  | VideoDocument;
 
 /**
  * Item in *Faqs → Default → Primary → FAQs*
@@ -981,15 +1267,23 @@ declare module '@prismicio/client' {
       ContactDocument,
       ContactDocumentData,
       ContactDocumentDataSlicesSlice,
+      DownloadDocument,
+      DownloadDocumentData,
+      FaqDocument,
+      FaqDocumentData,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
       LegalDocument,
       LegalDocumentData,
       LegalDocumentDataSlicesSlice,
-      NavigationDocument,
-      NavigationDocumentData,
-      NavigationDocumentDataLinksItem,
+      NavigationBarDocument,
+      NavigationBarDocumentData,
+      NavigationBarDocumentDataNavigationItemsItem,
+      NavigationElementDocument,
+      NavigationElementDocumentData,
+      NavigationElementDocumentDataSubsItem,
+      NavigationElementDocumentDataCtaItem,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
@@ -1005,6 +1299,8 @@ declare module '@prismicio/client' {
       SettingsDocumentDataContactFormEnquiriesItem,
       SettingsDocumentDataSecondaryNavigationItem,
       SettingsDocumentDataSocialMediaItem,
+      VideoDocument,
+      VideoDocumentData,
       AllDocumentTypes,
       FaqsSlice,
       FaqsSliceDefaultPrimaryFaqsItem,

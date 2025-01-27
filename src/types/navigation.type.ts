@@ -1,10 +1,13 @@
-export type link = {
+
+
+export type Link = {
   label: any;
   link: any;
 };
 
+
 export interface NavigationProps {
-  items: link[];
+  items: Link[];
 }
 
 export default NavigationProps;

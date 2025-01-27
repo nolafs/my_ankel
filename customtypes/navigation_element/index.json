@@ -1,0 +1,117 @@
+{
+  "format": "custom",
+  "id": "navigation_element",
+  "label": "Navigation Element",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "label": {
+        "type": "Text",
+        "config": {
+          "label": "Label",
+          "placeholder": ""
+        }
+      },
+      "link": {
+        "type": "Link",
+        "config": {
+          "label": "Link",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "subs": {
+        "type": "Group",
+        "config": {
+          "label": "Subs",
+          "repeat": true,
+          "fields": {
+            "icon": {
+              "type": "Image",
+              "config": {
+                "label": "Icon",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Description",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "cta": {
+        "type": "Group",
+        "config": {
+          "label": "CTA",
+          "repeat": true,
+          "fields": {
+            "url": {
+              "type": "Link",
+              "config": {
+                "label": "Url",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            },
+            "text": {
+              "type": "Text",
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              }
+            },
+            "icon": {
+              "type": "Image",
+              "config": {
+                "label": "Icon",
+                "constraint": {
+                  "width": 50,
+                  "height": 50
+                },
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
