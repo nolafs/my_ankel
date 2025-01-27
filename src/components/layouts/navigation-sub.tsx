@@ -171,7 +171,7 @@ export default function NavigationSub({ navigation, logo }: NavigationSubProps) 
               <PrismicNextLink
                 key={`main-nav-${idx}`}
                 field={navigationItem.data.link}
-                className="text-base font-medium text-gray-400 transition-all hover:text-primary">
+                className="text-sm/6 font-semibold text-gray-400 transition-all hover:text-primary">
                 {navigationItem.data.label}
               </PrismicNextLink>
             );
