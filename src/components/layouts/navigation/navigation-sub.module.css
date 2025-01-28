@@ -1,6 +1,6 @@
 .sticky {
   @apply bg-white pt-0 sm:pt-0;
-  background-color: white;
+  background-color: white !important;
 
 }
 
