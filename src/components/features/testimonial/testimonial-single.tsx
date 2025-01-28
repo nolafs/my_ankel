@@ -1,9 +1,9 @@
 import { Container } from '@/components/ui/container';
-import { Cta } from '@/types';
-import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+import { Testimonial } from '@/types';
+import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
-export function CallToActionImage({ label, heading, body, links, image }: Cta) {
+export function TestimonialSingle({ body, name, position, image }: Testimonial) {
   return (
     <div className="mx-2 my-24 rounded-4xl bg-gray-900 bg-[url(/dot-texture.svg)] pb-24 pt-72 lg:pt-36">
       <Container>
@@ -18,26 +18,20 @@ export function CallToActionImage({ label, heading, body, links, image }: Cta) {
             </div>
           </div>
           <div className="flex max-lg:mt-16 lg:col-span-2 lg:px-16">
-            <div className="mx-auto flex max-w-xl flex-col gap-16 max-lg:text-center">
+            <figure className="mx-auto flex max-w-xl flex-col gap-16 max-lg:text-center">
               <div className="relative text-3xl tracking-tight text-white before:-translate-x-full lg:text-4xl">
                 <PrismicRichText field={body} />
               </div>
 
-              <div className="mt-auto">
-                {links && (
-                  <div className="mx-auto mt-6 flex flex-col items-center justify-start space-x-2 md:flex-row">
-                    {links?.map((link, index) => (
-                      <PrismicNextLink
-                        field={link}
-                        key={index}
-                        className="hover:bg-primary-dark inline-block rounded-lg bg-primary px-6 py-3 text-lg font-medium text-white">
-                        {link.text}
-                      </PrismicNextLink>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
+              <figcaption className="mt-auto">
+                <p className="text-sm/6 font-medium text-white">{name}</p>
+                <p className="text-sm/6 font-medium">
+                  <span className="bg-gradient-to-r from-[#fff1be] from-[28%] via-[#ee87cb] via-[70%] to-[#b060ff] bg-clip-text text-transparent">
+                    {position}
+                  </span>
+                </p>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </Container>
