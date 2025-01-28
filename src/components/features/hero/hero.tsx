@@ -12,11 +12,14 @@ export interface HeroProps {
 
 export function Hero({ heading, subheading, links, image }: HeroProps) {
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative">
       <Gradient className="absolute inset-2 bottom-0 rounded-4xl ring-1 ring-inset ring-black/5" />
       {image && (
-        <div className="absolute inset-2 z-0 flex w-full flex-col items-center justify-start sm:items-center md:items-center lg:items-end">
-          <PrismicNextImage field={image} className="block h-auto w-full object-contain sm:w-full lg:w-1/2" />
+        <div className="absolute inset-2 bottom-0 z-0 overflow-hidden rounded-4xl">
+          <div
+            className={'flex w-full flex-col items-center justify-start sm:items-center md:items-center lg:items-end'}>
+            <PrismicNextImage field={image} className="block h-auto w-full object-contain sm:w-full lg:w-1/2" />
+          </div>
         </div>
       )}
       <Container className="z-2 relative">
