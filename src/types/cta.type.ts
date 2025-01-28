@@ -1,8 +1,9 @@
-import { RichTextField, LinkField, KeyTextField } from '@prismicio/client';
+import { RichTextField, LinkField, KeyTextField, ImageField } from '@prismicio/client';
 
 export type Cta = {
-  label: KeyTextField | string;
-  heading: string;
+  label?: KeyTextField | string;
+  heading: KeyTextField | string;
   body?: RichTextField;
   links: LinkField[];
+  image?: ImageField;
 };

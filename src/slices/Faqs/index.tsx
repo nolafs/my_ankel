@@ -48,7 +48,7 @@ const Faqs = async ({ slice }: FaqsProps) => {
 
   if (slice.variation === 'grid') {
     return (
-      <Bounded as={'section'} yPadding={'sm'}>
+      <Bounded as={'section'} yPadding={'sm'} data-slice-type={slice.slice_type}>
         <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
@@ -77,7 +77,7 @@ const Faqs = async ({ slice }: FaqsProps) => {
 
   if (slice.variation === 'columnCollapsible') {
     return (
-      <Bounded as={'section'} yPadding={'sm'}>
+      <Bounded as={'section'} yPadding={'sm'} data-slice-type={slice.slice_type}>
         {slice.primary.has_intro && (
           <>
             <Subheading className="text-center">{slice.primary.subtitle}</Subheading>
@@ -130,7 +130,7 @@ const Faqs = async ({ slice }: FaqsProps) => {
   }
 
   return (
-    <Bounded as={'section'} yPadding={'sm'}>
+    <Bounded as={'section'} yPadding={'sm'} data-slice-type={slice.slice_type}>
       <SectionFaqs
         data={{
           headings: slice.primary.heading,

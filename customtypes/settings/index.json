@@ -132,6 +132,45 @@
           "repeat": true,
           "variants": ["Primary", "Secondary"]
         }
+      },
+      "canonical_url": {
+        "type": "Text",
+        "config": {
+          "label": "Canonical Url",
+          "placeholder": ""
+        }
+      },
+      "share_image": {
+        "type": "Image",
+        "config": {
+          "label": "Share Image",
+          "constraint": {
+            "width": 1200,
+            "height": 650
+          },
+          "thumbnails": []
+        }
+      },
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta title",
+          "placeholder": ""
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Description",
+          "placeholder": ""
+        }
+      },
+      "meta_keywords": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Keywords",
+          "placeholder": ""
+        }
       }
     }
   }

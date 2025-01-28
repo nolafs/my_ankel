@@ -1,15 +1,16 @@
-import { Container } from '@/components/ui/container';
-import { Lead } from '@/components/ui/text';
 import React from 'react';
-import { Hero } from '@/components/features/hero/hero';
+import { components } from '@/slices';
+import { SliceZone } from '@prismicio/react';
+import { notFound } from 'next/navigation';
+import { createClient } from '@/prismicio';
 
-export default function HomePage() {
+export default async function HomePage() {
+  const client = createClient();
+  const page = await client.getSingle('home').catch(() => notFound());
+
   return (
     <main className={'min-h-svh w-full overflow-hidden'}>
-      <Hero />
-      <Container>
-        <Lead className="mt-6 max-w-3xl">Resources for ankle pain.</Lead>
-      </Container>
+      <SliceZone slices={page.data.slices} components={components} />
     </main>
   );
 }

@@ -260,7 +260,7 @@ export type FaqDocument<Lang extends string = string> = prismic.PrismicDocumentW
   Lang
 >;
 
-type HomeDocumentDataSlicesSlice = never;
+type HomeDocumentDataSlicesSlice = HeroSlice | FaqsSlice | HeaderBlockSlice | CallToActionSlice;
 
 /**
  * Content for Home documents
@@ -611,7 +611,7 @@ export type NavigationElementDocument<Lang extends string = string> = prismic.Pr
   Lang
 >;
 
-type PageDocumentDataSlicesSlice = HeroSlice | FaqsSlice;
+type PageDocumentDataSlicesSlice = CallToActionSlice | HeaderBlockSlice | HeroSlice | FaqsSlice;
 
 /**
  * Content for Page documents
@@ -1070,6 +1070,61 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   footer_cta_links: prismic.Repeatable<prismic.LinkField>;
+
+  /**
+   * Canonical Url field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.canonical_url
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  canonical_url: prismic.KeyTextField;
+
+  /**
+   * Share Image field in *Settings*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.share_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  share_image: prismic.ImageField<never>;
+
+  /**
+   * Meta title field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.meta_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.meta_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Keywords field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.meta_keywords
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_keywords: prismic.KeyTextField;
 }
 
 /**
@@ -1215,9 +1270,67 @@ export type CallToActionSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *CallToAction → Image → Primary*
+ */
+export interface CallToActionSliceImagePrimary {
+  /**
+   * Heading field in *CallToAction → Image → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.image.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Body field in *CallToAction → Image → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.image.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Links field in *CallToAction → Image → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.image.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.Repeatable<prismic.LinkField>;
+
+  /**
+   * Image field in *CallToAction → Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.image.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Image variation for CallToAction Slice
+ *
+ * - **API ID**: `image`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CallToActionSliceImage = prismic.SharedSliceVariation<
+  'image',
+  Simplify<CallToActionSliceImagePrimary>,
+  never
+>;
+
+/**
  * Slice variation for *CallToAction*
  */
-type CallToActionSliceVariation = CallToActionSliceDefault;
+type CallToActionSliceVariation = CallToActionSliceDefault | CallToActionSliceImage;
 
 /**
  * CallToAction Shared Slice
@@ -1785,8 +1898,10 @@ declare module '@prismicio/client' {
       AllDocumentTypes,
       CallToActionSlice,
       CallToActionSliceDefaultPrimary,
+      CallToActionSliceImagePrimary,
       CallToActionSliceVariation,
       CallToActionSliceDefault,
+      CallToActionSliceImage,
       FaqsSlice,
       FaqsSliceDefaultPrimaryFaqsItem,
       FaqsSliceDefaultPrimary,
