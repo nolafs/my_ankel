@@ -32,25 +32,22 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const page = await client.getByUID('legal', uid).catch(() => notFound());
 
   return (
-    <>
-      <main className={'min-h-svh w-full overflow-hidden'}>
-        <GradientBackground />
-        <Container className="mt-24">
-          <article>
-            {/* Header */}
-            <Heading as="h1">{page.data.title}</Heading>
-
-            {/* Content */}
-            <section className="mt-16">
-              <div className={'md:prose-md prose prose-sm prose-neutral mx-auto mb-20 lg:prose-xl'}>
-                <PrismicRichText field={page.data.body} />
-              </div>
-            </section>
-          </article>
-          <SliceZone slices={page.data.slices} components={components} />
-        </Container>
-      </main>
-    </>
+    <main className={'min-h-svh w-full overflow-hidden'}>
+      <GradientBackground />
+      <Container className="mt-24 md:mt-36">
+        <article>
+          {/* Header */}
+          <Heading as="h1">{page.data.title}</Heading>
+          {/* Content */}
+          <section className="mt-16">
+            <div className={'md:prose-md prose prose-sm prose-neutral mx-auto mb-20 lg:prose-xl'}>
+              <PrismicRichText field={page.data.body} />
+            </div>
+          </section>
+        </article>
+        <SliceZone slices={page.data.slices} components={components} />
+      </Container>
+    </main>
   );
 }
 

@@ -6,13 +6,18 @@ import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 import { OGImage } from '@/types';
 import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
-import {Container} from '@/components/ui/container';
+import { Container } from '@/components/ui/container';
+import { GradientBackground } from '@/components/ui/gradient';
+import React from 'react';
 
 type Params = { uid: string };
 
-export async function generateMetadata({ params }: { params: Promise<Params> }, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: Promise<Params> },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const client = createClient();
-  const {uid} = await params;
+  const { uid } = await params;
   const page = await client.getByUID('page', uid).catch(() => notFound());
 
   let image = null;
@@ -39,13 +44,16 @@ export async function generateMetadata({ params }: { params: Promise<Params> }, 
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const client = createClient();
-  const {uid} = await params;
+  const { uid } = await params;
   const page = await client.getByUID('page', uid).catch(() => notFound());
 
   return (
-    <Container>
-      <SliceZone slices={page.data.slices} components={components} />
-    </Container>
+    <main className={'w-full overflow-hidden'}>
+      <GradientBackground />
+      <Container className="mb-24 mt-24 md:mb-36 md:mt-36">
+        <SliceZone slices={page.data.slices} components={components} />
+      </Container>
+    </main>
   );
 }
 

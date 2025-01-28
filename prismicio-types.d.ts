@@ -611,7 +611,7 @@ export type NavigationElementDocument<Lang extends string = string> = prismic.Pr
   Lang
 >;
 
-type PageDocumentDataSlicesSlice = never;
+type PageDocumentDataSlicesSlice = HeroSlice | FaqsSlice;
 
 /**
  * Content for Page documents
@@ -1157,6 +1157,78 @@ export type AllDocumentTypes =
   | VideoDocument;
 
 /**
+ * Primary content in *CallToAction → Default → Primary*
+ */
+export interface CallToActionSliceDefaultPrimary {
+  /**
+   * Heading field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Body field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Links field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.default.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.Repeatable<prismic.LinkField>;
+
+  /**
+   * Image field in *CallToAction → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for CallToAction Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CallToActionSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<CallToActionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CallToAction*
+ */
+type CallToActionSliceVariation = CallToActionSliceDefault;
+
+/**
+ * CallToAction Shared Slice
+ *
+ * - **API ID**: `call_to_action`
+ * - **Description**: CallToAction
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CallToActionSlice = prismic.SharedSlice<'call_to_action', CallToActionSliceVariation>;
+
+/**
  * Item in *Faqs → Default → Primary → FAQs*
  */
 export interface FaqsSliceDefaultPrimaryFaqsItem {
@@ -1166,6 +1238,51 @@ export interface FaqsSliceDefaultPrimaryFaqsItem {
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
    * - **API ID Path**: faqs.default.primary.faqs[].faq
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  faq: prismic.ContentRelationshipField<'faq'>;
+}
+
+/**
+ * Item in *Faqs → Grid → Primary → FAQs*
+ */
+export interface FaqsSliceGridPrimaryFaqsItem {
+  /**
+   * FAQ field in *Faqs → Grid → Primary → FAQs*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.grid.primary.faqs[].faq
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  faq: prismic.ContentRelationshipField<'faq'>;
+}
+
+/**
+ * Item in *Faqs → Column → Primary → FAQs*
+ */
+export interface FaqsSliceColumnPrimaryFaqsItem {
+  /**
+   * FAQ field in *Faqs → Column → Primary → FAQs*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.column.primary.faqs[].faq
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  faq: prismic.ContentRelationshipField<'faq'>;
+}
+
+/**
+ * Item in *Faqs → Column Collapsible  → Primary → FAQs*
+ */
+export interface FaqsSliceColumnCollapsiblePrimaryFaqsItem {
+  /**
+   * FAQ field in *Faqs → Column Collapsible  → Primary → FAQs*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.columnCollapsible.primary.faqs[].faq
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   faq: prismic.ContentRelationshipField<'faq'>;
@@ -1226,9 +1343,197 @@ export interface FaqsSliceDefaultPrimary {
 export type FaqsSliceDefault = prismic.SharedSliceVariation<'default', Simplify<FaqsSliceDefaultPrimary>, never>;
 
 /**
+ * Primary content in *Faqs → Grid → Primary*
+ */
+export interface FaqsSliceGridPrimary {
+  /**
+   * Heading field in *Faqs → Grid → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.grid.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Subtitle field in *Faqs → Grid → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.grid.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * Body field in *Faqs → Grid → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.grid.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * FAQs field in *Faqs → Grid → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.grid.primary.faqs[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  faqs: prismic.GroupField<Simplify<FaqsSliceGridPrimaryFaqsItem>>;
+}
+
+/**
+ * Grid variation for Faqs Slice
+ *
+ * - **API ID**: `grid`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FaqsSliceGrid = prismic.SharedSliceVariation<'grid', Simplify<FaqsSliceGridPrimary>, never>;
+
+/**
+ * Primary content in *Faqs → Column → Primary*
+ */
+export interface FaqsSliceColumnPrimary {
+  /**
+   * Heading field in *Faqs → Column → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.column.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Subtitle field in *Faqs → Column → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.column.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * Body field in *Faqs → Column → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.column.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * FAQs field in *Faqs → Column → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.column.primary.faqs[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  faqs: prismic.GroupField<Simplify<FaqsSliceColumnPrimaryFaqsItem>>;
+
+  /**
+   * Has Intro field in *Faqs → Column → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: faqs.column.primary.has_intro
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  has_intro: prismic.BooleanField;
+}
+
+/**
+ * Column variation for Faqs Slice
+ *
+ * - **API ID**: `column`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FaqsSliceColumn = prismic.SharedSliceVariation<'column', Simplify<FaqsSliceColumnPrimary>, never>;
+
+/**
+ * Primary content in *Faqs → Column Collapsible  → Primary*
+ */
+export interface FaqsSliceColumnCollapsiblePrimary {
+  /**
+   * Heading field in *Faqs → Column Collapsible  → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.columnCollapsible.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Subtitle field in *Faqs → Column Collapsible  → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.columnCollapsible.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * Body field in *Faqs → Column Collapsible  → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.columnCollapsible.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * FAQs field in *Faqs → Column Collapsible  → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.columnCollapsible.primary.faqs[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  faqs: prismic.GroupField<Simplify<FaqsSliceColumnCollapsiblePrimaryFaqsItem>>;
+
+  /**
+   * Has Intro field in *Faqs → Column Collapsible  → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: faqs.columnCollapsible.primary.has_intro
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  has_intro: prismic.BooleanField;
+}
+
+/**
+ * Column Collapsible  variation for Faqs Slice
+ *
+ * - **API ID**: `columnCollapsible`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FaqsSliceColumnCollapsible = prismic.SharedSliceVariation<
+  'columnCollapsible',
+  Simplify<FaqsSliceColumnCollapsiblePrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Faqs*
  */
-type FaqsSliceVariation = FaqsSliceDefault;
+type FaqsSliceVariation = FaqsSliceDefault | FaqsSliceGrid | FaqsSliceColumn | FaqsSliceColumnCollapsible;
 
 /**
  * Faqs Shared Slice
@@ -1291,6 +1596,138 @@ type HeaderBlockSliceVariation = HeaderBlockSliceDefault;
  */
 export type HeaderBlockSlice = prismic.SharedSlice<'header_block', HeaderBlockSliceVariation>;
 
+/**
+ * Primary content in *Hero → Default → Primary*
+ */
+export interface HeroSliceDefaultPrimary {
+  /**
+   * Heading field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Subheading field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.subheading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subheading: prismic.KeyTextField;
+
+  /**
+   * Links field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.Repeatable<prismic.LinkField>;
+
+  /**
+   * Image field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Hero Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSliceDefault = prismic.SharedSliceVariation<'default', Simplify<HeroSliceDefaultPrimary>, never>;
+
+/**
+ * Primary content in *Hero → Simple → Primary*
+ */
+export interface HeroSliceSimplePrimary {
+  /**
+   * Label field in *Hero → Simple → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.simple.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Heading field in *Hero → Simple → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.simple.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Subheading field in *Hero → Simple → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.simple.primary.subheading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subheading: prismic.KeyTextField;
+
+  /**
+   * Links field in *Hero → Simple → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.simple.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.Repeatable<prismic.LinkField>;
+
+  /**
+   * Image field in *Hero → Simple → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.simple.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Simple variation for Hero Slice
+ *
+ * - **API ID**: `simple`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSliceSimple = prismic.SharedSliceVariation<'simple', Simplify<HeroSliceSimplePrimary>, never>;
+
+/**
+ * Slice variation for *Hero*
+ */
+type HeroSliceVariation = HeroSliceDefault | HeroSliceSimple;
+
+/**
+ * Hero Shared Slice
+ *
+ * - **API ID**: `hero`
+ * - **Description**: Hero
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
+
 declare module '@prismicio/client' {
   interface CreateClient {
     (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
@@ -1346,15 +1783,34 @@ declare module '@prismicio/client' {
       VideoDocument,
       VideoDocumentData,
       AllDocumentTypes,
+      CallToActionSlice,
+      CallToActionSliceDefaultPrimary,
+      CallToActionSliceVariation,
+      CallToActionSliceDefault,
       FaqsSlice,
       FaqsSliceDefaultPrimaryFaqsItem,
       FaqsSliceDefaultPrimary,
+      FaqsSliceGridPrimaryFaqsItem,
+      FaqsSliceGridPrimary,
+      FaqsSliceColumnPrimaryFaqsItem,
+      FaqsSliceColumnPrimary,
+      FaqsSliceColumnCollapsiblePrimaryFaqsItem,
+      FaqsSliceColumnCollapsiblePrimary,
       FaqsSliceVariation,
       FaqsSliceDefault,
+      FaqsSliceGrid,
+      FaqsSliceColumn,
+      FaqsSliceColumnCollapsible,
       HeaderBlockSlice,
       HeaderBlockSliceDefaultPrimary,
       HeaderBlockSliceVariation,
       HeaderBlockSliceDefault,
+      HeroSlice,
+      HeroSliceDefaultPrimary,
+      HeroSliceSimplePrimary,
+      HeroSliceVariation,
+      HeroSliceDefault,
+      HeroSliceSimple,
     };
   }
 }
