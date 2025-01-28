@@ -97,6 +97,41 @@
             }
           }
         }
+      },
+      "footer_cta_lable": {
+        "type": "Text",
+        "config": {
+          "label": "Footer Cta Lable",
+          "placeholder": ""
+        }
+      },
+      "footer_cta_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Footer Cta Heading",
+          "placeholder": ""
+        }
+      },
+      "footer_cta_body": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Footer Cta Body",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "footer_cta_links": {
+        "type": "Link",
+        "config": {
+          "label": "Footer Cta Links",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true,
+          "variants": ["Primary", "Secondary"]
+        }
       }
     }
   }

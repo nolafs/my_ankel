@@ -32,12 +32,12 @@ export function CookieConsent() {
 
   const acceptCookie = async () => {
     setShowConsent(true);
-    await setCookie('localConsent', 'true', {});
+    await setCookie('localConsent-ankle', 'true', {});
   };
 
   const declineCookie = async () => {
     setShowConsent(true);
-    await setCookie('localConsent', 'false', {});
+    await setCookie('localConsent-ankle', 'false', {});
   };
 
   if (showConsent) {
@@ -46,7 +46,7 @@ export function CookieConsent() {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 z-50 mx-auto my-10 flex max-w-max px-3 py-3 md:max-w-screen-lg md:px-4 ${showConsent ? 'hidden' : 'flex'} bg-primary flex-col items-center justify-between gap-4 rounded-sm shadow sm:flex-row`}>
+      className={`fixed bottom-0 left-0 right-0 z-50 mx-auto flex max-w-max px-3 py-3 md:my-10 md:max-w-screen-lg md:px-4 ${showConsent ? 'hidden' : 'flex'} flex-col items-center justify-between gap-4 rounded-sm bg-primary shadow sm:flex-row`}>
       <div className="text-left text-white">
         <Link href={'/legal/privacy-notice-for-kids-guitar-dojo'}>
           <p>

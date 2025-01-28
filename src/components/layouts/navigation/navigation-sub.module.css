@@ -1,0 +1,7 @@
+.sticky {
+  @apply bg-white pt-0 sm:pt-0
+}
+
+.sticky > nav {
+    @apply py-5 !important;
+}

@@ -1,5 +1,5 @@
 'use client';
-
+import style from './navigation-sub.module.css';
 import React, { useEffect, useState } from 'react';
 import {
   Dialog,
@@ -12,54 +12,18 @@ import {
   PopoverGroup,
   PopoverPanel,
 } from '@headlessui/react';
-import {
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline';
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon, RectangleGroupIcon } from '@heroicons/react/20/solid';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
 import Link from 'next/link';
-import { NavigationProps } from '@/types';
 import { Search } from '@/components/features/search/search';
 import {
   NavigationBarDocumentData,
   NavigationBarDocumentDataNavigationItemsItem,
   NavigationElementDocument,
-  NavigationElementDocumentData,
-} from '../../../prismicio-types';
+} from '../../../../prismicio-types';
 import { PrismicNextLink } from '@prismicio/next';
 import { PrismicImage, PrismicRichText } from '@prismicio/react';
-
-const products = [
-  {
-    name: 'Analytics',
-    description: 'Get a better understanding where your traffic is coming from',
-    href: '#',
-    icon: ChartPieIcon,
-  },
-  {
-    name: 'Engagement',
-    description: 'Speak directly to your customers with our engagement tool',
-    href: '#',
-    icon: CursorArrowRaysIcon,
-  },
-  { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-  {
-    name: 'Integrations',
-    description: 'Your customers’ data will be safe and secure',
-    href: '#',
-    icon: SquaresPlusIcon,
-  },
-];
-const callsToAction = [
-  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: '#', icon: PhoneIcon },
-  { name: 'View all products', href: '#', icon: RectangleGroupIcon },
-];
 
 interface NavigationSubProps {
   navigation: NavigationBarDocumentData;
@@ -72,39 +36,46 @@ export default function NavigationSub({ navigation, logo }: NavigationSubProps) 
   console.log(navigation);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const elementId = document.getElementById('navbar');
 
     document.addEventListener('scroll', () => {
       if (window.scrollY > 5) {
-        elementId?.classList.add('bg-white');
+        elementId?.classList.add(style.sticky!);
       } else {
-        elementId?.classList.remove('bg-white');
+        elementId?.classList.remove(style.sticky!);
       }
     });
 
     return () => {
       document.removeEventListener('scroll', () => {
         if (window.scrollY > 5) {
-          elementId?.classList.add('bg-white');
+          elementId?.classList.add(style.sticky!);
         } else {
-          elementId?.classList.remove('bg-white');
+          elementId?.classList.remove(style.sticky!);
         }
       });
     };
   }, []);
 
   return (
-    <header id={'navbar'} className="fixed isolate z-10 w-screen bg-transparent">
-      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+    <header
+      id={'navbar'}
+      className="fixed isolate z-10 w-screen bg-transparent px-6 transition-all delay-150 duration-300 lg:px-8">
+      <nav
+        aria-label="Global"
+        className="mx-auto flex max-w-2xl items-center justify-between py-16 transition-all delay-150 duration-300 lg:max-w-7xl">
         <div className="flex lg:flex-1">
           <div className="-m-1.5 p-1.5">
-            <Link href="/">
-              <span className="sr-only">my Ankel</span>
+            <Link href="/public">
+              <span className="sr-only">My Ankle</span>
               <Image src={logo} className="inline" alt="logo" width={110} height={32} />
             </Link>
           </div>
         </div>
-        <div className="flex lg:hidden">
+        <div className="grid grid-cols-2 gap-2 lg:hidden">
+          <Search />
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
@@ -185,14 +156,10 @@ export default function NavigationSub({ navigation, logo }: NavigationSubProps) 
         <div className="fixed inset-0 z-10" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                alt=""
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
-              />
-            </a>
+            <Link href="/public">
+              <span className="sr-only">My Ankle</span>
+              <Image src={logo} className="inline" alt="logo" width={110} height={32} />
+            </Link>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
@@ -204,45 +171,39 @@ export default function NavigationSub({ navigation, logo }: NavigationSubProps) 
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                <Disclosure as="div" className="-mx-3">
-                  <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                    Product
-                    <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
-                  </DisclosureButton>
-                  <DisclosurePanel className="mt-2 space-y-2">
-                    {[...products, ...callsToAction].map(item => (
+                {navigation?.navigation_items.map((item: NavigationBarDocumentDataNavigationItemsItem, idx) => {
+                  const navigationItem = item.navigation_item as unknown as NavigationElementDocument;
+
+                  return navigationItem.data?.subs[0]?.label !== null ? (
+                    <Disclosure key={`main-mobile-nav-${idx}`} as="div" className="-mx-3">
                       <DisclosureButton
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">
-                        {item.name}
+                        as="div"
+                        className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                        {navigationItem.data.label}
+                        <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
                       </DisclosureButton>
-                    ))}
-                  </DisclosurePanel>
-                </Disclosure>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                  Features
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                  Marketplace
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                  Company
-                </a>
-              </div>
-              <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                  Log in
-                </a>
+                      <DisclosurePanel className="mt-2 space-y-2">
+                        {navigationItem.data.subs.map(item => (
+                          <DisclosureButton key={item.label} as="div">
+                            <PrismicNextLink
+                              field={item.link}
+                              className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">
+                              {item.label}
+                              <span className="absolute inset-0" />
+                            </PrismicNextLink>
+                          </DisclosureButton>
+                        ))}
+                      </DisclosurePanel>
+                    </Disclosure>
+                  ) : (
+                    <PrismicNextLink
+                      key={`main-mobile-nav-${idx}`}
+                      field={navigationItem.data.link}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                      {navigationItem.data.label}
+                    </PrismicNextLink>
+                  );
+                })}
               </div>
             </div>
           </div>

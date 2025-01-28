@@ -1026,6 +1026,50 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   social_media: prismic.GroupField<Simplify<SettingsDocumentDataSocialMediaItem>>;
+
+  /**
+   * Footer Cta Lable field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_cta_lable
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  footer_cta_lable: prismic.KeyTextField;
+
+  /**
+   * Footer Cta Heading field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_cta_heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  footer_cta_heading: prismic.KeyTextField;
+
+  /**
+   * Footer Cta Body field in *Settings*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_cta_body
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  footer_cta_body: prismic.RichTextField;
+
+  /**
+   * Footer Cta Links field in *Settings*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_cta_links
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  footer_cta_links: prismic.Repeatable<prismic.LinkField>;
 }
 
 /**
