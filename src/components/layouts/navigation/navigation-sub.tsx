@@ -68,7 +68,7 @@ export default function NavigationSub({ navigation, logo }: NavigationSubProps) 
         className="mx-auto flex max-w-2xl items-center justify-between py-6 transition-all delay-150 duration-300 md:py-16 lg:max-w-7xl">
         <div className="flex lg:flex-1">
           <div className="-m-1.5 p-1.5">
-            <Link href="/public">
+            <Link href="/">
               <span className="sr-only">My Ankle</span>
               <Image src={logo} className="inline" alt="logo" width={110} height={32} />
             </Link>
