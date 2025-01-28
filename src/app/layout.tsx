@@ -37,16 +37,16 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
 
   return {
     metadataBase: new URL(
-      (isURL(settings.data?.canonical_url) && settings.data?.canonical_url) ||
-        process.env.NEXT_PUBLIC_SITE_URL ||
-        'https://www.kidsguitardojo.com',
+      isURL(settings.data?.canonical_url ?? '')
+        ? settings.data.canonical_url!
+        : (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.kidsguitardojo.com'),
     ),
     alternates: {
-      canonical: settings.data?.canonical_url || process.env.NEXT_PUBLIC_BASE_URL || 'https://www.myankle.com',
+      canonical: settings.data?.canonical_url ?? process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.myankle.com',
     },
-    title: settings?.data.meta_title || (await parent).title || '-= My Ankle =-',
-    description: settings?.data.meta_description || (await parent).description,
-    keywords: settings?.data.meta_keywords || (await parent).keywords || '',
+    title: settings?.data.meta_title ?? (await parent).title ?? '-= My Ankle =-',
+    description: settings?.data.meta_description ?? (await parent).description,
+    keywords: settings?.data.meta_keywords ?? (await parent).keywords ?? '',
     openGraph: {
       images: [...defaultImages],
     },
