@@ -8,7 +8,6 @@ import type { Metadata, ResolvingMetadata } from 'next';
 import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { LucideMailOpen, PhoneCallIcon, Share2Icon } from 'lucide-react';
 import SocialList from '@/components/features/social-list/social-list';
-import { Bounded } from '@/components/ui/bounded';
 import { PrismicImage, SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 import ContactForm from '@/components/features/contact-form/contact-form';
@@ -16,7 +15,7 @@ import { Container } from '@/components/ui/container';
 
 type Params = { uid: string };
 
-export async function generateMetadata({ params }: { params: Params }, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle('contact').catch(() => notFound());
 
