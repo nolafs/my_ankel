@@ -1,17 +1,7 @@
 'use client';
 import style from './navigation-sub.module.css';
 import React, { useEffect, useState } from 'react';
-import {
-  Dialog,
-  DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Popover,
-  PopoverButton,
-  PopoverGroup,
-  PopoverPanel,
-} from '@headlessui/react';
+import { Dialog, DialogPanel, Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
@@ -24,6 +14,13 @@ import {
 } from '../../../../prismicio-types';
 import { PrismicNextLink } from '@prismicio/next';
 import { PrismicImage, PrismicRichText } from '@prismicio/react';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@/components/ui/navigation-menu';
 
 interface NavigationSubProps {
   navigation: NavigationBarDocumentData;
@@ -32,7 +29,6 @@ interface NavigationSubProps {
 
 export default function NavigationSub({ navigation, logo }: NavigationSubProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [openPopover, setOpenPopover] = useState<string | null>(null);
 
   console.log(navigation);
 
@@ -85,71 +81,69 @@ export default function NavigationSub({ navigation, logo }: NavigationSubProps) 
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
         </div>
-        <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          {navigation?.navigation_items.map((item: NavigationBarDocumentDataNavigationItemsItem, idx) => {
-            const navigationItem = item.navigation_item as unknown as NavigationElementDocument;
+        <NavigationMenu>
+          <NavigationMenuList>
+            {navigation?.navigation_items.map((item: NavigationBarDocumentDataNavigationItemsItem, idx) => {
+              const navigationItem = item.navigation_item as unknown as NavigationElementDocument;
 
-            return navigationItem.data?.subs[0]?.label !== null ? (
-              <Popover key={`main-nav-${idx}`}>
-                <PopoverButton
-                  onMouseEnter={() => setOpenPopover(`main-nav-${idx}`)}
-                  onMouseLeave={() => setTimeout(() => setOpenPopover(null), 200)}
-                  className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
-                  {navigationItem.data.label}
-                  <ChevronDownIcon aria-hidden="true" className="size-5 flex-none text-gray-400" />
-                </PopoverButton>
+              return navigationItem.data?.subs[0]?.label !== null ? (
+                <NavigationMenuItem key={`main-nav-${idx}`}>
+                  <NavigationMenuTrigger className="text-gray-900">{navigationItem.data.label}</NavigationMenuTrigger>
 
-                <PopoverPanel className="absolute inset-x-0 top-0 -z-10 w-full bg-white pt-14 shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:-translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in">
-                  <div className="mx-auto grid max-w-7xl grid-cols-4 gap-x-4 px-6 py-10 lg:px-8 xl:gap-x-8">
-                    {navigationItem.data.subs.map((item, idx) => (
-                      <div
-                        key={`main-nav-item-${idx}`}
-                        className="group relative rounded-lg p-6 text-sm/6 hover:bg-gray-50">
-                        <div className="flex size-11 items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <PrismicImage
-                            field={item.icon}
-                            className="size-6 fill-gray-600 text-gray-600 group-hover:text-indigo-600"
-                          />
-                        </div>
-                        <PrismicNextLink
-                          field={item.link}
-                          className="text-base font-medium text-gray-400 transition-all hover:text-primary">
-                          {item.label}
-                          <span className="absolute inset-0" />
-                        </PrismicNextLink>
-                        <div className="mt-1 text-gray-600">
-                          <PrismicRichText field={item.description} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="bg-gray-50">
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                      <div className="grid grid-cols-2 divide-x divide-gray-900/5 border-x border-gray-900/5">
-                        {navigationItem.data.cta.map((item, idx) => (
+                  <NavigationMenuContent className="absolute inset-x-0 top-0 -z-10 w-full bg-white pt-14 shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:-translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in">
+                    <div className="mx-auto grid max-w-7xl grid-cols-4 gap-x-4 px-6 py-10 lg:px-8 xl:gap-x-8">
+                      {navigationItem.data.subs.map((item, idx) => (
+                        <div
+                          key={`main-nav-item-${idx}`}
+                          className="group relative rounded-lg p-6 text-sm/6 hover:bg-gray-50">
+                          <div className="flex size-11 items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                            <PrismicImage
+                              field={item.icon}
+                              className="size-6 fill-gray-600 text-gray-600 group-hover:text-indigo-600"
+                            />
+                          </div>
                           <PrismicNextLink
-                            key={`cta-${idx}`}
-                            field={item.url}
-                            className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-100">
-                            <PrismicImage field={item.icon} className="size-5 flex-none text-gray-400" />
-                            {item.text}
+                            field={item.link}
+                            className="text-base font-medium text-gray-400 transition-all hover:text-primary">
+                            {item.label}
+                            <span className="absolute inset-0" />
                           </PrismicNextLink>
-                        ))}
+                          <div className="mt-1 text-gray-600">
+                            <PrismicRichText field={item.description} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="bg-gray-50">
+                      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                        <div className="grid grid-cols-2 divide-x divide-gray-900/5 border-x border-gray-900/5">
+                          {navigationItem.data.cta.map((item, idx) => (
+                            <PrismicNextLink
+                              key={`cta-${idx}`}
+                              field={item.url}
+                              className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-100">
+                              <PrismicImage field={item.icon} className="size-5 flex-none text-gray-400" />
+                              {item.text}
+                            </PrismicNextLink>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </PopoverPanel>
-              </Popover>
-            ) : (
-              <PrismicNextLink
-                key={`main-nav-${idx}`}
-                field={navigationItem.data.link}
-                className="text-sm/6 font-semibold text-gray-400 transition-all hover:text-primary">
-                {navigationItem.data.label}
-              </PrismicNextLink>
-            );
-          })}
-        </PopoverGroup>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ) : (
+                <NavigationMenuItem>
+                  <PrismicNextLink
+                    key={`main-nav-${idx}`}
+                    field={navigationItem.data.link}
+                    className="text-sm/6 font-semibold text-gray-400 transition-all hover:text-primary">
+                    {navigationItem.data.label}
+                  </PrismicNextLink>
+                </NavigationMenuItem>
+              );
+            })}
+          </NavigationMenuList>
+        </NavigationMenu>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Search />
         </div>
