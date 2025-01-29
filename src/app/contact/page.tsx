@@ -14,8 +14,10 @@ import ContactForm from '@/components/features/contact-form/contact-form';
 import { Container } from '@/components/ui/container';
 
 type Params = { uid: string };
-
-export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: Promise<Params> },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle('contact').catch(() => notFound());
 
