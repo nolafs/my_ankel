@@ -35,14 +35,16 @@ export function Footer({ navigation, logo, footerCta, secondaryNavigation, socia
           <div className={'border-t border-gray-200 border-opacity-30'}>
             <BorderRow>
               <div className="mt-10 grid grid-cols-2 gap-y-10 pb-10 lg:grid-cols-6 lg:gap-8">
-                <div className="col-span-2 flex flex-col">
-                  <Link href="/">
+                <div className="col-span-2 flex flex-col justify-between">
+                  <Link href="/" className={'grow'}>
                     <h2 id="footer-heading" className="sr-only">
                       My Ankle
                     </h2>
                     <Image src={logo} className="inline" alt="logo" />
                   </Link>
-                  {social && <SocialList items={social} icons={true} variantList={1} variantButton={2} />}
+                  <div className={'mt-12 shrink'}>
+                    {social && <SocialList items={social} icons={true} variantList={1} variantButton={2} />}
+                  </div>
                 </div>
                 <div className="col-span-2 grid grid-cols-2 gap-x-8 gap-y-12 lg:col-span-4 lg:grid-cols-subgrid">
                   {navigation?.navigation_items.map((item, idx) => {

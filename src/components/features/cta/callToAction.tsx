@@ -16,7 +16,7 @@ export function CallToAction({ label, heading, body, links }: Cta) {
         <PrismicRichText field={body} />
       </div>
       {links && (
-        <div className="mx-auto mt-6 flex flex-col items-center justify-center space-x-2 md:flex-row">
+        <div className="mx-auto mt-6 flex flex-col items-center justify-center gap-2 md:flex-row">
           {links?.map((link, index) => (
             <PrismicNextLink
               field={link}

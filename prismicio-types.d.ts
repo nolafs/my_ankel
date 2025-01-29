@@ -774,6 +774,8 @@ export interface PostsDocumentDataTagsItem {
   tag: prismic.ContentRelationshipField<'post_tags'>;
 }
 
+type PostsDocumentDataSlicesSlice = never;
+
 /**
  * Content for Posts documents
  */
@@ -877,6 +879,48 @@ interface PostsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   content: prismic.RichTextField;
+
+  /**
+   * Slice Zone field in *Posts*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: posts.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PostsDocumentDataSlicesSlice> /**
+   * Meta title field in *Posts*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: posts.meta_title
+   * - **Tab**: SEO & Meta Data
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Posts*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: posts.meta_description
+   * - **Tab**: SEO & Meta Data
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Posts*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: posts.meta_image
+   * - **Tab**: SEO & Meta Data
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
 }
 
 /**
@@ -956,7 +1000,7 @@ export interface SettingsDocumentDataSocialMediaItem {
    * - **API ID Path**: settings.social_media[].type
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  type: prismic.SelectField<'facebook' | 'instagram' | 'twitter' | 'gitHub' | 'youtube' | 'tiktok'>;
+  type: prismic.SelectField<'facebook' | 'instagram' | 'twitter' | 'gitHub' | 'youtube' | 'tiktok' | 'linkedin'>;
 
   /**
    * Name field in *Settings → Social Media*
@@ -1960,6 +2004,7 @@ declare module '@prismicio/client' {
       PostsDocument,
       PostsDocumentData,
       PostsDocumentDataTagsItem,
+      PostsDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataContactFormEnquiriesItem,

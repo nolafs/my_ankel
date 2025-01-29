@@ -74,7 +74,7 @@
               "config": {
                 "label": "Type",
                 "placeholder": "",
-                "options": ["facebook", "instagram", "twitter", "gitHub", "youtube", "tiktok"]
+                "options": ["facebook", "instagram", "twitter", "gitHub", "youtube", "tiktok", "linkedin"]
               }
             },
             "name": {

@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PrismicRichText } from '@prismicio/react';
+import { asText } from '@prismicio/richtext';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -25,7 +26,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     })
     .catch(() => notFound());
 
-  return post ? { title: post.data.title } : {};
+  return post
+    ? {
+        title: post.data.title,
+        openGraph: {
+          title: post.data.meta_title ?? undefined,
+          description:
+            typeof post.data.meta_description === 'string'
+              ? post.data.meta_description
+              : (asText(post.data.meta_description ?? post.data.excerpt) ?? ''),
+          images: [{ url: post.data.meta_image.url ?? post.data.feature_image.url ?? '' }],
+        },
+      }
+    : {
+        title: 'Blog Post',
+      };
 }
 
 export default async function Page({ params }: Props) {

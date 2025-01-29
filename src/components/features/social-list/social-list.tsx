@@ -16,7 +16,7 @@ const VARIANTS_BUTTON = ['w-[26px] h-[26px]', 'border border-primary p-2 h-10 w-
 
 const VARIANTS_LIST = [
   'flex space-x-6 justify-center items-center md:justify-end md:items-end',
-  'flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-10',
+  'flex flex-row space-x-10',
   'flex gap-4',
 ];
 

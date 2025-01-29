@@ -1,16 +1,7 @@
-import {LinkPrismicType} from '@/types';
+import { LinkPrismicType } from '@/types';
 
 interface SocialIconsProps {
-  type?:
-    | 'facebook'
-    | 'instagram'
-    | 'twitter'
-    | 'gitHub'
-    | 'youtube'
-    | 'tiktok'
-    | 'linkedin'
-    | undefined
-    | null
+  type?: 'facebook' | 'instagram' | 'twitter' | 'gitHub' | 'youtube' | 'tiktok' | 'linkedin' | undefined | null;
   props?: any;
 }
 
@@ -98,10 +89,9 @@ const social = [
 
 export const SocialIcons = ({ type, props }: SocialIconsProps) => {
   //filter social by type
-  const item: Social | undefined  = social.find(v => v.name === type);
+  const item: Social | undefined = social.find(v => v.name === type);
 
-  if (item === undefined) return <i>nope</i>;
-
+  if (item === undefined) return null;
 
   return (
     <span>
