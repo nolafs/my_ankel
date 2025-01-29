@@ -12,7 +12,7 @@ import logo from '@/assets/myankle-logo.svg';
 
 import { SocialLinkItemType } from '@/types/socialLinkItem.type';
 import { Cta, LinkPrismicType } from '@/types';
-import NavigationSub from '@/components/layouts/navigation/navigation-sub';
+import NavigationMenuSub from '@/components/layouts/navigation/navigation-menu-sub';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -120,7 +120,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body className={'text-gray-950 antialiased'}>
-        <NavigationSub navigation={navigation.data} logo={logo} />
+        <NavigationMenuSub navigation={navigation.data} logo={logo} />
         {children}
         {/* Footer consent */}
         <Footer

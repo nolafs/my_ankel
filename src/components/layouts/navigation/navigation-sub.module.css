@@ -4,6 +4,10 @@
 
 }
 
-.sticky > nav {
+.sticky > div {
     @apply py-5 !important;
+}
+
+.sticky  #nav_content {
+    padding-top: 0 !important;
 }
