@@ -69,7 +69,13 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
           <div className="relative z-40 -m-1.5 p-1.5">
             <Link href="/">
               <span className="sr-only">My Ankle</span>
-              <Image src={logo} className="inline" alt="logo" width={110} height={32} />
+              <Image
+                src={logo}
+                className={cn('inline transition-all delay-150 duration-300', scroll ? 'scale-100' : 'scale-[1.50]')}
+                alt="logo"
+                width={110}
+                height={32}
+              />
             </Link>
           </div>
         </div>
@@ -140,7 +146,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
             })}
           </NavigationMenuList>
         </NavigationMenu>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="relative z-40 hidden lg:flex lg:flex-1 lg:justify-end">
           <Search />
         </div>
       </div>

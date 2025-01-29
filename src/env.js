@@ -1,5 +1,5 @@
-import { createEnv } from "@t3-oss/env-nextjs";
-import { z } from "zod";
+import { createEnv } from '@t3-oss/env-nextjs';
+import { z } from 'zod';
 
 export const env = createEnv({
   /**
@@ -7,7 +7,7 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    NODE_ENV: z.enum(["development", "test", "production"]),
+    NODE_ENV: z.enum(['development', 'test', 'production']),
     ALGOLIA_ADMIN_KEY: z.string(),
   },
 
@@ -20,6 +20,7 @@ export const env = createEnv({
     NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string(),
     NEXT_PUBLIC_ALGOLIA_APPLICATION_ID: z.string(),
     NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY: z.string(),
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY: z.string(),
   },
 
   /**
@@ -31,7 +32,8 @@ export const env = createEnv({
     ALGOLIA_ADMIN_KEY: process.env.ALGOLIA_ADMIN_KEY,
     NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY: process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY,
     NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
-    NEXT_PUBLIC_ALGOLIA_APPLICATION_ID: process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID
+    NEXT_PUBLIC_ALGOLIA_APPLICATION_ID: process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID,
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

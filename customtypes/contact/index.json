@@ -20,6 +20,49 @@
           "placeholder": ""
         }
       },
+      "lead": {
+        "type": "Text",
+        "config": {
+          "label": "Lead",
+          "placeholder": ""
+        }
+      },
+      "email_address": {
+        "type": "Text",
+        "config": {
+          "label": "Email Address",
+          "placeholder": ""
+        }
+      },
+      "phone_number": {
+        "type": "Text",
+        "config": {
+          "label": "Phone Number",
+          "placeholder": ""
+        }
+      },
+      "form_image": {
+        "type": "Image",
+        "config": {
+          "label": "Form Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "form_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Form Heading",
+          "placeholder": ""
+        }
+      },
+      "form_body": {
+        "type": "Text",
+        "config": {
+          "label": "Form Body",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
