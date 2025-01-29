@@ -114,7 +114,7 @@ export function ContactForm({ items }: ContactFormInputProps) {
 
   return (
     <div className="form-control w-full max-w-3xl text-primary">
-      <form onSubmit={handleSubmit(onSubmit)} noValidate data-netlify="true" method="post" className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} noValidate method="post" className="space-y-4">
         <input
           type="text"
           placeholder="Name"
