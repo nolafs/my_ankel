@@ -28,7 +28,7 @@ export async function Categories({ selected }: { selected?: string }) {
           className="min-w-40 rounded-lg bg-white p-1 shadow-lg ring-1 ring-gray-200 [--anchor-gap:6px] [--anchor-offset:-4px] [--anchor-padding:10px]">
           <MenuItem>
             <Link
-              href="/blog"
+              href="/downloads"
               data-selected={selected === undefined ? true : undefined}
               className="group grid grid-cols-[1rem,1fr] items-center gap-2 rounded-md px-2 py-1 data-[focus]:bg-gray-950/5">
               <CheckIcon className="hidden size-4 group-data-[selected]:block" />
@@ -38,7 +38,7 @@ export async function Categories({ selected }: { selected?: string }) {
           {categories.map(category => (
             <MenuItem key={category.uid}>
               <Link
-                href={`/blog?category=${category.uid}`}
+                href={`/downloads?category=${category.uid}`}
                 data-selected={category.uid === selected ? true : undefined}
                 className="group grid grid-cols-[16px,1fr] items-center gap-2 rounded-md px-2 py-1 data-[focus]:bg-gray-950/5">
                 <CheckIcon className="hidden size-4 group-data-[selected]:block" />
