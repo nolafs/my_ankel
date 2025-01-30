@@ -249,6 +249,62 @@ interface DownloadDocumentData {
   name: prismic.KeyTextField;
 
   /**
+   * Feature Image field in *Download*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: download.feature_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  feature_image: prismic.ImageField<never>;
+
+  /**
+   * Featured field in *Download*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: download.featured
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  featured: prismic.BooleanField;
+
+  /**
+   * Publishing Date field in *Download*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: download.publishing_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  publishing_date: prismic.DateField;
+
+  /**
+   * Category field in *Download*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: download.category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  category: prismic.ContentRelationshipField<'post_category'>;
+
+  /**
+   * Author field in *Download*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: download.author
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  author: prismic.ContentRelationshipField<'author'>;
+
+  /**
    * Description field in *Download*
    *
    * - **Field Type**: Rich Text
@@ -271,7 +327,7 @@ interface DownloadDocumentData {
   file: prismic.LinkToMediaField;
 
   /**
-   * `slices` field in *Download*
+   * Slice Zone field in *Download*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*

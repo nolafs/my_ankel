@@ -19,6 +19,48 @@
           "placeholder": ""
         }
       },
+      "feature_image": {
+        "type": "Image",
+        "config": {
+          "label": "Feature Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "featured": {
+        "type": "Boolean",
+        "config": {
+          "label": "Featured",
+          "placeholder_false": "false",
+          "placeholder_true": "false",
+          "default_value": false
+        }
+      },
+      "publishing_date": {
+        "type": "Date",
+        "config": {
+          "label": "Publishing Date",
+          "placeholder": ""
+        }
+      },
+      "category": {
+        "type": "Link",
+        "config": {
+          "label": "Category",
+          "select": "document",
+          "repeat": false,
+          "customtypes": ["post_category"]
+        }
+      },
+      "author": {
+        "type": "Link",
+        "config": {
+          "label": "Author",
+          "select": "document",
+          "repeat": false,
+          "customtypes": ["author"]
+        }
+      },
       "description": {
         "type": "StructuredText",
         "config": {
@@ -39,7 +81,10 @@
       },
       "slices": {
         "type": "Slices",
-        "fieldset": "Slice Zone"
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
       }
     }
   }
