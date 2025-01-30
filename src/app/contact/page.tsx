@@ -68,13 +68,15 @@ export default async function Page() {
           {page.data.heading}
         </Heading>
         <Lead className="mt-6 max-w-3xl">{page.data.lead}</Lead>
-        {/* Contact page */}
-        <div className="mx-2 my-24 rounded-4xl bg-gray-900 bg-[url(/dot-texture.svg)] pb-24 pt-72 lg:pt-36">
+      </Container>
+      {/* Contact page */}
+      <div className="mx-2 my-24 rounded-4xl bg-gray-900 bg-[url(/dot-texture.svg)] pb-16 pt-16 lg:pt-36">
+        <Container>
           <div className={'grid grid-cols-1 justify-items-center gap-5 md:grid-cols-3'}>
             {page.data.email_address && (
               <div className={'text-center'}>
                 {/* Email */}
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-red-600 text-white">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-accent text-white">
                   <i>
                     <LucideMailOpen width={24} height={24} />
                   </i>
@@ -87,7 +89,7 @@ export default async function Page() {
             )}
             {page.data.phone_number && (
               <div className={'text-center'}>
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-red-600 text-white">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-accent text-white">
                   <i>
                     <PhoneCallIcon width={24} height={24} />
                   </i>
@@ -100,7 +102,7 @@ export default async function Page() {
             )}
             {social && (
               <div className={'text-center'}>
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-red-600 text-white">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-accent text-white">
                   <i>
                     <Share2Icon width={24} height={24} />
                   </i>
@@ -112,8 +114,9 @@ export default async function Page() {
               </div>
             )}
           </div>
-        </div>
-
+        </Container>
+      </div>
+      <Container>
         <Subheading>{page.data.subtitle}</Subheading>
         <Heading as="h1" className="mt-2">
           {page.data.form_heading}

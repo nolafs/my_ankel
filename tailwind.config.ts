@@ -26,7 +26,6 @@ export default {
         'secondary-foreground': 'hsl(var(--secondary-foreground))',
         accent: 'hsl(var(--accent))',
         'accent-foreground': 'hsl(var(--accent-foreground))',
-        neutral: 'var(--color-neutral)',
         base: 'var(--color-base)',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',

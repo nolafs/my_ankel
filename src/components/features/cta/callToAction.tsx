@@ -2,6 +2,8 @@ import { Subheading } from '@/components/ui/text';
 import { Cta } from '@/types';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
+import cn from 'clsx';
+import { buttonVariants } from '@/components/ui/button';
 
 export function CallToAction({ label, heading, body, links }: Cta) {
   return (
@@ -21,7 +23,9 @@ export function CallToAction({ label, heading, body, links }: Cta) {
             <PrismicNextLink
               field={link}
               key={index}
-              className="hover:bg-primary-dark inline-block rounded-lg bg-primary px-6 py-3 text-lg font-medium text-white">
+              className={cn(
+                buttonVariants({ variant: link.variant === 'Secondary' ? 'secondary' : 'default', size: 'lg' }),
+              )}>
               {link.text}
             </PrismicNextLink>
           ))}

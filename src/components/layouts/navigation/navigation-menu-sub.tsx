@@ -66,12 +66,15 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
       className="fixed z-40 w-screen bg-transparent px-6 transition-all delay-150 duration-300 lg:px-8">
       <div className="mx-auto flex w-full max-w-2xl items-center justify-between pt-6 transition-all delay-150 duration-300 md:pt-16 lg:max-w-7xl">
         <div className="flex lg:flex-1">
-          <div className="relative z-40 -m-1.5 p-1.5">
+          <div className="relative z-40 p-2 md:p-1.5">
             <Link href="/">
               <span className="sr-only">My Ankle</span>
               <Image
                 src={logo}
-                className={cn('inline transition-all delay-150 duration-300', scroll ? 'scale-100' : 'scale-[1.50]')}
+                className={cn(
+                  'inline transition-all delay-150 duration-300',
+                  scroll ? 'md:scale-100' : 'md:scale-[1.50]',
+                )}
                 alt="logo"
                 width={110}
                 height={32}
@@ -82,7 +85,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
         <div className="grid grid-cols-2 gap-2 lg:hidden">
           <NavigationMobileMenu navigation={navigation} logo={logo} />
         </div>
-        <NavigationMenu>
+        <NavigationMenu className={'hidden md:block'}>
           <NavigationMenuList>
             {navigation?.navigation_items.map((item: NavigationBarDocumentDataNavigationItemsItem, idx) => {
               const navigationItem = item.navigation_item as unknown as NavigationElementDocument;

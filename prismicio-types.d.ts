@@ -231,6 +231,8 @@ export type ContactDocument<Lang extends string = string> = prismic.PrismicDocum
   Lang
 >;
 
+type DownloadDocumentDataSlicesSlice = never;
+
 /**
  * Content for Download documents
  */
@@ -267,6 +269,17 @@ interface DownloadDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   file: prismic.LinkToMediaField;
+
+  /**
+   * `slices` field in *Download*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: download.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<DownloadDocumentDataSlicesSlice>;
 }
 
 /**
@@ -1252,6 +1265,8 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
   Lang
 >;
 
+type VideoDocumentDataSlicesSlice = never;
+
 /**
  * Content for Video documents
  */
@@ -1266,6 +1281,62 @@ interface VideoDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   name: prismic.KeyTextField;
+
+  /**
+   * Author field in *Video*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.author
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  author: prismic.ContentRelationshipField<'author'>;
+
+  /**
+   * Publishing Date field in *Video*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.publishing_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  publishing_date: prismic.DateField;
+
+  /**
+   * Featured field in *Video*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: video.featured
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  featured: prismic.BooleanField;
+
+  /**
+   * Poster field in *Video*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.poster
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  poster: prismic.ImageField<never>;
+
+  /**
+   * Category field in *Video*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  category: prismic.ContentRelationshipField<'post_category'>;
 
   /**
    * Description field in *Video*
@@ -1288,6 +1359,48 @@ interface VideoDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#embed
    */
   video_url: prismic.EmbedField;
+
+  /**
+   * Slice Zone field in *Video*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<VideoDocumentDataSlicesSlice> /**
+   * Meta Title field in *Video*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.meta_title
+   * - **Tab**: SEO & Meta Data
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Video*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.meta_description
+   * - **Tab**: SEO & Meta Data
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Video*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.meta_image
+   * - **Tab**: SEO & Meta Data
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
 }
 
 /**
@@ -2045,6 +2158,7 @@ declare module '@prismicio/client' {
       ContactDocumentDataSlicesSlice,
       DownloadDocument,
       DownloadDocumentData,
+      DownloadDocumentDataSlicesSlice,
       FaqDocument,
       FaqDocumentData,
       HomeDocument,
@@ -2078,6 +2192,7 @@ declare module '@prismicio/client' {
       SettingsDocumentDataSocialMediaItem,
       VideoDocument,
       VideoDocumentData,
+      VideoDocumentDataSlicesSlice,
       AllDocumentTypes,
       CallToActionSlice,
       CallToActionSliceDefaultPrimary,

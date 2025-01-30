@@ -39,10 +39,13 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
     metadataBase: new URL(
       isURL(settings.data?.canonical_url ?? '')
         ? settings.data.canonical_url!
-        : (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.kidsguitardojo.com'),
+        : (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.myankle.co.uk'),
     ),
     alternates: {
-      canonical: settings.data?.canonical_url ?? process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.myankle.com',
+      canonical: settings.data?.canonical_url ?? process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.myankle.co.uk',
+      types: {
+        'application/rss+xml': `${process.env.NEXT_PUBLIC_BASE_URL}feed.xml`,
+      },
     },
     title: settings?.data.meta_title ?? (await parent).title ?? '-= My Ankle =-',
     description: settings?.data.meta_description ?? (await parent).description,

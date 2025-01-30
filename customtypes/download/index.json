@@ -1,5 +1,5 @@
 {
-  "format": "custom",
+  "format": "page",
   "id": "download",
   "label": "Download",
   "repeatable": true,
@@ -36,6 +36,10 @@
           "select": "media",
           "allowText": true
         }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone"
       }
     }
   }

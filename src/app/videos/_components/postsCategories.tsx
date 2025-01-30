@@ -48,10 +48,6 @@ export async function Categories({ selected }: { selected?: string }) {
           ))}
         </MenuItems>
       </Menu>
-      <Button variant="outline" href="/feed.xml" className="gap-1">
-        <RssIcon className="size-4" />
-        RSS Feed
-      </Button>
     </div>
   );
 }
