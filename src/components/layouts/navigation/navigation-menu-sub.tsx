@@ -92,7 +92,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
 
               return navigationItem.data?.subs[0]?.label !== null ? (
                 <NavigationMenuItem key={`main-nav-${idx}`}>
-                  <NavigationMenuTrigger>{navigationItem.data.label}</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className={'text-lg'}>{navigationItem.data.label}</NavigationMenuTrigger>
 
                   <NavigationMenuContent>
                     <div id={'nav-content'} className={cn('relative block w-screen', scroll ? 'pt-14' : 'pt-24')}>
@@ -140,7 +140,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
               ) : (
                 <NavigationMenuItem key={`main-nav-${idx}`}>
                   <PrismicNextLink field={navigationItem.data.link} passHref legacyBehavior>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle())}>
+                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), '!text-lg')}>
                       {navigationItem.data.label}
                     </NavigationMenuLink>
                   </PrismicNextLink>

@@ -13,6 +13,8 @@ import logo from '@/assets/myankle-logo.svg';
 import { SocialLinkItemType } from '@/types/socialLinkItem.type';
 import { Cta, LinkPrismicType } from '@/types';
 import NavigationMenuSub from '@/components/layouts/navigation/navigation-menu-sub';
+import BackToTop from '@/components/ui/BackToTop';
+import { Suspense } from 'react';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -122,9 +124,13 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body className={'text-gray-950 antialiased'}>
+      <body className={'min-h-screen text-gray-950 antialiased'}>
         <NavigationMenuSub navigation={navigation.data} logo={logo} />
+
+        {/* Content */}
+
         {children}
+
         {/* Footer consent */}
         <Footer
           navigation={navigation.data}
@@ -134,8 +140,13 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           copyright={settings.data.copyright_line}
           footerCta={footerCta}
         />
+
         {/* Cookie consent */}
-        <CookieConsent />
+        <Suspense>
+          <CookieConsent />
+          <BackToTop />
+        </Suspense>
+
         <PrismicPreview repositoryName={repositoryName} />
       </body>
 
