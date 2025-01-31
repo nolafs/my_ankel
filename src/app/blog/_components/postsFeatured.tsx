@@ -12,7 +12,7 @@ export async function FeaturedPosts() {
   const client = createClient();
   const featuredPosts = await client
     .getByType('posts', {
-      pageSize: 3,
+      pageSize: 4,
       page: 0,
       filters: [filter.at('my.posts.featured', true)],
       fetchLinks: ['author.name', 'author.profile_image', 'post_category.name'],
