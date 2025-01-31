@@ -10,7 +10,9 @@ export default async function HomePage() {
 
   return (
     <main className={'min-h-svh w-full overflow-hidden'}>
-      <SliceZone slices={page.data.slices} components={components} />
+      <div className="bg-gradient-to-b from-white from-50% to-gray-100">
+        <SliceZone slices={page.data.slices} components={components} />
+      </div>
     </main>
   );
 }

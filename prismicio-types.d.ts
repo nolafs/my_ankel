@@ -1613,9 +1613,77 @@ export type CallToActionSliceImage = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *CallToAction → Embed Video → Primary*
+ */
+export interface CallToActionSliceEmbedVideoPrimary {
+  /**
+   * Heading field in *CallToAction → Embed Video → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.embedVideo.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Body field in *CallToAction → Embed Video → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.embedVideo.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Links field in *CallToAction → Embed Video → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.embedVideo.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.Repeatable<prismic.LinkField>;
+
+  /**
+   * Class Name field in *CallToAction → Embed Video → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.embedVideo.primary.class_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  class_name: prismic.KeyTextField;
+
+  /**
+   * Video field in *CallToAction → Embed Video → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: call_to_action.embedVideo.primary.video
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  video: prismic.EmbedField;
+}
+
+/**
+ * Embed Video variation for CallToAction Slice
+ *
+ * - **API ID**: `embedVideo`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CallToActionSliceEmbedVideo = prismic.SharedSliceVariation<
+  'embedVideo',
+  Simplify<CallToActionSliceEmbedVideoPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *CallToAction*
  */
-type CallToActionSliceVariation = CallToActionSliceDefault | CallToActionSliceImage;
+type CallToActionSliceVariation = CallToActionSliceDefault | CallToActionSliceImage | CallToActionSliceEmbedVideo;
 
 /**
  * CallToAction Shared Slice
@@ -2685,9 +2753,11 @@ declare module '@prismicio/client' {
       CallToActionSlice,
       CallToActionSliceDefaultPrimary,
       CallToActionSliceImagePrimary,
+      CallToActionSliceEmbedVideoPrimary,
       CallToActionSliceVariation,
       CallToActionSliceDefault,
       CallToActionSliceImage,
+      CallToActionSliceEmbedVideo,
       FaqsSlice,
       FaqsSliceDefaultPrimaryFaqsItem,
       FaqsSliceDefaultPrimary,
