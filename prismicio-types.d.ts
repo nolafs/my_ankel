@@ -746,7 +746,13 @@ export type NavigationElementDocument<Lang extends string = string> = prismic.Pr
   Lang
 >;
 
-type PageDocumentDataSlicesSlice = TestimonialSlice | CallToActionSlice | HeaderBlockSlice | HeroSlice | FaqsSlice;
+type PageDocumentDataSlicesSlice =
+  | SectionSlice
+  | TestimonialSlice
+  | CallToActionSlice
+  | HeaderBlockSlice
+  | HeroSlice
+  | FaqsSlice;
 
 /**
  * Content for Page documents
@@ -2121,6 +2127,99 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceSimple;
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
 
 /**
+ * Item in *Section → Default → Primary → Images*
+ */
+export interface SectionSliceDefaultPrimaryImagesItem {
+  /**
+   * Image field in *Section → Default → Primary → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.default.primary.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *Section → Default → Primary*
+ */
+export interface SectionSliceDefaultPrimary {
+  /**
+   * Heading field in *Section → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Subheading field in *Section → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.default.primary.subheading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subheading: prismic.KeyTextField;
+
+  /**
+   * Lead field in *Section → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.default.primary.lead
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  lead: prismic.KeyTextField;
+
+  /**
+   * Body field in *Section → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Images field in *Section → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.default.primary.images[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<Simplify<SectionSliceDefaultPrimaryImagesItem>>;
+}
+
+/**
+ * Default variation for Section Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SectionSliceDefault = prismic.SharedSliceVariation<'default', Simplify<SectionSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *Section*
+ */
+type SectionSliceVariation = SectionSliceDefault;
+
+/**
+ * Section Shared Slice
+ *
+ * - **API ID**: `section`
+ * - **Description**: Section
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SectionSlice = prismic.SharedSlice<'section', SectionSliceVariation>;
+
+/**
  * Primary content in *Testimonial → Default → Primary*
  */
 export interface TestimonialSliceDefaultPrimary {
@@ -2280,6 +2379,11 @@ declare module '@prismicio/client' {
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceSimple,
+      SectionSlice,
+      SectionSliceDefaultPrimaryImagesItem,
+      SectionSliceDefaultPrimary,
+      SectionSliceVariation,
+      SectionSliceDefault,
       TestimonialSlice,
       TestimonialSliceDefaultPrimary,
       TestimonialSliceVariation,
