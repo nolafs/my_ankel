@@ -32,8 +32,8 @@ type ButtonProps = {
 export function Button({ variant = 'primary', className, disabled, ...props }: ButtonProps) {
   className = clsx(className, variants[variant], { 'pointer-events-none opacity-40': disabled });
 
-  if (typeof props.href === 'undefined' || disabled) {
-    return <Headless.Button {...props} className={className} disabled={disabled} />;
+  if (typeof props.href === 'undefined') {
+    return <Headless.Button {...props} className={className} />;
   }
 
   return <Link {...props} className={className} />;
