@@ -12,7 +12,6 @@ export const useScrollTop = () => {
 
     const scrollHandler = () => {
       const scrollPos = window.pageYOffset;
-      console.log(scrollPos);
       if (scrollPos > 300) {
         setStick(true);
       } else {

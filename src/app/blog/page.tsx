@@ -5,7 +5,6 @@ import { Heading, Lead, Subheading } from '@/components/ui/text';
 import { ChevronRightIcon } from '@heroicons/react/16/solid';
 import dayjs from 'dayjs';
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 import { createClient } from '@/prismicio';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
@@ -13,8 +12,9 @@ import { filter, ImageFieldImage } from '@prismicio/client';
 import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
 import { Categories } from './_components/postsCategories';
-import { Pagination } from './_components/postsPagination';
+
 import { Badge } from '@/components/ui/badge';
+import { Pagination } from '@/components/ui/pagination';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -145,7 +145,7 @@ export default async function Blog({ searchParams }: Props) {
       <Container className="mt-16 pb-24">
         <Categories selected={categories ? categories[0] : undefined} />
         <Posts page={page} category={categories} />
-        <Pagination page={page} category={categories ? categories[0] : undefined} />
+        <Pagination contentType={'posts'} slug={'blog'} page={page} category={categories ? categories[0] : undefined} />
       </Container>
     </main>
   );

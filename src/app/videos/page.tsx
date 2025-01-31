@@ -1,19 +1,14 @@
 import { Container } from '@/components/ui/container';
 import { GradientBackground } from '@/components/ui/gradient';
-import { Link } from '@/components/ui/link';
 import { Heading, Lead, Subheading } from '@/components/ui/text';
-import { ChevronRightIcon } from '@heroicons/react/16/solid';
-import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 import { createClient } from '@/prismicio';
-import { PrismicNextImage } from '@prismicio/next';
-import { PrismicRichText } from '@prismicio/react';
-import { filter, ImageFieldImage } from '@prismicio/client';
+import { filter } from '@prismicio/client';
 import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
 import { Categories } from './_components/postsCategories';
-import { Pagination } from './_components/postsPagination';
-import { Badge } from '@/components/ui/badge';
+import { Pagination } from '@/components/ui/pagination';
+import { VideoCard } from '@/app/videos/_components/postCard';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -25,7 +20,7 @@ export const metadata: Metadata = {
   description: 'Stay informed',
 };
 
-async function Posts({ page, category }: { page: number; category?: string[] }) {
+async function VideoPosts({ page, category }: { page: number; category?: string[] }) {
   const client = createClient();
   let categories: any[] = [];
   console.log('category', category);
@@ -37,7 +32,7 @@ async function Posts({ page, category }: { page: number; category?: string[] }) 
 
   const posts = await client
     .getByType('video', {
-      pageSize: 10,
+      pageSize: 9,
       page: 1,
       filters: categories.length
         ? [
@@ -67,54 +62,7 @@ async function Posts({ page, category }: { page: number; category?: string[] }) 
   return (
     <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
       {posts.map(post => (
-        <div
-          key={post.uid}
-          className="relative flex flex-col rounded-3xl bg-white p-2 shadow-md shadow-black/5 ring-1 ring-black/5">
-          {post.data.video_url && post.data.video_url.html && (
-            <div
-              dangerouslySetInnerHTML={{ __html: post.data.video_url.html }}
-              className={'aspect-h-9 aspect-w-16 overflow-hidden rounded-3xl'}></div>
-          )}
-
-          <div className="flex flex-1 flex-col p-8">
-            <div className="text-sm/5 max-sm:text-gray-700 sm:font-medium">
-              {dayjs(post.data.publishing_date).format('dddd, MMMM D, YYYY')}
-            </div>
-
-            {post.data.category && 'data' in post.data.category && (
-              <div className="mt-3">
-                <Badge>{(post.data.category.data as { name: string }).name}</Badge>
-              </div>
-            )}
-
-            <h2 className="text-sm/5 font-medium">{post.data.name}</h2>
-            <div className="mt-4">
-              <Link href={`/videos/${post.uid}`} className="flex items-center gap-1 text-sm/5 font-medium">
-                <span className="absolute inset-0" />
-                Read more
-                <ChevronRightIcon className="size-4 fill-gray-400" />
-              </Link>
-            </div>
-
-            {post.data.author && 'data' in post.data.author && (
-              <div className="mt-6 flex items-center gap-3">
-                {post.data.author && (
-                  <PrismicNextImage
-                    alt=""
-                    width={64}
-                    height={64}
-                    field={(post.data.author.data as { profile_image: ImageFieldImage }).profile_image}
-                    className="aspect-square size-6 rounded-full object-cover"
-                  />
-                )}
-
-                <div className="text-sm/5 text-gray-700">
-                  {(post.data.author.data as { name: string }).name || 'My Ankle'}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+        <VideoCard video={post} key={post.uid} />
       ))}
     </div>
   );
@@ -148,8 +96,13 @@ export default async function VBlog({ searchParams }: Props) {
       {page === 1 && !categories && <FeaturedPosts />}
       <Container className="mt-16 pb-24">
         <Categories selected={categories ? categories[0] : undefined} />
-        <Posts page={page} category={categories} />
-        <Pagination page={page} category={categories ? categories[0] : undefined} />
+        <VideoPosts page={page} category={categories} />
+        <Pagination
+          slug={'videos'}
+          contentType={'video'}
+          page={page}
+          category={categories ? categories[0] : undefined}
+        />
       </Container>
     </main>
   );

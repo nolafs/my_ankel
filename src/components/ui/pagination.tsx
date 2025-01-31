@@ -5,41 +5,69 @@ import { Link } from '@/components/ui/link';
 import { clsx } from 'clsx';
 import React from 'react';
 
-const postsPerPage = 5;
+type PaginationData = {
+  page: number;
+  resultsPerPage: number;
+  totalPosts: number;
+  totalPages: number;
+};
 
-export async function Pagination({ page, category }: { page: number; category?: string }) {
+export async function Pagination({
+  contentType,
+  slug,
+  page,
+  category,
+}: {
+  contentType: 'posts' | 'video' | 'download';
+  slug: string;
+  page: number;
+  category?: string;
+}) {
   function url(page: number) {
     const params = new URLSearchParams();
 
     if (category) params.set('category', category);
     if (page > 1) params.set('page', page.toString());
 
-    return params.size !== 0 ? `/resources?${params.toString()}` : '/resources';
+    return params.size !== 0 ? `/${slug}?${params.toString()}` : `/${slug}`;
   }
 
   const client = createClient();
 
-  const totalPosts = await client
-    .getByType('video', {
+  const data: PaginationData = await client
+    .getByType(contentType, {
       pageSize: 10,
       page: 0,
       orderings: [
         {
-          field: 'my.video.publishing_date',
+          field: `my.${contentType}.publishing_date`,
           direction: 'desc',
         },
       ],
     })
     .then(response => {
-      return response.total_pages;
+      console.log('response', response);
+      return {
+        page: response.page,
+        resultsPerPage: response.results_per_page,
+        totalPosts: response.total_results_size,
+        totalPages: response.total_pages,
+      };
     })
-    .catch(() => 0);
+    .catch(() => {
+      return {
+        page: 0,
+        resultsPerPage: 0,
+        totalPosts: 0,
+        totalPages: 0,
+      };
+    });
 
-  const hasPreviousPage = page - 1;
-  const previousPageUrl = hasPreviousPage ? url(page - 1) : undefined;
-  const hasNextPage = page * postsPerPage < totalPosts;
+  const hasPreviousPage = data.page - 1;
+  const previousPageUrl = hasPreviousPage ? url(data.page - 1) : undefined;
+  const hasNextPage = page * data.resultsPerPage < data.totalPosts;
   const nextPageUrl = hasNextPage ? url(page + 1) : undefined;
-  const pageCount = Math.ceil(totalPosts / postsPerPage);
+  const pageCount = data.totalPages;
 
   if (pageCount < 2) {
     return;
@@ -47,10 +75,11 @@ export async function Pagination({ page, category }: { page: number; category?: 
 
   return (
     <div className="mt-6 flex items-center justify-between gap-2">
-      <Button variant="outline" href={previousPageUrl} disabled={!previousPageUrl}>
+      <Button variant="outline" href={previousPageUrl} disabled={data.page === 0}>
         <ChevronLeftIcon className="size-4" />
         Previous
       </Button>
+
       <div className="flex gap-2 max-sm:hidden">
         {Array.from({ length: pageCount }, (_, i) => (
           <Link
@@ -67,7 +96,8 @@ export async function Pagination({ page, category }: { page: number; category?: 
           </Link>
         ))}
       </div>
-      <Button variant="outline" href={nextPageUrl} disabled={!nextPageUrl}>
+
+      <Button variant="outline" href={nextPageUrl} disabled={page === data.totalPages}>
         Next
         <ChevronRightIcon className="size-4" />
       </Button>

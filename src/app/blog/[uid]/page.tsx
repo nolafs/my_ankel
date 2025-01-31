@@ -11,6 +11,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PrismicRichText } from '@prismicio/react';
 import { asText } from '@prismicio/richtext';
+import { GradientBackground } from '@/components/ui/gradient';
+import React from 'react';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -54,8 +56,9 @@ export default async function Page({ params }: Props) {
     .catch(() => notFound());
 
   return (
-    <>
-      <Container>
+    <main className={'w-full overflow-hidden'}>
+      <Container className="mb-24 mt-24 md:mb-24 md:mt-40">
+        <GradientBackground />
         <Subheading className="mt-16">{dayjs(post.publishing_date).format('dddd, MMMM D, YYYY')}</Subheading>
         <Heading as="h1" className="mt-2">
           {post.title}
@@ -97,7 +100,7 @@ export default async function Page({ params }: Props) {
           </div>
         </div>
       </Container>
-    </>
+    </main>
   );
 }
 

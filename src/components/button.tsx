@@ -1,6 +1,6 @@
-import * as Headless from '@headlessui/react'
-import { clsx } from 'clsx'
-import { Link } from './ui/link'
+import * as Headless from '@headlessui/react';
+import { clsx } from 'clsx';
+import { Link } from './ui/link';
 
 const variants = {
   primary: clsx(
@@ -22,25 +22,19 @@ const variants = {
     'whitespace-nowrap text-sm font-medium text-gray-950',
     'data-[disabled]:bg-transparent data-[hover]:bg-gray-50 data-[disabled]:opacity-40',
   ),
-}
+};
 
 type ButtonProps = {
-  variant?: keyof typeof variants
-} & (
-  | React.ComponentPropsWithoutRef<typeof Link>
-  | (Headless.ButtonProps & { href?: undefined })
-)
+  variant?: keyof typeof variants;
+  disabled?: boolean;
+} & (React.ComponentPropsWithoutRef<typeof Link> | (Headless.ButtonProps & { href?: undefined }));
 
-export function Button({
-  variant = 'primary',
-  className,
-  ...props
-}: ButtonProps) {
-  className = clsx(className, variants[variant])
+export function Button({ variant = 'primary', className, disabled, ...props }: ButtonProps) {
+  className = clsx(className, variants[variant], { 'pointer-events-none opacity-40': disabled });
 
-  if (typeof props.href === 'undefined') {
-    return <Headless.Button {...props} className={className} />
+  if (typeof props.href === 'undefined' || disabled) {
+    return <Headless.Button {...props} className={className} disabled={disabled} />;
   }
 
-  return <Link {...props} className={className} />
+  return <Link {...props} className={className} />;
 }

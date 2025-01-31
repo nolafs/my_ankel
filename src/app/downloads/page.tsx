@@ -1,11 +1,8 @@
 import { Container } from '@/components/ui/container';
 import { GradientBackground } from '@/components/ui/gradient';
-import { Link } from '@/components/ui/link';
 import { Heading, Lead, Subheading } from '@/components/ui/text';
-import { ChevronRightIcon } from '@heroicons/react/16/solid';
 import dayjs from 'dayjs';
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 import { createClient } from '@/prismicio';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicLink, PrismicRichText } from '@prismicio/react';
@@ -13,9 +10,9 @@ import { filter, ImageFieldImage } from '@prismicio/client';
 import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
 import { Categories } from './_components/postsCategories';
-import { Pagination } from './_components/postsPagination';
 import { Badge } from '@/components/ui/badge';
 import { FolderDownIcon } from 'lucide-react';
+import { Pagination } from '@/components/ui/pagination';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -153,7 +150,12 @@ export default async function Blog({ searchParams }: Props) {
       <Container className="mt-16 pb-24">
         <Categories selected={categories ? categories[0] : undefined} />
         <Posts page={page} category={categories} />
-        <Pagination page={page} category={categories ? categories[0] : undefined} />
+        <Pagination
+          slug={'downloads'}
+          contentType={'download'}
+          page={page}
+          category={categories ? categories[0] : undefined}
+        />
       </Container>
     </main>
   );
