@@ -67,5 +67,356 @@
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "sectionNumbers",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "introduced",
+				"type": "Text"
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Mr. Andrew Goldberg is a world-renowned London Orthopaedic Surgeon specializing in foot and ankle disorders for both children and adults.",
+							"spans": [
+								{
+									"type": "strong",
+									"start": 0,
+									"end": 137
+								}
+							]
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "He frequently consults for CEOs, celebrities, athletes, dancers, and international patients. His treatment approach prioritizes patient concerns and lifestyles, aiming to avoid surgery whenever possible. Working closely with a team of podiatrists, physiotherapists, Pilates instructors, and orthotists, he has successfully helped over 85% of his patients avoid surgical intervention.",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Mr. Goldberg holds esteemed academic positions as a Visiting Professor in Trauma & Orthopaedics at Imperial College London and Associate Professor at UCL. A former Honorary Consultant Orthopaedic Surgeon at the Royal National Orthopaedic Hospital, he also leads pioneering research in foot and ankle health, including stem cell treatments for cartilage repair.",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Beyond his profession, he is a dedicated family man and a lifelong supporter of Watford Football Club.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"images": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"image",
+								{
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1547394765-185e1e68f34e",
+										"width": 6000,
+										"height": 4000
+									},
+									"url": "https://images.unsplash.com/photo-1547394765-185e1e68f34e",
+									"width": 6000,
+									"height": 4000,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"credits": null,
+									"alt": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							]
+						]
+					},
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"image",
+								{
+									"provider": "imgix",
+									"url": "https://images.unsplash.com/photo-1590004828948-09db7606e5ac?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw3fHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3MzgyMTA1OTR8MA&ixlib=rb-4.0.3&q=85",
+									"alt": "sliced orange fruit on white surface",
+									"origin": {
+										"id": "92HwFhCp-MQ",
+										"url": "https://images.unsplash.com/photo-1590004828948-09db7606e5ac?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw3fHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3MzgyMTA1OTR8MA&ixlib=rb-4.0.3&q=85",
+										"width": 3699,
+										"height": 2959
+									},
+									"width": 3699,
+									"height": 2959,
+									"edit": {
+										"background": "transparent",
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										}
+									},
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							]
+						]
+					},
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"image",
+								{
+									"provider": "imgix",
+									"url": "https://images.unsplash.com/photo-1517260739337-6799d239ce83?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw1fHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3MzgyMTA1OTR8MA&ixlib=rb-4.0.3&q=85",
+									"alt": "sliced fruit on white surface",
+									"origin": {
+										"id": "YSA1IRkGAsg",
+										"url": "https://images.unsplash.com/photo-1517260739337-6799d239ce83?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw1fHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3MzgyMTA1OTR8MA&ixlib=rb-4.0.3&q=85",
+										"width": 5760,
+										"height": 3840
+									},
+									"width": 5760,
+									"height": 3840,
+									"edit": {
+										"background": "transparent",
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										}
+									},
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							]
+						]
+					},
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"image",
+								{
+									"provider": "imgix",
+									"url": "https://images.unsplash.com/photo-1587324438673-56c78a866b15?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxOXx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzM4MjEwNTk0fDA&ixlib=rb-4.0.3&q=85",
+									"alt": "sliced lemon on white surface",
+									"origin": {
+										"id": "fz4j0RPp9qo",
+										"url": "https://images.unsplash.com/photo-1587324438673-56c78a866b15?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxOXx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzM4MjEwNTk0fDA&ixlib=rb-4.0.3&q=85",
+										"width": 3648,
+										"height": 3648
+									},
+									"width": 3648,
+									"height": 3648,
+									"edit": {
+										"background": "transparent",
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										}
+									},
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							]
+						]
+					}
+				]
+			},
+			"numbers": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"heading",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Text",
+									"value": "Patients treated without surgery"
+								}
+							],
+							[
+								"decimals",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Number",
+									"value": "0"
+								}
+							],
+							[
+								"class_names",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "section",
+									"type": "Text"
+								}
+							],
+							[
+								"suffix",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Text",
+									"value": "%"
+								}
+							],
+							[
+								"start",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "25",
+									"type": "Number"
+								}
+							],
+							[
+								"end",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Number",
+									"value": "85"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "sectionList",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "see",
+				"type": "Text"
+			},
+			"subheading": {
+				"__TYPE__": "FieldContent",
+				"value": "fur",
+				"type": "Text"
+			},
+			"lead": {
+				"__TYPE__": "FieldContent",
+				"value": "wolf",
+				"type": "Text"
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Deserunt adipisicing aliquip est adipisicing ullamco sit laboris cupidatat voluptate ex ex et veniam. Elit aliquip eu elit amet elit magna magna anim excepteur laborum sit et aliqua sint laboris."
+						}
+					}
+				]
+			},
+			"list": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"icon",
+								{
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1593642532973-d31b6557fa68",
+										"width": 8640,
+										"height": 8640
+									},
+									"url": "https://images.unsplash.com/photo-1593642532973-d31b6557fa68?rect=0%2C0%2C8640%2C8640&w=100&h=100",
+									"width": 100,
+									"height": 100,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"credits": null,
+									"alt": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							],
+							[
+								"heading",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "hill",
+									"type": "Text"
+								}
+							],
+							[
+								"body",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Ipsum quis quis anim ipsum do aliqua veniam aliquip qui pariatur sint."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			},
+			"list_title": {
+				"__TYPE__": "FieldContent",
+				"value": "primitive",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

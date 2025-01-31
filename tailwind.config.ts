@@ -7,7 +7,7 @@ import animate from 'tailwindcss-animate';
 
 export default {
   darkMode: ['class'],
-  content: ['./src/**/*.tsx', './src/**/*.css'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx, css, scss}'],
   safelist: [
     'bg-white',
     {
@@ -131,5 +131,5 @@ export default {
       },
     },
   },
-  plugins: [aspectRatio, typography, forms, animate],
+  plugins: [typography, forms, animate],
 } satisfies Config;

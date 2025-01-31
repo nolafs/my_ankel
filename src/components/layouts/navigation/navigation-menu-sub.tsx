@@ -23,6 +23,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import { NavigationMobileMenu } from '@/components/layouts/navigation/navigation-mobile-menu';
 import cn from 'clsx';
+import { ImageField, RichTextField } from '@prismicio/client';
 
 interface NavigationSubProps {
   navigation: NavigationBarDocumentData;
@@ -61,10 +62,8 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
   }, []);
 
   return (
-    <header
-      id={'navbar'}
-      className="fixed z-40 w-screen bg-transparent px-6 transition-all delay-150 duration-300 lg:px-8">
-      <div className="mx-auto flex w-full max-w-2xl items-center justify-between pt-6 transition-all delay-150 duration-300 md:pt-16 lg:max-w-7xl">
+    <header id={'navbar'} className="fixed z-40 w-screen bg-transparent transition-all delay-150 duration-300">
+      <div className="mx-auto flex w-full max-w-2xl items-center justify-between px-3 pt-6 transition-all delay-150 duration-300 md:pt-16 lg:max-w-7xl">
         <div className="flex lg:flex-1">
           <div className="relative z-40 p-2 md:p-1.5">
             <Link href="/">

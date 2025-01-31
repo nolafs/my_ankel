@@ -12,7 +12,7 @@ export type TestimonialProps = SliceComponentProps<Content.TestimonialSlice>;
  */
 const Testimonial = ({ slice }: TestimonialProps): JSX.Element => {
   return (
-    <div data-slice-type={slice.slice_type}>
+    <div data-slice-type={slice.slice_type} className={'mt-36'}>
       <TestimonialSingle
         body={slice.primary.body}
         image={slice.primary.image}

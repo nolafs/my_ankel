@@ -106,7 +106,7 @@ const Faqs = async ({ slice }: FaqsProps) => {
 
   if (slice.variation === 'column') {
     return (
-      <Bounded as={'section'} yPadding={'sm'}>
+      <Bounded as={'section'} yPadding={'md'}>
         {slice.primary.has_intro && (
           <>
             <Subheading className="text-center">{slice.primary.subtitle}</Subheading>
@@ -115,7 +115,7 @@ const Faqs = async ({ slice }: FaqsProps) => {
             </Heading>
           </>
         )}
-        <div className="mx-auto mb-32 mt-16 max-w-xl space-y-12">
+        <div className="mx-auto mt-16 max-w-xl space-y-12">
           {faqItems.map((faq, idx) => (
             <dl key={`faq-${idx}`}>
               <dt className="text-sm font-semibold">{faq.data.heading}</dt>
