@@ -395,7 +395,13 @@ export type FaqDocument<Lang extends string = string> = prismic.PrismicDocumentW
   Lang
 >;
 
-type HomeDocumentDataSlicesSlice = HeroSlice | FaqsSlice | HeaderBlockSlice | CallToActionSlice;
+type HomeDocumentDataSlicesSlice =
+  | SectionSlice
+  | TestimonialSlice
+  | ResourceListSlice
+  | HeroSlice
+  | FaqsSlice
+  | CallToActionSlice;
 
 /**
  * Content for Home documents
@@ -746,13 +752,7 @@ export type NavigationElementDocument<Lang extends string = string> = prismic.Pr
   Lang
 >;
 
-type PageDocumentDataSlicesSlice =
-  | SectionSlice
-  | TestimonialSlice
-  | CallToActionSlice
-  | HeaderBlockSlice
-  | HeroSlice
-  | FaqsSlice;
+type PageDocumentDataSlicesSlice = SectionSlice | TestimonialSlice | CallToActionSlice | HeroSlice | FaqsSlice;
 
 /**
  * Content for Page documents
@@ -1943,58 +1943,6 @@ type FaqsSliceVariation = FaqsSliceDefault | FaqsSliceGrid | FaqsSliceColumn | F
 export type FaqsSlice = prismic.SharedSlice<'faqs', FaqsSliceVariation>;
 
 /**
- * Primary content in *HeaderBlock → Default → Primary*
- */
-export interface HeaderBlockSliceDefaultPrimary {
-  /**
-   * Title field in *HeaderBlock → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: header_block.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  title: prismic.KeyTextField;
-
-  /**
-   * Subtitle field in *HeaderBlock → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: header_block.default.primary.subtitle
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  subtitle: prismic.KeyTextField;
-}
-
-/**
- * Default variation for HeaderBlock Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type HeaderBlockSliceDefault = prismic.SharedSliceVariation<
-  'default',
-  Simplify<HeaderBlockSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *HeaderBlock*
- */
-type HeaderBlockSliceVariation = HeaderBlockSliceDefault;
-
-/**
- * HeaderBlock Shared Slice
- *
- * - **API ID**: `header_block`
- * - **Description**: HeaderBlock
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type HeaderBlockSlice = prismic.SharedSlice<'header_block', HeaderBlockSliceVariation>;
-
-/**
  * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -2125,6 +2073,58 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceSimple;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
+
+/**
+ * Primary content in *ResourceList → Default → Primary*
+ */
+export interface ResourceListSliceDefaultPrimary {
+  /**
+   * Heading field in *ResourceList → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: resource_list.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Subtitle field in *ResourceList → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: resource_list.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for ResourceList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ResourceListSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<ResourceListSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ResourceList*
+ */
+type ResourceListSliceVariation = ResourceListSliceDefault;
+
+/**
+ * ResourceList Shared Slice
+ *
+ * - **API ID**: `resource_list`
+ * - **Description**: ResourceList
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ResourceListSlice = prismic.SharedSlice<'resource_list', ResourceListSliceVariation>;
 
 /**
  * Item in *Section → Default → Primary → Images*
@@ -2467,9 +2467,81 @@ export type SectionSliceSectionList = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Section → Section Embed → Primary*
+ */
+export interface SectionSliceSectionEmbedPrimary {
+  /**
+   * Heading field in *Section → Section Embed → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionEmbed.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Subheading field in *Section → Section Embed → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionEmbed.primary.subheading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subheading: prismic.KeyTextField;
+
+  /**
+   * Lead field in *Section → Section Embed → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionEmbed.primary.lead
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  lead: prismic.KeyTextField;
+
+  /**
+   * Body field in *Section → Section Embed → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionEmbed.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Video field in *Section → Section Embed → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionEmbed.primary.video
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  video: prismic.EmbedField;
+}
+
+/**
+ * Section Embed variation for Section Slice
+ *
+ * - **API ID**: `sectionEmbed`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SectionSliceSectionEmbed = prismic.SharedSliceVariation<
+  'sectionEmbed',
+  Simplify<SectionSliceSectionEmbedPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Section*
  */
-type SectionSliceVariation = SectionSliceDefault | SectionSliceSectionNumbers | SectionSliceSectionList;
+type SectionSliceVariation =
+  | SectionSliceDefault
+  | SectionSliceSectionNumbers
+  | SectionSliceSectionList
+  | SectionSliceSectionEmbed;
 
 /**
  * Section Shared Slice
@@ -2630,16 +2702,16 @@ declare module '@prismicio/client' {
       FaqsSliceGrid,
       FaqsSliceColumn,
       FaqsSliceColumnCollapsible,
-      HeaderBlockSlice,
-      HeaderBlockSliceDefaultPrimary,
-      HeaderBlockSliceVariation,
-      HeaderBlockSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceSimplePrimary,
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceSimple,
+      ResourceListSlice,
+      ResourceListSliceDefaultPrimary,
+      ResourceListSliceVariation,
+      ResourceListSliceDefault,
       SectionSlice,
       SectionSliceDefaultPrimaryImagesItem,
       SectionSliceDefaultPrimary,
@@ -2648,10 +2720,12 @@ declare module '@prismicio/client' {
       SectionSliceSectionNumbersPrimary,
       SectionSliceSectionListPrimaryListItem,
       SectionSliceSectionListPrimary,
+      SectionSliceSectionEmbedPrimary,
       SectionSliceVariation,
       SectionSliceDefault,
       SectionSliceSectionNumbers,
       SectionSliceSectionList,
+      SectionSliceSectionEmbed,
       TestimonialSlice,
       TestimonialSliceDefaultPrimary,
       TestimonialSliceVariation,

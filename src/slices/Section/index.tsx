@@ -94,7 +94,7 @@ const Section = ({ slice }: SectionProps): JSX.Element => {
                   <div
                     key={'images_' + idx}
                     className={cn(
-                      'aspect-square overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10',
+                      'aspect-1 overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10',
                       idx % 2 === 0 ? 'outline-black/10' : '-mt-8 outline-black/10 lg:-mt-32',
                     )}>
                     <PrismicImage
@@ -141,40 +141,72 @@ const Section = ({ slice }: SectionProps): JSX.Element => {
     );
   }
 
-  return (
-    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-      <Container className="mt-32">
-        <Subheading>{slice.primary.subheading}</Subheading>
-        <Heading as="h3" className="mt-2">
-          {slice.primary.heading}
-        </Heading>
-        <Lead className="mt-6 max-w-3xl">{slice.primary.lead}</Lead>
-        <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
-          <div className="prose max-w-lg text-sm/6 text-gray-600">
-            <PrismicRichText field={slice.primary.body} />
-          </div>
-          {slice.primary.images && slice.primary.images.length > 0 && (
-            <div className="max-lg:order-first max-lg:max-w-lg">
-              <div className="aspect-3/2 overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10">
-                <PrismicImage
-                  field={slice.primary.images[0]?.image}
-                  className="block size-full object-cover"
-                  width={610}
-                  height={410}
-                  imgixParams={{
-                    fm: 'webp',
-                    fit: 'crop',
-                    crop: ['focalpoint'],
-                    q: 70,
-                  }}
-                />
-              </div>
+  if (slice.variation === 'sectionEmbed') {
+    return (
+      <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
+        <Container className="mt-32">
+          <Subheading>{slice.primary.subheading}</Subheading>
+          <Heading as="h3" className="mt-2">
+            {slice.primary.heading}
+          </Heading>
+          <Lead className="mt-6 max-w-3xl">{slice.primary.lead}</Lead>
+          <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
+            <div className="prose max-w-lg text-sm/6 text-gray-600">
+              <PrismicRichText field={slice.primary.body} />
             </div>
-          )}
-        </div>
-      </Container>
-    </section>
-  );
+            {slice.primary.video && (
+              <div className="max-lg:order-first max-lg:max-w-lg">
+                <div className="relative overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10">
+                  <div
+                    dangerouslySetInnerHTML={{ __html: slice.primary.video?.html ?? '' }}
+                    className={'aspect-h-9 aspect-w-16'}></div>
+                </div>
+              </div>
+            )}
+          </div>
+        </Container>
+      </section>
+    );
+  }
+
+  if (slice.variation === 'default') {
+    return (
+      <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
+        <Container className="mt-32">
+          <Subheading>{slice.primary.subheading}</Subheading>
+          <Heading as="h3" className="mt-2">
+            {slice.primary.heading}
+          </Heading>
+          <Lead className="mt-6 max-w-3xl">{slice.primary.lead}</Lead>
+          <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
+            <div className="prose max-w-lg text-sm/6 text-gray-600">
+              <PrismicRichText field={slice.primary.body} />
+            </div>
+            {slice.primary.images && slice.primary.images.length > 0 && (
+              <div className="max-lg:order-first max-lg:max-w-lg">
+                <div className="aspect-3/2 overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10">
+                  <PrismicImage
+                    field={slice.primary.images[0]?.image}
+                    className="block size-full object-cover"
+                    width={610}
+                    height={410}
+                    imgixParams={{
+                      fm: 'webp',
+                      fit: 'crop',
+                      crop: ['focalpoint'],
+                      q: 70,
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </Container>
+      </section>
+    );
+  }
+
+  return <></>;
 };
 
 export default Section;

@@ -1,8 +1,8 @@
 {
-  "id": "header_block",
+  "id": "resource_list",
   "type": "SharedSlice",
-  "name": "HeaderBlock",
-  "description": "HeaderBlock",
+  "name": "ResourceList",
+  "description": "ResourceList",
   "variations": [
     {
       "id": "default",
@@ -12,10 +12,10 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "title": {
+        "heading": {
           "type": "Text",
           "config": {
-            "label": "Title",
+            "label": "Heading",
             "placeholder": ""
           }
         },

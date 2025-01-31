@@ -3,14 +3,14 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"title": {
+			"heading": {
 				"__TYPE__": "FieldContent",
-				"value": "roof",
+				"value": "farther",
 				"type": "Text"
 			},
 			"subtitle": {
 				"__TYPE__": "FieldContent",
-				"value": "evening",
+				"value": "stuck",
 				"type": "Text"
 			}
 		},

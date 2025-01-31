@@ -131,5 +131,5 @@ export default {
       },
     },
   },
-  plugins: [typography, forms, animate],
+  plugins: [typography, forms, animate, aspectRatio],
 } satisfies Config;

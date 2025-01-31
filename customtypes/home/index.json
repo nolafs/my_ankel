@@ -11,13 +11,19 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "section": {
+              "type": "SharedSlice"
+            },
+            "testimonial": {
+              "type": "SharedSlice"
+            },
+            "resource_list": {
+              "type": "SharedSlice"
+            },
             "hero": {
               "type": "SharedSlice"
             },
             "faqs": {
-              "type": "SharedSlice"
-            },
-            "header_block": {
               "type": "SharedSlice"
             },
             "call_to_action": {
