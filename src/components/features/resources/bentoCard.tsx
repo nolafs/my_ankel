@@ -3,12 +3,16 @@
 import { clsx } from 'clsx';
 import { motion } from 'framer-motion';
 import { Subheading } from '@/components/ui/text';
+import { Link } from '@/components/ui/link';
+import { ChevronRightIcon } from '@heroicons/react/16/solid';
+import React from 'react';
 
 export function BentoCard({
   dark = false,
   className = '',
   eyebrow,
   title,
+  link,
   description,
   graphic,
   fade = [],
@@ -19,6 +23,7 @@ export function BentoCard({
   title: React.ReactNode;
   description: React.ReactNode;
   graphic: React.ReactNode;
+  link: string;
   fade?: ('top' | 'bottom')[];
 }) {
   return (
@@ -48,6 +53,17 @@ export function BentoCard({
         </Subheading>
         <p className="mt-1 text-2xl/8 font-medium tracking-tight text-gray-950 group-data-[dark]:text-white">{title}</p>
         <p className="mt-2 max-w-[600px] text-sm/6 text-gray-600 group-data-[dark]:text-gray-400">{description}</p>
+        {link && (
+          <div className="mt-4">
+            <Link
+              href={link}
+              className="flex items-center gap-1 text-sm/5 font-medium !text-gray-400 group-hover:text-pink-600">
+              <span className="absolute inset-0" />
+              Read more
+              <ChevronRightIcon className="size-4 fill-gray-400" />
+            </Link>
+          </div>
+        )}
       </div>
     </motion.div>
   );

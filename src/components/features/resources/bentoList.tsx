@@ -60,6 +60,7 @@ function BentoItemWhite({ listing, idx }: { listing: PostsDocument<string>; idx:
       eyebrow={getCategoryName(listing)}
       title={listing?.data.title}
       description={getDescription(listing)}
+      link={`/blog/${listing?.uid}`}
       graphic={
         <div style={{ backgroundImage: `url(${listing?.data.feature_image.url})` }} className={graphicClass[idx]} />
       }
@@ -90,6 +91,7 @@ function BentoItemDark({ listing, idx }: { listing: PostsDocument<string>; idx: 
       eyebrow={getCategoryName(listing)}
       title={listing?.data.title}
       description={getDescription(listing)}
+      link={`/blog/${listing?.uid}`}
       graphic={
         <div style={{ backgroundImage: `url(${listing?.data.feature_image.url})` }} className={graphicClass[idx]} />
       }

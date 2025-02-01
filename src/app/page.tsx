@@ -71,7 +71,7 @@ export default async function HomePage() {
   }
 
   return (
-    <main className={'min-h-svh w-full overflow-hidden'}>
+    <main className={'min-h-svh w-full overflow-hidden pb-24'}>
       <div className="bg-gradient-to-b from-white from-50% to-gray-100 pb-24">
         {/* SliceZone 1 */}
         {page.data.slices2 && <SliceZone slices={page.data.slices2} components={components} />}
@@ -97,7 +97,7 @@ export default async function HomePage() {
         )}
       </div>
 
-      <div className={'pb-24'}>
+      <div>
         {treatmentPosts.length && (
           <BentoSection
             heading={page.data.latest_treatments_heading}
