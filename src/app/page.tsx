@@ -34,7 +34,7 @@ export default async function HomePage() {
 
   const treatmentPosts = await client
     .getByType('posts', {
-      pageSize: 5,
+      pageSize: 4,
       page: 0,
       filters: [filter.at('my.posts.featured', true), filter.any('my.posts.category', [categories[1].id])],
       fetchLinks: ['author.name', 'author.profile_image', 'post_category.name'],
