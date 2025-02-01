@@ -20,7 +20,11 @@ export function Hero({ heading, subheading, links, image }: HeroProps) {
         <div className="absolute inset-2 bottom-0 z-0 overflow-hidden rounded-4xl">
           <div
             className={'flex w-full flex-col items-center justify-start sm:items-center md:items-center lg:items-end'}>
-            <PrismicNextImage field={image} className="block h-auto w-full object-contain sm:w-full lg:w-1/2" />
+            <PrismicNextImage
+              loading={'lazy'}
+              field={image}
+              className="block h-auto w-full object-contain sm:w-full lg:w-1/2"
+            />
           </div>
         </div>
       )}
