@@ -10,7 +10,6 @@ import Image from 'next/image';
 import placeholder from '@/assets/placeholder.jpg';
 import { CirclePlayIcon } from 'lucide-react';
 import { OverlaySheet, OverlaySheetContent, OverlaySheetTrigger } from '@/components/ui/overlay';
-import { PostsDescription } from '@/app/videos/_components/postsDescription';
 
 export const VideoCard = ({ video }: { video: VideoDocument }) => {
   return (
