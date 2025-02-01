@@ -92,11 +92,12 @@ export default async function HomePage() {
   }
 
   return (
-    <main className={'min-h-svh w-full overflow-hidden pb-24'}>
-      <div className="bg-gradient-to-b from-white from-50% to-gray-100 pb-24">
-        {/* SliceZone 1 */}
-        {page.data.slices2 && <SliceZone slices={page.data.slices2} components={components} />}
+    <main className={'min-h-svh w-full overflow-hidden'}>
+      {/* SliceZone 1 */}
 
+      {page.data.slices2 && <SliceZone slices={page.data.slices2} components={components} />}
+
+      <div className="bg-gradient-to-b from-white from-50% to-gray-100 pb-24">
         {videoEmbed && (
           <CallToActionVideo
             heading={page.data.latest_video_heading}

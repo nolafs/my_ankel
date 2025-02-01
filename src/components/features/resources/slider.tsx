@@ -152,7 +152,7 @@ export function SliderResources({ subheading, heading, body, links, listings }: 
   }
 
   return (
-    <div className="overflow-hidden py-32">
+    <div className="overflow-hidden pb-32">
       <Container>
         <div ref={setReferenceWindowRef}>
           <Subheading>{subheading}</Subheading>
