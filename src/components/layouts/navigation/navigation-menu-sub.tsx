@@ -23,7 +23,6 @@ import {
 } from '@/components/ui/navigation-menu';
 import { NavigationMobileMenu } from '@/components/layouts/navigation/navigation-mobile-menu';
 import cn from 'clsx';
-import { ImageField, RichTextField } from '@prismicio/client';
 
 interface NavigationSubProps {
   navigation: NavigationBarDocumentData;
