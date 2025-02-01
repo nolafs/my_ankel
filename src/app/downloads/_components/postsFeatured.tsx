@@ -3,7 +3,6 @@ import { filter, ImageFieldImage } from '@prismicio/client';
 import { Container } from '@/components/ui/container';
 import { PrismicNextImage } from '@prismicio/next';
 import dayjs from 'dayjs';
-import { Link } from '@/components/ui/link';
 import { PrismicLink, PrismicRichText } from '@prismicio/react';
 import React from 'react';
 import { Badge } from '@/components/ui/badge';

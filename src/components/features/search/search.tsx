@@ -9,7 +9,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import Link from 'next/link';
 import { OverlaySheet, OverlaySheetContent, OverlaySheetTrigger } from '@/components/ui/overlay';
 import { Button } from '@/components/ui/button';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSearch } from './search-context';
 
 type HitProps = {

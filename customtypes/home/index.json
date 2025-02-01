@@ -87,6 +87,33 @@
           "repeat": true
         }
       },
+      "latest_download_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Latest Download Heading",
+          "placeholder": ""
+        }
+      },
+      "latest_download_body": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Latest Download Body",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "latest_download_links": {
+        "type": "Link",
+        "config": {
+          "label": "Latest Download Links",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

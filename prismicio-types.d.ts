@@ -503,6 +503,39 @@ interface HomeDocumentData {
   latest_treatments_links: prismic.Repeatable<prismic.LinkField>;
 
   /**
+   * Latest Download Heading field in *Home*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.latest_download_heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  latest_download_heading: prismic.KeyTextField;
+
+  /**
+   * Latest Download Body field in *Home*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.latest_download_body
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  latest_download_body: prismic.RichTextField;
+
+  /**
+   * Latest Download Links field in *Home*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.latest_download_links
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  latest_download_links: prismic.Repeatable<prismic.LinkField>;
+
+  /**
    * Slice Zone field in *Home*
    *
    * - **Field Type**: Slice Zone

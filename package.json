@@ -60,6 +60,7 @@
     "react-hot-toast": "^2.5.1",
     "react-instantsearch": "7.15.1",
     "react-instantsearch-router-nextjs": "7.15.1",
+    "react-use-measure": "^2.1.7",
     "rss": "^1.2.2",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",

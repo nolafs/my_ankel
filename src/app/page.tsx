@@ -6,6 +6,7 @@ import { createClient } from '@/prismicio';
 import { BentoSection } from '@/components/features/resources/bentoList';
 import { EmbedField, filter } from '@prismicio/client';
 import { CallToActionVideo } from '@/components/features/cta/callToAction-video';
+import { SliderResources } from '@/components/features/resources/slider';
 
 export default async function HomePage() {
   const client = createClient();
@@ -70,6 +71,26 @@ export default async function HomePage() {
     videoEmbed = videoPosts[0].data.video_url;
   }
 
+  const downloadPosts = await client
+    .getByType('download', {
+      pageSize: 6,
+      page: 0,
+      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name'],
+      orderings: [
+        {
+          field: 'my.download.publishing_date',
+          direction: 'desc',
+        },
+      ],
+    })
+    .then(response => {
+      return response.results;
+    });
+
+  if (videoPosts.length > 0 && videoPosts[0]?.data.video_url) {
+    videoEmbed = videoPosts[0].data.video_url;
+  }
+
   return (
     <main className={'min-h-svh w-full overflow-hidden pb-24'}>
       <div className="bg-gradient-to-b from-white from-50% to-gray-100 pb-24">
@@ -112,6 +133,14 @@ export default async function HomePage() {
 
       {/* SliceZone 2 */}
       {page.data.slices && <SliceZone slices={page.data.slices} components={components} />}
+
+      <SliderResources
+        subheading={'Downloads'}
+        heading={page.data.latest_download_heading}
+        listings={downloadPosts}
+        body={page.data.latest_download_body}
+        links={page.data.latest_download_links}
+      />
     </main>
   );
 }
