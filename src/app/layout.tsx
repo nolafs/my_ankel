@@ -15,6 +15,7 @@ import { Cta, LinkPrismicType } from '@/types';
 import NavigationMenuSub from '@/components/layouts/navigation/navigation-menu-sub';
 import BackToTop from '@/components/ui/BackToTop';
 import { Suspense } from 'react';
+import { SearchProvider } from '@/components/features/search/search-context';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -125,29 +126,31 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body className={'min-h-screen text-gray-950 antialiased'}>
-        <NavigationMenuSub navigation={navigation.data} logo={logo} />
+        <SearchProvider>
+          <NavigationMenuSub navigation={navigation.data} logo={logo} />
 
-        {/* Content */}
+          {/* Content */}
 
-        {children}
+          {children}
 
-        {/* Footer consent */}
-        <Footer
-          navigation={navigation.data}
-          logo={logo}
-          secondaryNavigation={{ items: settings.data.secondary_navigation }}
-          social={social}
-          copyright={settings.data.copyright_line}
-          footerCta={footerCta}
-        />
+          {/* Footer consent */}
+          <Footer
+            navigation={navigation.data}
+            logo={logo}
+            secondaryNavigation={{ items: settings.data.secondary_navigation }}
+            social={social}
+            copyright={settings.data.copyright_line}
+            footerCta={footerCta}
+          />
 
-        {/* Cookie consent */}
-        <Suspense>
-          <CookieConsent />
-          <BackToTop />
-        </Suspense>
+          {/* Cookie consent */}
+          <Suspense>
+            <CookieConsent />
+            <BackToTop />
+          </Suspense>
 
-        <PrismicPreview repositoryName={repositoryName} />
+          <PrismicPreview repositoryName={repositoryName} />
+        </SearchProvider>
       </body>
 
       {/* Analytics */}
