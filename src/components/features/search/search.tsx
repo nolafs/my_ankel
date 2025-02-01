@@ -4,12 +4,12 @@ import 'instantsearch.css/themes/satellite-min.css';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
 import { InstantSearch, SearchBox, Highlight, Hits } from 'react-instantsearch';
 import { Hit as AlgoliaHit } from 'instantsearch.js';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { SearchIcon } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import Link from 'next/link';
 import { OverlaySheet, OverlaySheetContent, OverlaySheetTrigger } from '@/components/ui/overlay';
 import { Button } from '@/components/ui/button';
+import { useEffect, useState } from 'react';
 
 type HitProps = {
   hit: AlgoliaHit<{
@@ -46,13 +46,33 @@ function SearchInput() {
 }
 
 export function Search() {
+  const [openSearchDialog, setSearchDialog] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (event: any) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+        event.preventDefault();
+        setSearchDialog(open => !open);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
-    <OverlaySheet>
+    <OverlaySheet open={openSearchDialog} onOpenChange={setSearchDialog}>
       <OverlaySheetTrigger asChild={true}>
-        <Button variant={'ghost'} size={'icon'}>
-          <span className={'sr-only'}>Search Site</span>
-          <SearchIcon className="h-8 w-8" />
-        </Button>
+        <div className={'flex items-center space-x-1'}>
+          <Button variant={'ghost'} size={'icon'}>
+            <span className={'sr-only'}>Search Site</span>
+            <SearchIcon className="h-8 w-8" />
+          </Button>
+          <span className={'rounded-full bg-gray-200/20 px-2 text-[9px] text-gray-600'}>⌘k</span>
+        </div>
       </OverlaySheetTrigger>
 
       <OverlaySheetContent>
