@@ -67,7 +67,7 @@ export function Search() {
   return (
     <OverlaySheet open={openSearchDialog} onOpenChange={open => setSearchDialog(open)}>
       <OverlaySheetTrigger asChild={true}>
-        <div className={'flex items-center space-x-1'}>
+        <div className={'flex items-center space-x-1'} aria-label={'Search Site'}>
           <Button variant={'ghost'} size={'icon'}>
             <span className={'sr-only'}>Search Site</span>
             <SearchIcon className="h-8 w-8" />

@@ -11,7 +11,7 @@ export const SearchButtonCta = () => {
     <Button variant="secondary" onClick={() => setSearchDialog(true)} className="flex space-x-2">
       <SearchIcon className="h-6 w-6" />
       <span>Search Resources</span>
-      <span className={'rounded-full bg-gray-200/20 px-3 text-[12px] text-white'}>⌘k</span>
+      <span className={'rounded-full bg-gray-500/20 px-3 text-[12px] text-white'}>⌘k</span>
     </Button>
   );
 };
