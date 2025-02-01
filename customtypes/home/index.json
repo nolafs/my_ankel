@@ -6,6 +6,87 @@
   "status": true,
   "json": {
     "Main": {
+      "latest_video_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Latest Video Heading",
+          "placeholder": ""
+        }
+      },
+      "latest_video_body": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Latest Video Body",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "latest_video_links": {
+        "type": "Link",
+        "config": {
+          "label": "Latest Video Links",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      },
+      "latest_conditions_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Latest Conditions Heading",
+          "placeholder": ""
+        }
+      },
+      "latest_conditions_body": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Latest Conditions Body",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "latest_conditions_links": {
+        "type": "Link",
+        "config": {
+          "label": "Latest Conditions Links",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      },
+      "latest_treatments_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Latest Treatments Heading",
+          "placeholder": ""
+        }
+      },
+      "latest_treatments_body": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Latest Treatments Body",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "latest_treatments_links": {
+        "type": "Link",
+        "config": {
+          "label": "Latest Treatments Links",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
@@ -15,12 +96,6 @@
               "type": "SharedSlice"
             },
             "testimonial": {
-              "type": "SharedSlice"
-            },
-            "resource_list": {
-              "type": "SharedSlice"
-            },
-            "hero": {
               "type": "SharedSlice"
             },
             "faqs": {
@@ -58,6 +133,19 @@
           "thumbnails": []
         },
         "type": "Image"
+      }
+    },
+    "Hero": {
+      "slices2": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "hero": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     }
   }

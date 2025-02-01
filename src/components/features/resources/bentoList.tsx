@@ -2,12 +2,14 @@ import { BentoCard } from '@/components/features/resources/bentoCard';
 import { Container } from '@/components/ui/container';
 import { Heading, Subheading } from '@/components/ui/text';
 import { PostsDocument } from '../../../../prismicio-types';
-import { asText } from '@prismicio/client';
+import { asText, KeyTextField, Repeatable, RichTextField, LinkField } from '@prismicio/client';
 
 interface BentoSectionProps {
   dark?: boolean;
-  heading: string;
-  subheading: string;
+  heading: KeyTextField | string;
+  body: RichTextField | string;
+  links: Repeatable<LinkField>;
+  subheading: KeyTextField | string;
   listings: PostsDocument<string>[];
 }
 

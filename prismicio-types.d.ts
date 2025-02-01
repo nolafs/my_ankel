@@ -395,18 +395,113 @@ export type FaqDocument<Lang extends string = string> = prismic.PrismicDocumentW
   Lang
 >;
 
-type HomeDocumentDataSlicesSlice =
-  | SectionSlice
-  | TestimonialSlice
-  | ResourceListSlice
-  | HeroSlice
-  | FaqsSlice
-  | CallToActionSlice;
+type HomeDocumentDataSlicesSlice = SectionSlice | TestimonialSlice | FaqsSlice | CallToActionSlice;
+
+type HomeDocumentDataSlices2Slice = HeroSlice;
 
 /**
  * Content for Home documents
  */
 interface HomeDocumentData {
+  /**
+   * Latest Video Heading field in *Home*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.latest_video_heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  latest_video_heading: prismic.KeyTextField;
+
+  /**
+   * Latest Video Body field in *Home*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.latest_video_body
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  latest_video_body: prismic.RichTextField;
+
+  /**
+   * Latest Video Links field in *Home*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.latest_video_links
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  latest_video_links: prismic.Repeatable<prismic.LinkField>;
+
+  /**
+   * Latest Conditions Heading field in *Home*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.latest_conditions_heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  latest_conditions_heading: prismic.KeyTextField;
+
+  /**
+   * Latest Conditions Body field in *Home*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.latest_conditions_body
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  latest_conditions_body: prismic.RichTextField;
+
+  /**
+   * Latest Conditions Links field in *Home*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.latest_conditions_links
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  latest_conditions_links: prismic.Repeatable<prismic.LinkField>;
+
+  /**
+   * Latest Treatments Heading field in *Home*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.latest_treatments_heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  latest_treatments_heading: prismic.KeyTextField;
+
+  /**
+   * Latest Treatments Body field in *Home*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.latest_treatments_body
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  latest_treatments_body: prismic.RichTextField;
+
+  /**
+   * Latest Treatments Links field in *Home*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.latest_treatments_links
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  latest_treatments_links: prismic.Repeatable<prismic.LinkField>;
+
   /**
    * Slice Zone field in *Home*
    *
@@ -447,7 +542,16 @@ interface HomeDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  meta_image: prismic.ImageField<never>;
+  meta_image: prismic.ImageField<never> /**
+   * Slice Zone field in *Home*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.slices2[]
+   * - **Tab**: Hero
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices2: prismic.SliceZone<HomeDocumentDataSlices2Slice>;
 }
 
 /**
@@ -2720,6 +2824,7 @@ declare module '@prismicio/client' {
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      HomeDocumentDataSlices2Slice,
       LegalDocument,
       LegalDocumentData,
       LegalDocumentDataSlicesSlice,
