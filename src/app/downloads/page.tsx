@@ -136,7 +136,7 @@ export default async function Blog({ searchParams }: Props) {
   return (
     <main className={'min-h-svh w-full overflow-hidden'}>
       <GradientBackground />
-      <Container className="mt-24 md:mt-36">
+      <Container className="mt-36 md:mt-36">
         <Subheading className="mt-16">Downloads</Subheading>
         <Heading as="h1" className="mt-2">
           Free Guides & Resources
@@ -147,7 +147,7 @@ export default async function Blog({ searchParams }: Props) {
         </Lead>
       </Container>
       {page === 1 && !categories && <FeaturedPosts />}
-      <Container className="mt-16 pb-24">
+      <Container className="mt-24 pb-24">
         <Categories selected={categories ? categories[0] : undefined} />
         <Posts page={page} category={categories} />
         <Pagination

@@ -51,17 +51,19 @@ export function BentoCard({
         <Subheading as="h3" dark={dark}>
           {eyebrow}
         </Subheading>
-        <p className="mt-1 text-2xl/8 font-medium tracking-tight text-gray-950 group-data-[dark]:text-white">{title}</p>
+        <p className="mt-1 text-2xl/8 font-medium tracking-tight text-gray-950 group-data-[dark]:text-white">
+          <Link href={link}>
+            <span className="absolute inset-0" />
+            {title}
+          </Link>
+        </p>
         <p className="mt-2 max-w-[600px] text-sm/6 text-gray-600 group-data-[dark]:text-gray-400">{description}</p>
         {link && (
           <div className="mt-4">
-            <Link
-              href={link}
-              className="flex items-center gap-1 text-sm/5 font-medium !text-gray-400 group-hover:text-pink-600">
-              <span className="absolute inset-0" />
+            <div className="flex items-center gap-1 text-sm/5 font-medium !text-gray-400 group-hover:text-pink-600">
               Read more
               <ChevronRightIcon className="size-4 fill-gray-400" />
-            </Link>
+            </div>
           </div>
         )}
       </div>
