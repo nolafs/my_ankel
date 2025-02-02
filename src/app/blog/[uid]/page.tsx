@@ -13,6 +13,7 @@ import { PrismicRichText } from '@prismicio/react';
 import { asText } from '@prismicio/richtext';
 import { GradientBackground } from '@/components/ui/gradient';
 import React from 'react';
+import SharePage from '@/components/features/share-page/share-page';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const client = createClient();
   const post = await client
     .getByUID('posts', id, {
-      fetchLinks: ['post_category.name', 'post_category.uid'],
+      fetchLinks: ['post_category.name', 'post_category.uid', 'post_tags', 'author.name', 'author.uid'],
     })
     .catch(() => notFound());
 
@@ -55,18 +56,23 @@ export default async function Page({ params }: Props) {
     .then(response => response.data)
     .catch(() => notFound());
 
+  console.log(post);
+
   return (
     <main className={'w-full overflow-hidden'}>
       <Container className="mb-24 mt-24 md:mb-24 md:mt-40">
         <GradientBackground />
-        <Subheading className="mt-16">{dayjs(post.publishing_date).format('dddd, MMMM D, YYYY')}</Subheading>
-        <Heading as="h1" className="mt-2">
-          {post.title}
-        </Heading>
+        <div className={'relative z-30'}>
+          <Subheading className="mt-16">{dayjs(post.publishing_date).format('dddd, MMMM D, YYYY')}</Subheading>
+          <Heading as="h1" className="mt-2">
+            {post.title}
+          </Heading>
+        </div>
         <div className="mt-16 grid grid-cols-1 gap-8 pb-24 lg:grid-cols-[15rem_1fr] xl:grid-cols-[15rem_1fr_15rem]">
           <div className="flex flex-wrap items-center gap-8 max-lg:justify-between lg:flex-col lg:items-start">
             {post.category && (
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-col flex-wrap gap-2">
+                <span className="text-sm font-medium text-gray-500">Category:</span>
                 <Link
                   key="test"
                   href={`/blog?category=test`}
@@ -75,6 +81,31 @@ export default async function Page({ params }: Props) {
                 </Link>
               </div>
             )}
+            {post.author && (
+              <div className="flex flex-col flex-wrap gap-2">
+                <span className="text-sm font-medium text-gray-500">Author:</span>
+                <span className={'text-gray-700'}>
+                  {post.author && 'data' in post.author && (post.author.data as { name: string }).name}
+                </span>
+              </div>
+            )}
+
+            {post.tags && (
+              <div className="hidden flex-col flex-wrap gap-2 md:flex">
+                <span className="text-sm font-medium text-gray-500">Tags:</span>
+                <div className="flex flex-wrap gap-2">
+                  {post.tags.map((item, idx) => (
+                    <div
+                      key={'tags-' + idx}
+                      className="rounded-full border border-dotted border-gray-300 bg-gray-50 px-2 text-sm/6 font-medium text-gray-500">
+                      {item && 'tag' in item && (item.tag as { slug: string }).slug}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <SharePage slug={id} title={post.title} />
           </div>
           <div className="text-gray-700">
             <div className="max-w-2xl xl:mx-auto">
