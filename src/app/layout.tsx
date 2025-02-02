@@ -1,6 +1,5 @@
 import '@/styles/globals.scss';
-
-import { GeistSans } from 'geist/font/sans';
+import { Roboto } from 'next/font/google';
 import { type Metadata, ResolvingMetadata } from 'next';
 import { PrismicPreview } from '@prismicio/next';
 import { repositoryName } from '@/prismicio';
@@ -16,6 +15,14 @@ import NavigationMenuSub from '@/components/layouts/navigation/navigation-menu-s
 import BackToTop from '@/components/ui/BackToTop';
 import { Suspense } from 'react';
 import { SearchProvider } from '@/components/features/search/search-context';
+
+const roboto = Roboto({
+  weight: ['400', '700', '900'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-roboto',
+  display: 'swap',
+});
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -124,7 +131,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   };
 
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
+    <html lang="en" className={`${roboto.variable} font-sans`}>
       <body className={'min-h-screen text-gray-950 antialiased'}>
         <SearchProvider>
           <NavigationMenuSub navigation={navigation.data} logo={logo} />

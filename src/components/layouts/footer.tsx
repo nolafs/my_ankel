@@ -5,7 +5,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import SocialList from '../features/social-list/social-list';
-import { Gradient } from '@/components/ui/gradient';
 import { Container } from '@/components/ui/container';
 import { NavigationBarDocumentData, NavigationElementDocument } from '../../../prismicio-types';
 
@@ -26,7 +25,7 @@ export function Footer({ navigation, logo, footerCta, secondaryNavigation, socia
   const copyRightDate = new Date().getFullYear();
   return (
     <footer>
-      <Gradient className="relative">
+      <div className="relative bg-[#cef57a] bg-gradient-to-b from-[#cef57a] to-[#8fde5d]">
         <div className="absolute inset-2 z-0 rounded-4xl bg-white/80" />
 
         <Container className={'relative z-10 block pb-10'}>
@@ -107,7 +106,7 @@ export function Footer({ navigation, logo, footerCta, secondaryNavigation, socia
             </BorderRow>
           </div>
         </Container>
-      </Gradient>
+      </div>
     </footer>
   );
 }

@@ -99,7 +99,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)', ...fontFamily.sans],
+        sans: ['var(--font-roboto)'],
       },
       borderRadius: {
         lg: 'var(--radius)',
