@@ -17,7 +17,7 @@ import { Suspense } from 'react';
 import { SearchProvider } from '@/components/features/search/search-context';
 
 const roboto = Roboto({
-  weight: ['400', '700', '900'],
+  weight: ['400', '500', '700', '900'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
   variable: '--font-roboto',
