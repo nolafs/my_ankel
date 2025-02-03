@@ -3,9 +3,6 @@ import Link from 'next/link';
 import { FileDown, Film, Newspaper, SquareArrowOutUpRight } from 'lucide-react';
 import { Highlight } from 'react-instantsearch';
 import { HitProps } from '@/types';
-import { HitBaseItem } from '@/types/hit.type';
-
-const Item = (hit: HitBaseItem) => {};
 
 export const SearchHitItem = ({ hit }: HitProps) => {
   return (
