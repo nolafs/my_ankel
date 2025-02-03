@@ -11,7 +11,6 @@ import { PrismicNextLink } from '@prismicio/next';
 import React, { useState } from 'react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { AutoComplete } from '@/components/features/search/autocomplete';
 import { SearchButton } from '@/components/features/search/search-button';
 
 interface NavigationSubProps {
@@ -72,7 +71,6 @@ export const NavigationMobileMenu = ({ logo, navigation }: NavigationSubProps) =
                             field={item.link}
                             className="block rounded-lg py-2 pl-6 pr-3 text-base font-semibold text-gray-900 hover:bg-gray-50">
                             {item.label}
-                            <span className="absolute inset-0" />
                           </PrismicNextLink>
                         ))}
                       </CollapsibleContent>
