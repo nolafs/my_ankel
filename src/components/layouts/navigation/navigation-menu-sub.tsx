@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Search } from '@/components/features/search/search';
 import {
   NavigationBarDocumentData,
   NavigationBarDocumentDataNavigationItemsItem,
@@ -23,6 +22,8 @@ import {
 } from '@/components/ui/navigation-menu';
 import { NavigationMobileMenu } from '@/components/layouts/navigation/navigation-mobile-menu';
 import cn from 'clsx';
+import { AutoComplete } from '@/components/features/search/autocomplete';
+import { SearchButton } from '@/components/features/search/search-button';
 
 interface NavigationSubProps {
   navigation: NavigationBarDocumentData;
@@ -148,7 +149,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
           </NavigationMenuList>
         </NavigationMenu>
         <div className="relative z-40 hidden lg:flex lg:flex-1 lg:justify-end">
-          <Search />
+          <SearchButton />
         </div>
       </div>
     </header>

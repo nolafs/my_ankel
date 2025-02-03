@@ -1,5 +1,4 @@
 import { type Config } from 'tailwindcss';
-import { fontFamily } from 'tailwindcss/defaultTheme';
 import aspectRatio from '@tailwindcss/aspect-ratio';
 import typography from '@tailwindcss/typography';
 import forms from '@tailwindcss/forms';
@@ -10,6 +9,9 @@ export default {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx, css, scss}'],
   safelist: [
     'bg-white',
+    'max-w-[60px]',
+    'max-w-[100px]',
+    'max-w-auto',
     {
       pattern: /grid-cols-\d+/,
       variants: ['sm', 'md', 'lg', 'xl', '2xl'],

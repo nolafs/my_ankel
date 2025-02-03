@@ -79,7 +79,7 @@ export type AuthorDocument<Lang extends string = string> = prismic.PrismicDocume
   Lang
 >;
 
-type ContactDocumentDataSlicesSlice = never;
+type ContactDocumentDataSlicesSlice = CallToActionSlice | SectionSlice | TestimonialSlice;
 
 /**
  * Content for Contact documents
@@ -2280,58 +2280,6 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceSimple;
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
 
 /**
- * Primary content in *ResourceList → Default → Primary*
- */
-export interface ResourceListSliceDefaultPrimary {
-  /**
-   * Heading field in *ResourceList → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: resource_list.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  heading: prismic.KeyTextField;
-
-  /**
-   * Subtitle field in *ResourceList → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: resource_list.default.primary.subtitle
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  subtitle: prismic.KeyTextField;
-}
-
-/**
- * Default variation for ResourceList Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ResourceListSliceDefault = prismic.SharedSliceVariation<
-  'default',
-  Simplify<ResourceListSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *ResourceList*
- */
-type ResourceListSliceVariation = ResourceListSliceDefault;
-
-/**
- * ResourceList Shared Slice
- *
- * - **API ID**: `resource_list`
- * - **Description**: ResourceList
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ResourceListSlice = prismic.SharedSlice<'resource_list', ResourceListSliceVariation>;
-
-/**
  * Item in *Section → Default → Primary → Images*
  */
 export interface SectionSliceDefaultPrimaryImagesItem {
@@ -2451,6 +2399,16 @@ export interface SectionSliceSectionListPrimaryListItem {
   icon: prismic.ImageField<never>;
 
   /**
+   * Icon width field in *Section → Section List → Primary → List*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionList.primary.list[].icon_width
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  icon_width: prismic.SelectField<'60' | '100' | 'auto'>;
+
+  /**
    * Heading field in *Section → Section List → Primary → List*
    *
    * - **Field Type**: Text
@@ -2469,6 +2427,16 @@ export interface SectionSliceSectionListPrimaryListItem {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   body: prismic.RichTextField;
+
+  /**
+   * Link field in *Section → Section List → Primary → List*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionList.primary.list[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
 }
 
 /**
@@ -2638,16 +2606,6 @@ export interface SectionSliceSectionListPrimary {
   body: prismic.RichTextField;
 
   /**
-   * List field in *Section → Section List → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: section.sectionList.primary.list[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  list: prismic.GroupField<Simplify<SectionSliceSectionListPrimaryListItem>>;
-
-  /**
    * List Title field in *Section → Section List → Primary*
    *
    * - **Field Type**: Text
@@ -2656,6 +2614,16 @@ export interface SectionSliceSectionListPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   list_title: prismic.KeyTextField;
+
+  /**
+   * List field in *Section → Section List → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionList.primary.list[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  list: prismic.GroupField<Simplify<SectionSliceSectionListPrimaryListItem>>;
 }
 
 /**
@@ -2916,10 +2884,6 @@ declare module '@prismicio/client' {
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceSimple,
-      ResourceListSlice,
-      ResourceListSliceDefaultPrimary,
-      ResourceListSliceVariation,
-      ResourceListSliceDefault,
       SectionSlice,
       SectionSliceDefaultPrimaryImagesItem,
       SectionSliceDefaultPrimary,

@@ -9,9 +9,10 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { PrismicNextLink } from '@prismicio/next';
 import React, { useState } from 'react';
-import { Search } from '@/components/features/search/search';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { AutoComplete } from '@/components/features/search/autocomplete';
+import { SearchButton } from '@/components/features/search/search-button';
 
 interface NavigationSubProps {
   navigation: NavigationBarDocumentData;
@@ -23,7 +24,7 @@ export const NavigationMobileMenu = ({ logo, navigation }: NavigationSubProps) =
 
   return (
     <>
-      <Search />
+      <SearchButton />
 
       <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
         <SheetTrigger asChild>

@@ -1,4 +1,4 @@
-import '@/styles/globals.scss';
+import '@/styles/globals.css';
 import { Roboto } from 'next/font/google';
 import { type Metadata, ResolvingMetadata } from 'next';
 import { PrismicPreview } from '@prismicio/next';
@@ -8,13 +8,14 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import Footer from '@/components/layouts/footer';
 import { createClient } from '@/prismicio';
 import logo from '@/assets/myankle-logo.svg';
-
+import NextTopLoader from 'nextjs-toploader';
 import { SocialLinkItemType } from '@/types/socialLinkItem.type';
 import { Cta, LinkPrismicType } from '@/types';
 import NavigationMenuSub from '@/components/layouts/navigation/navigation-menu-sub';
 import BackToTop from '@/components/ui/BackToTop';
 import { Suspense } from 'react';
 import { SearchProvider } from '@/components/features/search/search-context';
+import { AutoComplete } from '@/components/features/search/autocomplete';
 
 const roboto = Roboto({
   weight: ['400', '500', '700', '900'],
@@ -133,6 +134,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="en" className={`${roboto.variable} font-sans`}>
       <body className={'min-h-screen text-gray-950 antialiased'}>
+        {/* Loading-bar */}
+        <NextTopLoader color={'hsl(var(--accent))'} height={5} showSpinner={false} shadow={false} zIndex={99999} />
+
         <SearchProvider>
           <NavigationMenuSub navigation={navigation.data} logo={logo} />
 
@@ -157,6 +161,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           </Suspense>
 
           <PrismicPreview repositoryName={repositoryName} />
+
+          <AutoComplete />
         </SearchProvider>
       </body>
 

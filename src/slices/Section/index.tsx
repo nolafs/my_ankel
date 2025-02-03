@@ -1,10 +1,13 @@
-import { Content, ImageField, RichTextField } from '@prismicio/client';
+import { Content, ImageField, LinkField, RichTextField } from '@prismicio/client';
 import { PrismicImage, PrismicRichText, SliceComponentProps } from '@prismicio/react';
 import { Container } from '@/components/ui/container';
+
 import { Heading, Lead, Subheading } from '@/components/ui/text';
 import cn from 'clsx';
 import React from 'react';
 import { AnimatedNumber } from '@/components/ui/animated-number';
+import { PrismicNextLink } from '@prismicio/next';
+import { buttonVariants } from '@/components/ui/button';
 
 /**
  * Props for `Section`.
@@ -15,31 +18,34 @@ function ListItem({
   heading,
   description,
   image,
+  link,
+  imageSize = '60',
 }: {
   heading?: string;
   description: RichTextField;
   image: ImageField;
+  imageSize?: string;
+  link?: LinkField;
 }) {
+  console.log('ListItem', link);
+
   return (
     <li>
-      <div className={'aspect-square max-w-[100px] overflow-hidden rounded-xl shadow-xl'}>
+      <div className={cn(`aspect-1 max-w-[${imageSize}px]`)}>
         <PrismicImage
           field={image}
-          className="block size-full object-cover"
-          width={100}
-          height={100}
-          imgixParams={{
-            fm: 'webp',
-            //fit: 'crop',
-            //crop: ['focalpoint'],
-            q: 70,
-          }}
+          className="block size-full object-contain"
+          width={Number(imageSize)}
+          height={Number(imageSize)}
         />
       </div>
       <div className="mt-6 max-w-lg text-sm/6 text-gray-500">
         <h3 className={'mb-3 text-lg font-medium text-gray-900'}>{heading}</h3>
         <PrismicRichText field={description} />
       </div>
+      {link && 'url' in link && (
+        <PrismicNextLink field={link} className={cn(buttonVariants({ variant: 'default' }), 'mt-5')} />
+      )}
     </li>
   );
 }
@@ -61,13 +67,15 @@ const Section = ({ slice }: SectionProps): JSX.Element => {
         </Subheading>
         <hr className="mt-6 border-t border-gray-200" />
         {slice.primary.list && slice.primary.list.length > 0 && (
-          <ul role="list" className="mx-auto mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <ul role="list" className="mx-auto mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {slice.primary.list.map((item, idx) => (
               <ListItem
                 key={'list-' + slice.id + idx}
                 heading={item.heading!}
                 description={item.body}
                 image={item.icon}
+                imageSize={item.icon_width ?? '100'}
+                link={item.link}
               />
             ))}
           </ul>

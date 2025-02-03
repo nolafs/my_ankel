@@ -12,7 +12,7 @@ export interface SocialListProps {
   variantList?: number;
 }
 
-const VARIANTS_BUTTON = ['w-[26px] h-[26px]', 'border border-primary p-2 h-10 w-10', ''];
+const VARIANTS_BUTTON = ['w-[26px] h-[26px]', 'h-10 w-10 !text-accent !hover:text-accent/80', ''];
 
 const VARIANTS_LIST = [
   'flex space-x-6 justify-center items-center md:justify-end md:items-end',

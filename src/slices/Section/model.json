@@ -202,6 +202,13 @@
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         },
+        "list_title": {
+          "type": "Text",
+          "config": {
+            "label": "List Title",
+            "placeholder": ""
+          }
+        },
         "list": {
           "type": "Group",
           "config": {
@@ -213,10 +220,22 @@
                 "config": {
                   "label": "Icon",
                   "constraint": {
-                    "width": 100,
-                    "height": 100
+                    "width": null,
+                    "height": null
                   },
                   "thumbnails": []
+                }
+              },
+              "icon_width": {
+                "type": "Select",
+                "config": {
+                  "label": "Icon width",
+                  "placeholder": "",
+                  "options": [
+                    "60",
+                    "100",
+                    "auto"
+                  ]
                 }
               },
               "heading": {
@@ -234,15 +253,19 @@
                   "allowTargetBlank": true,
                   "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
                 }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
               }
             }
-          }
-        },
-        "list_title": {
-          "type": "Text",
-          "config": {
-            "label": "List Title",
-            "placeholder": ""
           }
         }
       },

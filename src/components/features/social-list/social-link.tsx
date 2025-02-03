@@ -13,7 +13,6 @@ interface SocialLinkProps {
 }
 
 export const SocialLink = ({ item, className, icons, iconsClass }: SocialLinkProps) => {
-
   const openSocialMediaLink = (link: LinkPrismicType) => {
     if (!link?.url) {
       return;
@@ -65,34 +64,34 @@ export const SocialLink = ({ item, className, icons, iconsClass }: SocialLinkPro
       }
     }
 
-    // Attempt to open the app-specific URL
-    window.location = appUrl;
+    if (typeof window !== 'undefined') {
+      // Attempt to open the app-specific URL in a new window
+      window.open(appUrl, '_blank');
+    }
   };
 
   if (icons) {
     return (
       <button
-        className={cn(className, 'hover:text-primary h-5 w-5 text-gray-400')}
+        className={cn('h-5 w-5 text-gray-400 hover:text-accent', className)}
         onClick={() => {
           if (item?.url) {
             openSocialMediaLink(item.url);
           }
         }}
         rel="noopener noreferrer">
-        {item?.url &&
-          <SocialIcons type={item?.type}  props={iconsClass} />
-        }
+        {item?.url && <SocialIcons type={item?.type} props={iconsClass} />}
       </button>
     );
   } else {
     return (
       <ButtonSimple
-          className={cn(className, 'hover:text-primary h-5 w-5 text-gray-400')}
-          onClick={() => {
-            if (item?.url) {
-              openSocialMediaLink(item.url);
-            }
-          }}
+        className={cn('h-5 w-5 text-gray-400 hover:text-accent', className)}
+        onClick={() => {
+          if (item?.url) {
+            openSocialMediaLink(item.url);
+          }
+        }}
         hasIcon={false}
         size={'lg'}
         label={item?.name}

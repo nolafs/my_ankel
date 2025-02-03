@@ -6,3 +6,4 @@ export type { OGImage } from './ogimage.type';
 export type { Cta } from './cta.type';
 export type { Testimonial } from './testimonial.type';
 export type { ContactFormInput } from './email.type';
+export type { HitProps } from './hit.type';

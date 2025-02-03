@@ -12,6 +12,7 @@ import { PrismicImage, SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 import ContactForm from '@/components/features/contact-form/contact-form';
 import { Container } from '@/components/ui/container';
+import { ContactDocument, SettingsDocument } from '../../../prismicio-types';
 
 type Params = { uid: string };
 export async function generateMetadata(
@@ -43,6 +44,89 @@ export async function generateMetadata(
   };
 }
 
+const ContactDetailBlock = ({ page, social }: { page: ContactDocument; social: SocialLinkItemType[] | undefined }) => {
+  return (
+    <div className="mx-2 my-24 rounded-4xl bg-gray-900 bg-[url(/dot-texture.svg)] pb-16 pt-16 lg:pt-36">
+      <Container>
+        <div className={'grid grid-cols-1 justify-items-center gap-5 md:grid-cols-3'}>
+          {page.data.email_address && (
+            <div className={'text-center'}>
+              {/* Email */}
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-accent text-white">
+                <i>
+                  <LucideMailOpen width={24} height={24} />
+                </i>
+              </div>
+              <div className="mb-3 mt-5 text-xl font-bold text-white md:text-3xl">Email</div>
+              <div className="text-accent">
+                <a href={`mailto:${page.data.email_address}`}>{page.data.email_address}</a>
+              </div>
+            </div>
+          )}
+          {page.data.phone_number && (
+            <div className={'text-center'}>
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-accent text-white">
+                <i>
+                  <PhoneCallIcon width={24} height={24} />
+                </i>
+              </div>
+              <div className="mb-3 mt-5 text-xl font-bold text-white md:text-3xl">Telephone</div>
+              <div className="text-accent">
+                <a href={`tel:${page.data.phone_number}`}>{page.data.phone_number}</a>
+              </div>
+            </div>
+          )}
+          {social && (
+            <div className={'text-center'}>
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-accent text-white">
+                <i>
+                  <Share2Icon width={24} height={24} />
+                </i>
+              </div>
+              <div className="mb-3 mt-5 text-xl font-bold text-white md:text-3xl">Social</div>
+              <div className="text-accent">
+                <SocialList items={social} icons={true} variantList={0} variantButton={1} />
+              </div>
+            </div>
+          )}
+        </div>
+      </Container>
+    </div>
+  );
+};
+
+const ContactFormBlock = ({ page, settings }: { page: ContactDocument; settings: SettingsDocument }) => {
+  return (
+    <Container>
+      <Subheading>{page.data.subtitle}</Subheading>
+      <Heading as="h1" className="mt-2">
+        {page.data.form_heading}
+      </Heading>
+
+      <Lead className="mt-6 max-w-3xl">{page.data.form_body}</Lead>
+      <div className="mb-24 mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
+        <div className={'max-lg:max-w-lg'}>
+          <div className="aspect-3/2 overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10">
+            <PrismicImage
+              field={page.data.form_image}
+              className="block size-full object-cover"
+              width={610}
+              height={410}
+              imgixParams={{
+                fm: 'webp',
+                q: 70,
+              }}
+            />
+          </div>
+        </div>
+        <div className={'max-w-lg'}>
+          <ContactForm items={settings.data.contact_form_enquiries} />
+        </div>
+      </div>
+    </Container>
+  );
+};
+
 export default async function Page() {
   const client = createClient();
   const page = await client.getSingle('contact').catch(() => notFound());
@@ -59,90 +143,15 @@ export default async function Page() {
   }
 
   return (
-    <main className={'w-full overflow-hidden'}>
-      <Container className="mb-24 mt-24 md:mb-24 md:mt-40">
+    <main className={'mb-24 w-full overflow-hidden'}>
+      <div className="mb-24 mt-24 md:mb-24 md:mt-40">
         <GradientBackground />
-        {/* Header */}
-        <Subheading className="mt-16">{page.data.subtitle}</Subheading>
-        <Heading as="h1" className="mt-2">
-          {page.data.heading}
-        </Heading>
-        <Lead className="mt-6 max-w-3xl">{page.data.lead}</Lead>
-      </Container>
-      {/* Contact page */}
-      <div className="mx-2 my-24 rounded-4xl bg-gray-900 bg-[url(/dot-texture.svg)] pb-16 pt-16 lg:pt-36">
-        <Container>
-          <div className={'grid grid-cols-1 justify-items-center gap-5 md:grid-cols-3'}>
-            {page.data.email_address && (
-              <div className={'text-center'}>
-                {/* Email */}
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-accent text-white">
-                  <i>
-                    <LucideMailOpen width={24} height={24} />
-                  </i>
-                </div>
-                <div className="mb-3 mt-5 text-xl font-bold text-white md:text-3xl">Email</div>
-                <div className="text-gray-500">
-                  <a href={`mailto:${page.data.email_address}`}>{page.data.email_address}</a>
-                </div>
-              </div>
-            )}
-            {page.data.phone_number && (
-              <div className={'text-center'}>
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-accent text-white">
-                  <i>
-                    <PhoneCallIcon width={24} height={24} />
-                  </i>
-                </div>
-                <div className="mb-3 mt-5 text-xl font-bold text-white md:text-3xl">Telephone</div>
-                <div className="text-gray-500">
-                  <a href={`tel:${page.data.phone_number}`}>{page.data.phone_number}</a>
-                </div>
-              </div>
-            )}
-            {social && (
-              <div className={'text-center'}>
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-accent text-white">
-                  <i>
-                    <Share2Icon width={24} height={24} />
-                  </i>
-                </div>
-                <div className="mb-3 mt-5 text-xl font-bold text-white md:text-3xl">Social</div>
-                <div className="text-gray-500">
-                  <SocialList items={social} icons={true} variantList={0} variantButton={2} />
-                </div>
-              </div>
-            )}
-          </div>
-        </Container>
+        <ContactFormBlock page={page} settings={settings} />
       </div>
-      <Container>
-        <Subheading>{page.data.subtitle}</Subheading>
-        <Heading as="h1" className="mt-2">
-          {page.data.form_heading}
-        </Heading>
+      {/* Contact page */}
 
-        <Lead className="mt-6 max-w-3xl">{page.data.form_body}</Lead>
-        <div className="mb-24 mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
-          <div className={'max-lg:max-w-lg'}>
-            <div className="aspect-3/2 overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10">
-              <PrismicImage
-                field={page.data.form_image}
-                className="block size-full object-cover"
-                width={610}
-                height={410}
-                imgixParams={{
-                  fm: 'webp',
-                  q: 70,
-                }}
-              />
-            </div>
-          </div>
-          <div className={'max-w-lg'}>
-            <ContactForm items={settings.data.contact_form_enquiries} />
-          </div>
-        </div>
-      </Container>
+      <ContactDetailBlock page={page} social={social} />
+
       <SliceZone slices={page.data.slices} components={components} />
     </main>
   );
