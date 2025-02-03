@@ -25,3 +25,5 @@ export const SearchHitItem = ({ hit }: HitProps) => {
     </Link>
   );
 };
+
+export default SearchHitItem;
