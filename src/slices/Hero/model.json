@@ -153,6 +153,15 @@
             "constraint": {},
             "thumbnails": []
           }
+        },
+        "full_width_image": {
+          "type": "Boolean",
+          "config": {
+            "label": "Full Width Image",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {}

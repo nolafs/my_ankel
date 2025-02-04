@@ -2275,6 +2275,17 @@ export interface HeroSliceHeroSearchPrimary {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>;
+
+  /**
+   * Full Width Image field in *Hero → Hero Search → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: hero.heroSearch.primary.full_width_image
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  full_width_image: prismic.BooleanField;
 }
 
 /**

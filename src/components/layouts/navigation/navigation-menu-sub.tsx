@@ -22,7 +22,6 @@ import {
 } from '@/components/ui/navigation-menu';
 import { NavigationMobileMenu } from '@/components/layouts/navigation/navigation-mobile-menu';
 import cn from 'clsx';
-import { AutoComplete } from '@/components/features/search/autocomplete';
 import { SearchButton } from '@/components/features/search/search-button';
 
 interface NavigationSubProps {
@@ -99,11 +98,11 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
                         {navigationItem.data.subs.map((item, idx) => (
                           <div
                             key={`main-nav-item-${idx}`}
-                            className="group relative rounded-lg p-6 text-sm/6 hover:bg-gray-50">
-                            <div className="flex size-11 items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                            className="duration-[800] group relative rounded-lg p-6 text-sm/6 transition-all ease-in-out hover:bg-accent/20">
+                            <div className="mb-2 flex size-11 items-center justify-center rounded-lg bg-accent transition-all duration-300 ease-in-out group-hover:bg-white">
                               <PrismicImage
                                 field={item.icon}
-                                className="size-6 fill-gray-600 text-gray-600 group-hover:text-indigo-600"
+                                className="size-6 invert transition-all duration-300 ease-in-out group-hover:invert-0"
                               />
                             </div>
                             <PrismicNextLink
@@ -118,15 +117,15 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
                           </div>
                         ))}
                       </div>
-                      <div className="bg-gray-50">
+                      <div className="bg-accent">
                         <div className="mx-auto max-w-7xl px-6 lg:px-8">
                           <div className="grid grid-cols-2 divide-x divide-gray-900/5 border-x border-gray-900/5">
                             {navigationItem.data.cta.map((item, idx) => (
                               <PrismicNextLink
                                 key={`cta-${idx}`}
                                 field={item.url}
-                                className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-100">
-                                <PrismicImage field={item.icon} className="size-5 flex-none text-gray-400" />
+                                className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-white hover:bg-gray-100">
+                                <PrismicImage field={item.icon} className="size-5 flex-none text-gray-400 invert" />
                                 {item.text}
                               </PrismicNextLink>
                             ))}

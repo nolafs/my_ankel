@@ -22,6 +22,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         subheading={slice.primary.subheading}
         image={slice.primary.image}
         links={slice.primary.links}
+        fullWidthImage={slice.primary.full_width_image}
       />
     );
   }

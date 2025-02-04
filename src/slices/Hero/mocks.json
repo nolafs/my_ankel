@@ -150,8 +150,8 @@
 				"type": "Link",
 				"value": [
 					{
-						"__TYPE__": "LinkContent",
 						"key": "1bc43c0b-0f47-47e5-82ea-1f7403f71b5d",
+						"__TYPE__": "LinkContent",
 						"value": {
 							"__TYPE__": "ExternalLink",
 							"url": "http://google.com",
@@ -183,6 +183,10 @@
 				"alt": null,
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
+			},
+			"full_width_image": {
+				"__TYPE__": "BooleanContent",
+				"value": false
 			}
 		},
 		"items": [
