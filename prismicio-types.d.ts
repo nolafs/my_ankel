@@ -2771,6 +2771,61 @@ type SectionSliceVariation =
 export type SectionSlice = prismic.SharedSlice<'section', SectionSliceVariation>;
 
 /**
+ * Item in *Testimonial → Testimonials → Primary → Items*
+ */
+export interface TestimonialSliceTestimonialsPrimaryItemsItem {
+  /**
+   * Stars field in *Testimonial → Testimonials → Primary → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.testimonials.primary.items[].stars
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  stars: prismic.SelectField<'1' | '2' | '3' | '4' | '5'>;
+
+  /**
+   * Body field in *Testimonial → Testimonials → Primary → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.testimonials.primary.items[].body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Name field in *Testimonial → Testimonials → Primary → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.testimonials.primary.items[].name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Image field in *Testimonial → Testimonials → Primary → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.testimonials.primary.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Position field in *Testimonial → Testimonials → Primary → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.testimonials.primary.items[].position
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  position: prismic.KeyTextField;
+}
+
+/**
  * Primary content in *Testimonial → Default → Primary*
  */
 export interface TestimonialSliceDefaultPrimary {
@@ -2829,9 +2884,37 @@ export type TestimonialSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Testimonial → Testimonials → Primary*
+ */
+export interface TestimonialSliceTestimonialsPrimary {
+  /**
+   * Items field in *Testimonial → Testimonials → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.testimonials.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<Simplify<TestimonialSliceTestimonialsPrimaryItemsItem>>;
+}
+
+/**
+ * Testimonials variation for Testimonial Slice
+ *
+ * - **API ID**: `testimonials`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TestimonialSliceTestimonials = prismic.SharedSliceVariation<
+  'testimonials',
+  Simplify<TestimonialSliceTestimonialsPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Testimonial*
  */
-type TestimonialSliceVariation = TestimonialSliceDefault;
+type TestimonialSliceVariation = TestimonialSliceDefault | TestimonialSliceTestimonials;
 
 /**
  * Testimonial Shared Slice
@@ -2947,8 +3030,11 @@ declare module '@prismicio/client' {
       SectionSliceSectionEmbed,
       TestimonialSlice,
       TestimonialSliceDefaultPrimary,
+      TestimonialSliceTestimonialsPrimaryItemsItem,
+      TestimonialSliceTestimonialsPrimary,
       TestimonialSliceVariation,
       TestimonialSliceDefault,
+      TestimonialSliceTestimonials,
     };
   }
 }
