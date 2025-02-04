@@ -25,8 +25,8 @@ export function Footer({ navigation, logo, footerCta, secondaryNavigation, socia
   const copyRightDate = new Date().getFullYear();
   return (
     <footer>
-      <div className="relative bg-[#8fde5d] bg-gradient-to-b from-[#cef57a] to-[#8fde5d]">
-        <div className="absolute inset-2 z-0 rounded-4xl bg-white/50" />
+      <div className="relative bg-[#8fde5d] bg-gradient-to-b from-[#a7e580] to-[#cef57a]">
+        <div className="absolute inset-2 z-0 rounded-4xl border-transparent bg-white/15 shadow-md ring-1 ring-[#8fde5d]/15 after:absolute after:inset-0 after:rounded-4xl after:shadow-[inset_0_0_2px_1px_#ffffff4d]" />
 
         <Container className={'relative z-10 block pb-10'}>
           {footerCta && <CallToAction {...footerCta} />}
