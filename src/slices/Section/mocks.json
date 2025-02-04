@@ -64,6 +64,22 @@
 						}
 					}
 				]
+			},
+			"links": {
+				"__TYPE__": "RepeatableContent",
+				"type": "Link",
+				"value": [
+					{
+						"__TYPE__": "LinkContent",
+						"key": "949370da-bd57-41ae-8dcf-542a03e1488c",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "http://google.com",
+							"text": "concerned",
+							"variant": "Secondary"
+						}
+					}
+				]
 			}
 		},
 		"items": []
@@ -357,7 +373,6 @@
 							[
 								"icon",
 								{
-									"__TYPE__": "ImageContent",
 									"origin": {
 										"id": "main",
 										"url": "https://images.unsplash.com/photo-1504198070170-4ca53bb1c1fa",
@@ -375,6 +390,9 @@
 										},
 										"background": "transparent"
 									},
+									"credits": null,
+									"alt": null,
+									"__TYPE__": "ImageContent",
 									"thumbnails": {}
 								}
 							],
@@ -491,6 +509,21 @@
 					"version": "1.0"
 				},
 				"__TYPE__": "EmbedContent"
+			},
+			"links": {
+				"__TYPE__": "RepeatableContent",
+				"type": "Link",
+				"value": [
+					{
+						"key": "25a30bd2-7720-4cde-894a-d643101d87e1",
+						"__TYPE__": "LinkContent",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "https://slicemachine.dev",
+							"text": "announced"
+						}
+					}
+				]
 			}
 		},
 		"items": [

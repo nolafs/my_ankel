@@ -15,7 +15,7 @@ export interface HeroProps {
   image?: ImageField;
 }
 
-export function Hero({ heading, subheading, links, image }: HeroProps) {
+export function HeroSearch({ heading, subheading, links, image }: HeroProps) {
   return (
     <div className="relative">
       <Gradient className="absolute inset-2 bottom-0 rounded-4xl ring-1 ring-inset ring-black/5" />
@@ -32,11 +32,16 @@ export function Hero({ heading, subheading, links, image }: HeroProps) {
         </div>
       )}
       <Container className="z-2 relative">
-        <div className="pb-24 pt-32 sm:pb-32 sm:pt-32 md:pb-48 md:pt-52">
+        <div className="pb-22 pt-32 sm:pb-24 sm:pt-32 md:pb-28 md:pt-52">
           <h1 className="font-display text-balance text-5xl/[0.9] font-medium tracking-tight text-gray-950 sm:text-8xl/[0.8] md:text-9xl/[0.8]">
             {heading}
           </h1>
-          <p className="mt-8 max-w-lg text-xl/7 font-medium text-gray-950/75 sm:text-2xl/8">{subheading}</p>
+          <p className="mt-8 max-w-2xl text-xl/7 font-medium text-gray-950/75 sm:text-xl/8">{subheading}</p>
+
+          <div className={'mt-12 w-full md:w-8/12 lg:w-7/12'}>
+            <SearchButtonCta />
+          </div>
+
           <div className="mt-12 flex flex-col gap-x-3 gap-y-4 sm:flex-row">
             {links?.map(link => (
               <ButtonSliceVariation

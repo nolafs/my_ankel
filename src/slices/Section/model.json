@@ -58,6 +58,23 @@
               }
             }
           }
+        },
+        "links": {
+          "type": "Link",
+          "config": {
+            "label": "Links",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true,
+            "variants": [
+              "Primary",
+              "Secondary",
+              "Link",
+              "Accent"
+            ]
+          }
         }
       },
       "items": {}
@@ -314,6 +331,17 @@
           "config": {
             "label": "Video",
             "placeholder": ""
+          }
+        },
+        "links": {
+          "type": "Link",
+          "config": {
+            "label": "Links",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true
           }
         }
       },

@@ -397,7 +397,7 @@ export type FaqDocument<Lang extends string = string> = prismic.PrismicDocumentW
 
 type HomeDocumentDataSlicesSlice = SectionSlice | TestimonialSlice | FaqsSlice | CallToActionSlice;
 
-type HomeDocumentDataSlices2Slice = HeroSlice;
+type HomeDocumentDataSlices2Slice = TestimonialSlice | CallToActionSlice | SectionSlice | HeroSlice;
 
 /**
  * Content for Home documents
@@ -437,70 +437,37 @@ interface HomeDocumentData {
   latest_video_links: prismic.Repeatable<prismic.LinkField>;
 
   /**
-   * Latest Conditions Heading field in *Home*
+   * Latest Articles Heading field in *Home*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: home.latest_conditions_heading
+   * - **API ID Path**: home.latest_articles_heading
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  latest_conditions_heading: prismic.KeyTextField;
+  latest_articles_heading: prismic.KeyTextField;
 
   /**
-   * Latest Conditions Body field in *Home*
+   * Latest Articles Body field in *Home*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: home.latest_conditions_body
+   * - **API ID Path**: home.latest_articles_body
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  latest_conditions_body: prismic.RichTextField;
+  latest_articles_body: prismic.RichTextField;
 
   /**
-   * Latest Conditions Links field in *Home*
+   * Latest Articles Links field in *Home*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: home.latest_conditions_links
+   * - **API ID Path**: home.latest_articles_links
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  latest_conditions_links: prismic.Repeatable<prismic.LinkField>;
-
-  /**
-   * Latest Treatments Heading field in *Home*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: home.latest_treatments_heading
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  latest_treatments_heading: prismic.KeyTextField;
-
-  /**
-   * Latest Treatments Body field in *Home*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: home.latest_treatments_body
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  latest_treatments_body: prismic.RichTextField;
-
-  /**
-   * Latest Treatments Links field in *Home*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: home.latest_treatments_links
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  latest_treatments_links: prismic.Repeatable<prismic.LinkField>;
+  latest_articles_links: prismic.Repeatable<prismic.LinkField>;
 
   /**
    * Latest Download Heading field in *Home*
@@ -2266,9 +2233,67 @@ export interface HeroSliceSimplePrimary {
 export type HeroSliceSimple = prismic.SharedSliceVariation<'simple', Simplify<HeroSliceSimplePrimary>, never>;
 
 /**
+ * Primary content in *Hero → Hero Search → Primary*
+ */
+export interface HeroSliceHeroSearchPrimary {
+  /**
+   * Heading field in *Hero → Hero Search → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.heroSearch.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Subheading field in *Hero → Hero Search → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.heroSearch.primary.subheading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subheading: prismic.KeyTextField;
+
+  /**
+   * Links field in *Hero → Hero Search → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.heroSearch.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.Repeatable<prismic.LinkField>;
+
+  /**
+   * Image field in *Hero → Hero Search → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.heroSearch.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Hero Search variation for Hero Slice
+ *
+ * - **API ID**: `heroSearch`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSliceHeroSearch = prismic.SharedSliceVariation<
+  'heroSearch',
+  Simplify<HeroSliceHeroSearchPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Hero*
  */
-type HeroSliceVariation = HeroSliceDefault | HeroSliceSimple;
+type HeroSliceVariation = HeroSliceDefault | HeroSliceSimple | HeroSliceHeroSearch;
 
 /**
  * Hero Shared Slice
@@ -2492,6 +2517,16 @@ export interface SectionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   images: prismic.GroupField<Simplify<SectionSliceDefaultPrimaryImagesItem>>;
+
+  /**
+   * Links field in *Section → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.default.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.Repeatable<prismic.LinkField>;
 }
 
 /**
@@ -2692,6 +2727,16 @@ export interface SectionSliceSectionEmbedPrimary {
    * - **Documentation**: https://prismic.io/docs/field#embed
    */
   video: prismic.EmbedField;
+
+  /**
+   * Links field in *Section → Section Embed → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionEmbed.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.Repeatable<prismic.LinkField>;
 }
 
 /**
@@ -2881,9 +2926,11 @@ declare module '@prismicio/client' {
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceSimplePrimary,
+      HeroSliceHeroSearchPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceSimple,
+      HeroSliceHeroSearch,
       SectionSlice,
       SectionSliceDefaultPrimaryImagesItem,
       SectionSliceDefaultPrimary,

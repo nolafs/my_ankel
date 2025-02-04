@@ -8,6 +8,8 @@ import React from 'react';
 import { AnimatedNumber } from '@/components/ui/animated-number';
 import { PrismicNextLink } from '@prismicio/next';
 import { buttonVariants } from '@/components/ui/button';
+import ArrowLongRightIcon from '@heroicons/react/24/outline/ArrowLongRightIcon';
+import ButtonSliceVariation from '@/components/ui/button-slice-variation';
 
 /**
  * Props for `Section`.
@@ -178,6 +180,7 @@ const Section = ({ slice }: SectionProps): JSX.Element => {
   }
 
   if (slice.variation === 'default') {
+    console.log(slice.primary.links);
     return (
       <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
         <Container className="mt-32">
@@ -187,27 +190,65 @@ const Section = ({ slice }: SectionProps): JSX.Element => {
           </Heading>
           <Lead className="mt-6 max-w-3xl">{slice.primary.lead}</Lead>
           <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <div className="prose max-w-lg text-sm/6 text-gray-600">
-              <PrismicRichText field={slice.primary.body} />
-            </div>
-            {slice.primary.images && slice.primary.images.length > 0 && (
-              <div className="max-lg:order-first max-lg:max-w-lg">
-                <div className="aspect-3/2 overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10">
-                  <PrismicImage
-                    field={slice.primary.images[0]?.image}
-                    className="block size-full object-cover"
-                    width={610}
-                    height={410}
-                    imgixParams={{
-                      fm: 'webp',
-                      fit: 'crop',
-                      crop: ['focalpoint'],
-                      q: 70,
-                    }}
-                  />
-                </div>
+            <div className={'flex flex-col'}>
+              <div className="prose prose-sm max-w-lg text-gray-600 md:prose-base lg:prose-lg">
+                <PrismicRichText field={slice.primary.body} />
               </div>
-            )}
+              <div className="mt-10 flex flex-col flex-wrap gap-3 md:flex-row">
+                {slice.primary.links?.map((link, index) => (
+                  <ButtonSliceVariation
+                    key={
+                      link.text
+                        ? link?.text.toLowerCase().replace(/ /g, '-')
+                        : Math.random().toString(36).substring(2, 15)
+                    }
+                    link={link}
+                  />
+                ))}
+              </div>
+            </div>
+            {slice.primary.images &&
+              slice.primary.images.length > 0 &&
+              (slice.primary.images.length === 1 ? (
+                <div className="max-lg:order-first max-lg:max-w-lg">
+                  <div className="aspect-3/2 overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10">
+                    <PrismicImage
+                      field={slice.primary.images[0]?.image}
+                      className="block size-full object-cover"
+                      width={610}
+                      height={410}
+                      imgixParams={{
+                        fm: 'webp',
+                        fit: 'crop',
+                        crop: ['focalpoint'],
+                        q: 70,
+                      }}
+                    />
+                  </div>
+                </div>
+              ) : (
+                slice.primary.images.map((image, idx) => (
+                  <div
+                    key={'images_' + idx}
+                    className={cn(
+                      'aspect-1 overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10',
+                      idx % 2 === 0 ? 'outline-black/10' : '-mt-8 outline-black/10 lg:-mt-32',
+                    )}>
+                    <PrismicImage
+                      field={image.image}
+                      className="block size-full object-cover"
+                      width={560}
+                      height={560}
+                      imgixParams={{
+                        fm: 'webp',
+                        //fit: 'crop',
+                        //crop: ['focalpoint'],
+                        q: 70,
+                      }}
+                    />
+                  </div>
+                ))
+              ))}
           </div>
         </Container>
       </section>
