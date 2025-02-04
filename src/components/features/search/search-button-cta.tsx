@@ -11,9 +11,9 @@ export const SearchButtonCta = () => {
     <Button
       variant="secondary"
       onClick={() => setSearchDialog(prevOpen => !prevOpen)}
-      className="flex w-full justify-between space-x-2 py-5">
+      className="flex w-full justify-between space-x-2 !py-6">
       <SearchIcon className="h-6 w-6 shrink" />
-      <span className={'grow text-left text-lg'}>Search Resources</span>
+      <span className={'grow text-left text-xl'}>Search Resources</span>
       <div className={'shrink'}>
         <span className={'rounded-full bg-gray-500/20 px-3 text-base text-white'}>⌘k</span>
       </div>
