@@ -4,15 +4,13 @@ import { SliceZone } from '@prismicio/react';
 import { notFound } from 'next/navigation';
 import { createClient } from '@/prismicio';
 import { BentoSection } from '@/components/features/resources/bentoList';
-import { EmbedField, filter } from '@prismicio/client';
+import { filter } from '@prismicio/client';
 import { SliderResource } from '@/components/features/resources/slider-resource';
 import SliderVideo from '@/components/features/resources/slider-video';
 
 export default async function HomePage() {
   const client = createClient();
   const page = await client.getSingle('home').catch(() => notFound());
-
-  let videoEmbed: EmbedField | null = null;
 
   const resentPosts = await client
     .getByType('posts', {
