@@ -25,8 +25,6 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       });
     }
 
-    console.log('MESSAGES', messages);
-
     return (
       <HeroSearch
         heading={slice.primary.heading}
