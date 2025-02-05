@@ -64,7 +64,7 @@
 
 
 @layer utilities {
-  .prose-xl :where([data-oembed]):not(:where([class~="not-prose"] *)) {
+  .prose :where([data-oembed]):not(:where([class~="not-prose"] *)) {
     @apply aspect-w-16 aspect-h-9 w-full h-auto;
   }
 }
