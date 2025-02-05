@@ -12,6 +12,7 @@ export const VideoOverlay = ({ video }: VideoOverlayProps) => {
     <OverlaySheet>
       <OverlaySheetTrigger asChild={true} aria-label={'Play Video'}>
         <CirclePlayIcon
+          aria-label={'Play Video'}
           className={
             'transform-all mt-20 h-20 w-20 cursor-pointer text-white opacity-75 transition-all hover:scale-110 hover:text-pink-600 hover:opacity-100'
           }
