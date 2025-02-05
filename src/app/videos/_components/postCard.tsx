@@ -8,8 +8,6 @@ import React from 'react';
 import { VideoDocument } from '../../../../prismicio-types';
 import Image from 'next/image';
 import placeholder from '@/assets/placeholder.jpg';
-import { CirclePlayIcon } from 'lucide-react';
-import { OverlaySheet, OverlaySheetContent, OverlaySheetTrigger } from '@/components/ui/overlay';
 import VideoOverlay from '@/components/ui/video-overlay/video-overlay';
 
 export const VideoCard = ({ video }: { video: VideoDocument }) => {
@@ -23,7 +21,10 @@ export const VideoCard = ({ video }: { video: VideoDocument }) => {
             <PrismicNextImage
               field={video.data.poster}
               alt=""
+              width={380}
+              height={260}
               className={'aspect-3/2 w-full rounded-2xl object-cover'}
+              imgixParams={{ fit: 'crop', ar: '3:2' }}
             />
           ) : (
             <Image
