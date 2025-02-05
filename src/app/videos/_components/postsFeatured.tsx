@@ -44,11 +44,11 @@ export async function FeaturedPosts() {
               {post.data.video_url && post.data.video_url.html && (
                 <div
                   dangerouslySetInnerHTML={{ __html: post.data.video_url.html }}
-                  className={'aspect-h-9 aspect-w-16 overflow-hidden rounded-3xl'}></div>
+                  className={'aspect-h-9 aspect-w-16 overflow-hidden rounded-3xl bg-gray-300'}></div>
               )}
 
               <div className="flex flex-1 flex-col p-8">
-                <div className={'flex items-center justify-between'}>
+                <div className={'flex flex-col md:flex-row md:items-center md:justify-between'}>
                   <div className="text-sm/5 text-gray-700">
                     {dayjs(post.data.publishing_date).format('dddd, MMMM D, YYYY')}
                   </div>

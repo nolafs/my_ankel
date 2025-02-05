@@ -10,6 +10,7 @@ import Image from 'next/image';
 import placeholder from '@/assets/placeholder.jpg';
 import { CirclePlayIcon } from 'lucide-react';
 import { OverlaySheet, OverlaySheetContent, OverlaySheetTrigger } from '@/components/ui/overlay';
+import VideoOverlay from '@/components/ui/video-overlay/video-overlay';
 
 export const VideoCard = ({ video }: { video: VideoDocument }) => {
   return (
@@ -17,42 +18,32 @@ export const VideoCard = ({ video }: { video: VideoDocument }) => {
       key={video.uid}
       className="relative flex flex-col rounded-3xl bg-white p-2 shadow-md shadow-black/5 ring-1 ring-black/5">
       <div className={'relative'}>
-        <OverlaySheet>
-          <OverlaySheetTrigger asChild={true}>
-            <div className={'relative'}>
-              {video.data.poster.url ? (
-                <PrismicNextImage
-                  field={video.data.poster}
-                  alt=""
-                  className={'aspect-3/2 w-full rounded-2xl object-cover'}
-                />
-              ) : (
-                <Image
-                  src={placeholder}
-                  alt={video.data.name ?? 'placeholder'}
-                  width={380}
-                  height={260}
-                  className={'aspect-3/2 w-full rounded-2xl object-cover'}
-                />
-              )}
-              <CirclePlayIcon className={'absolute bottom-2 right-2 m-auto h-16 w-16 text-white opacity-75'} />
-              {video.data.category && 'data' in video.data.category && (
-                <div className="absolute left-2 top-2">
-                  <Badge>{(video.data.category.data as { name: string }).name}</Badge>
-                </div>
-              )}
+        <div className={'relative'}>
+          {video.data.poster.url ? (
+            <PrismicNextImage
+              field={video.data.poster}
+              alt=""
+              className={'aspect-3/2 w-full rounded-2xl object-cover'}
+            />
+          ) : (
+            <Image
+              src={placeholder}
+              alt={video.data.name ?? 'placeholder'}
+              width={380}
+              height={260}
+              className={'aspect-3/2 w-full rounded-2xl object-cover'}
+            />
+          )}
+
+          {video.data.category && 'data' in video.data.category && (
+            <div className="absolute left-2 top-2">
+              <Badge>{(video.data.category.data as { name: string }).name}</Badge>
             </div>
-          </OverlaySheetTrigger>
-          <OverlaySheetContent>
-            {video.data.video_url && video.data.video_url.html && (
-              <div className={'w-screen max-w-7xl'}>
-                <div
-                  dangerouslySetInnerHTML={{ __html: video.data.video_url.html }}
-                  className={'aspect-h-9 aspect-w-16 w-full overflow-hidden rounded-3xl'}></div>
-              </div>
-            )}
-          </OverlaySheetContent>
-        </OverlaySheet>
+          )}
+        </div>
+        <div className={'absolute bottom-2 right-2'}>
+          {video.data.video_url && video.data.video_url.html && <VideoOverlay video={video.data.video_url} />}
+        </div>
       </div>
 
       <div className="flex flex-1 flex-col p-8">

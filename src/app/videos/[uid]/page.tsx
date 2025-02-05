@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         },
       }
     : {
-        title: 'Blog Post',
+        title: 'Video log',
       };
 }
 
@@ -88,7 +88,7 @@ export default async function Page({ params }: Props) {
                 {post.description && <PrismicRichText field={post.description} />}
               </div>
               <div className="mt-10">
-                <Button variant="outline" href="/blog">
+                <Button variant="outline" href="/videos">
                   <ChevronLeftIcon className="size-4" />
                   Back to Vblog
                 </Button>
