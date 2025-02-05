@@ -409,7 +409,7 @@ interface HomeDocumentData {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: home.latest_video_heading
-   * - **Tab**: Main
+   * - **Tab**: Listings
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   latest_video_heading: prismic.KeyTextField;
@@ -420,7 +420,7 @@ interface HomeDocumentData {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: home.latest_video_body
-   * - **Tab**: Main
+   * - **Tab**: Listings
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   latest_video_body: prismic.RichTextField;
@@ -431,7 +431,7 @@ interface HomeDocumentData {
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: home.latest_video_links
-   * - **Tab**: Main
+   * - **Tab**: Listings
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   latest_video_links: prismic.Repeatable<prismic.LinkField>;
@@ -442,7 +442,7 @@ interface HomeDocumentData {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: home.latest_articles_heading
-   * - **Tab**: Main
+   * - **Tab**: Listings
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   latest_articles_heading: prismic.KeyTextField;
@@ -453,7 +453,7 @@ interface HomeDocumentData {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: home.latest_articles_body
-   * - **Tab**: Main
+   * - **Tab**: Listings
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   latest_articles_body: prismic.RichTextField;
@@ -464,7 +464,7 @@ interface HomeDocumentData {
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: home.latest_articles_links
-   * - **Tab**: Main
+   * - **Tab**: Listings
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   latest_articles_links: prismic.Repeatable<prismic.LinkField>;
@@ -475,7 +475,7 @@ interface HomeDocumentData {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: home.latest_download_heading
-   * - **Tab**: Main
+   * - **Tab**: Listings
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   latest_download_heading: prismic.KeyTextField;
@@ -486,7 +486,7 @@ interface HomeDocumentData {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: home.latest_download_body
-   * - **Tab**: Main
+   * - **Tab**: Listings
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   latest_download_body: prismic.RichTextField;
@@ -497,7 +497,7 @@ interface HomeDocumentData {
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: home.latest_download_links
-   * - **Tab**: Main
+   * - **Tab**: Listings
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   latest_download_links: prismic.Repeatable<prismic.LinkField>;
@@ -508,7 +508,7 @@ interface HomeDocumentData {
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
    * - **API ID Path**: home.slices[]
-   * - **Tab**: Main
+   * - **Tab**: Listings
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<HomeDocumentDataSlicesSlice> /**
@@ -548,7 +548,7 @@ interface HomeDocumentData {
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
    * - **API ID Path**: home.slices2[]
-   * - **Tab**: Hero
+   * - **Tab**: Top Section
    * - **Documentation**: https://prismic.io/docs/field#slices
    */;
   slices2: prismic.SliceZone<HomeDocumentDataSlices2Slice>;
@@ -2563,6 +2563,17 @@ export interface SectionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   links: prismic.Repeatable<prismic.LinkField>;
+
+  /**
+   * Animation field in *Section → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: section.default.primary.animation
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  animation: prismic.BooleanField;
 }
 
 /**

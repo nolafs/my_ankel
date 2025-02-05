@@ -56,8 +56,6 @@ export default async function Page({ params }: Props) {
     .then(response => response.data)
     .catch(() => notFound());
 
-  console.log(post);
-
   return (
     <main className={'w-full overflow-hidden'}>
       <Container className="mb-24 mt-24 md:mb-24 md:mt-40">

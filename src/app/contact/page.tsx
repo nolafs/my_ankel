@@ -31,7 +31,7 @@ export async function generateMetadata(
   }
 
   return {
-    title: 'Contact',
+    title: page.data.meta_title ?? 'My Ankle - Contact us',
     description: page.data.meta_description ?? parentMeta.description ?? 'Contact us for more information',
     openGraph: {
       title: page.data.meta_title ?? parentMeta.title ?? undefined,
@@ -137,10 +137,6 @@ export default async function Page() {
     name: item.name,
     url: item.url as LinkPrismicType,
   }));
-
-  if (!page) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <main className={'mb-24 w-full overflow-hidden'}>

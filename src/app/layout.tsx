@@ -40,7 +40,7 @@ function isURL(string: string | null | undefined): boolean {
 export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient();
   const settings = await client.getSingle('settings');
-  const defaultImages = ['/placeholder.jpg'];
+  const defaultImages = ['/share-img.jpg'];
 
   if (settings?.data.share_image?.url) {
     defaultImages[0] = settings?.data.share_image?.url;

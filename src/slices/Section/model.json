@@ -75,6 +75,15 @@
               "Accent"
             ]
           }
+        },
+        "animation": {
+          "type": "Boolean",
+          "config": {
+            "label": "Animation",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {}

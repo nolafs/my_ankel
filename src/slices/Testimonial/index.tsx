@@ -13,8 +13,6 @@ export type TestimonialProps = SliceComponentProps<Content.TestimonialSlice>;
  * Component for "Testimonial" Slices.
  */
 const Testimonial = ({ slice }: TestimonialProps): JSX.Element => {
-  console.log('variation', slice.variation);
-
   if (slice.variation === 'testimonials') {
     const data = slice.primary.items as TestimonialType[];
     return <TestimonialSlider data={data} />;

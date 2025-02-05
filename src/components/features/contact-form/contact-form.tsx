@@ -10,6 +10,8 @@ import cn from 'clsx';
 import { sendMail, VerifyCaptcha } from '@/action';
 import ReCAPTCHA from 'react-google-recaptcha';
 
+const RECAPTCHA_ACTIVE = false;
+
 const emailSchema = z.object({
   name: z.string().min(1, 'Please enter your name'),
   email: z.string().email('Please enter a valid email address'),
@@ -29,7 +31,7 @@ export function ContactForm({ items }: ContactFormInputProps) {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submissionSuccess, setSubmissionSuccess] = useState<boolean>(false);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const [isVerified, setIsVerified] = useState(false);
+  const [isVerified, setIsVerified] = useState(!RECAPTCHA_ACTIVE);
 
   const {
     register,
@@ -195,17 +197,20 @@ export function ContactForm({ items }: ContactFormInputProps) {
             {errors.agreeToTerms && <p className="text-error">{errors.agreeToTerms.message}</p>}
           </div>
 
-          <div className="flex w-full justify-start pt-6">
-            <ReCAPTCHA
-              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ''}
-              ref={recaptchaRef}
-              onChange={handleChange}
-              onExpired={handleExpired}
-            />
-          </div>
+          {RECAPTCHA_ACTIVE && (
+            <div className="flex w-full justify-start pt-6">
+              <ReCAPTCHA
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ''}
+                ref={recaptchaRef}
+                onChange={handleChange}
+                onExpired={handleExpired}
+              />
+            </div>
+          )}
 
           <div className="flex w-full justify-end pt-6">
             {/* Submit Button */}
+            {isVerified}
             <Button
               type="submit"
               size={'lg'}

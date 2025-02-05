@@ -39,8 +39,6 @@ export async function POST() {
       text: asText(post.data.content).slice(0, 5000), // Post content transformed to search text
     }));
 
-    console.log(articleRecords);
-
     // Index records to Algolia
     await algoliaClient.saveObjects({ indexName: 'blog', objects: articleRecords });
 
@@ -73,8 +71,6 @@ export async function POST() {
       text: asText(post.data.description).slice(0, 5000), // Post content transformed to search text
     }));
 
-    console.log(videoRecords);
-
     // Index records to Algolia
     await algoliaClient.saveObjects({ indexName: 'blog', objects: videoRecords });
 
@@ -106,8 +102,6 @@ export async function POST() {
       image: post.data.feature_image, // Post featured image
       text: asText(post.data.description).slice(0, 5000), // Post content transformed to search text
     }));
-
-    console.log(downloadRecords);
 
     // Index records to Algolia
     await algoliaClient.saveObjects({ indexName: 'blog', objects: downloadRecords });

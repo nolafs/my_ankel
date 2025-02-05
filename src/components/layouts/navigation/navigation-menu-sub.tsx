@@ -62,7 +62,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
 
   return (
     <header id={'navbar'} className="fixed z-40 w-screen bg-transparent transition-all delay-150 duration-300">
-      <div className="mx-auto flex w-full max-w-2xl items-center justify-between px-3 pt-6 transition-all delay-150 duration-300 sm:px-5 md:pt-16 lg:max-w-7xl">
+      <div className="mx-auto flex w-full max-w-2xl items-center justify-between pt-6 transition-all delay-150 duration-300 md:pt-16 lg:max-w-7xl lg:px-0">
         <div className="flex lg:flex-1">
           <div className="relative z-40">
             <Link href="/">
@@ -70,6 +70,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
               <Image
                 src={logo}
                 className={cn(
+                  'px-5 lg:px-0',
                   'inline origin-left transition-all delay-150 duration-300',
                   scroll ? 'md:scale-100' : 'md:scale-[1.50]',
                 )}
@@ -124,7 +125,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
                               <PrismicNextLink
                                 key={`cta-${idx}`}
                                 field={item.url}
-                                className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-white hover:bg-gray-100">
+                                className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-white transition-all duration-500 hover:bg-gray-900/30">
                                 <PrismicImage field={item.icon} className="size-5 flex-none text-gray-400 invert" />
                                 {item.text}
                               </PrismicNextLink>

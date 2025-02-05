@@ -70,8 +70,8 @@
 				"type": "Link",
 				"value": [
 					{
-						"__TYPE__": "LinkContent",
 						"key": "949370da-bd57-41ae-8dcf-542a03e1488c",
+						"__TYPE__": "LinkContent",
 						"value": {
 							"__TYPE__": "ExternalLink",
 							"url": "http://google.com",
@@ -80,6 +80,10 @@
 						}
 					}
 				]
+			},
+			"animation": {
+				"__TYPE__": "BooleanContent",
+				"value": false
 			}
 		},
 		"items": []

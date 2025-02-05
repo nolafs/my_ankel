@@ -5,7 +5,7 @@
   "repeatable": false,
   "status": true,
   "json": {
-    "Main": {
+    "Listings": {
       "latest_video_heading": {
         "type": "Text",
         "config": {
@@ -138,7 +138,7 @@
         "type": "Image"
       }
     },
-    "Hero": {
+    "Top Section": {
       "slices2": {
         "type": "Slices",
         "fieldset": "Slice Zone",

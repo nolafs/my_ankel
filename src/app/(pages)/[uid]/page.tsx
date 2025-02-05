@@ -1,12 +1,10 @@
 import type { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import { SliceZone } from '@prismicio/react';
-
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 import { OGImage } from '@/types';
 import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
-import { Container } from '@/components/ui/container';
 import { GradientBackground } from '@/components/ui/gradient';
 import React from 'react';
 
@@ -21,6 +19,7 @@ export async function generateMetadata(
   const page = await client.getByUID('page', uid).catch(() => notFound());
 
   let image = null;
+  let pageTitle = '';
   const parentMeta = await parent;
   const parentOpenGraph: ResolvedOpenGraph | null = parentMeta.openGraph ?? null;
 
@@ -28,8 +27,16 @@ export async function generateMetadata(
     image = `${page.data.meta_image.url}?w=1200&h=630&fit=crop&fm=webp&q=80`;
   }
 
+  if (parentMeta?.title) {
+    pageTitle = parentMeta.title.absolute;
+  }
+
+  if (page.data?.title) {
+    pageTitle = page.data.title;
+  }
+
   return {
-    title: page.data?.title ?? parentMeta.title,
+    title: `My Ankle - ${pageTitle}`,
     description: page.data.meta_description ?? parentMeta.description,
     openGraph: {
       title: page.data.meta_title ?? parentMeta.title ?? undefined,

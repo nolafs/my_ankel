@@ -38,7 +38,7 @@ export function HeroSearch({ heading, subheading, links, image, fullWidthImage, 
         </>
       ) : (
         <>
-          <div className="sm:bg-[linear-gradient(145deg,var(--tw-gradient-stops))]ring-1 absolute top-0 z-10 h-full w-full rounded-b-4xl bg-[linear-gradient(180deg,var(--tw-gradient-stops))] from-[#ffffffcc] from-[10%] via-[#00FAFE40] via-[70%] to-[#2E5F9A00]" />
+          <div className="absolute top-0 z-10 h-full w-full rounded-b-4xl bg-[linear-gradient(180deg,var(--tw-gradient-stops))] from-[#ffffffE6] from-[5%] via-[#00FAFE00] via-[50%] to-[#2E5F9A1A] ring-1 sm:bg-[linear-gradient(180deg,var(--tw-gradient-stops))]" />
           {image && (
             <div className="z-1 absolute inset-0 overflow-hidden rounded-b-4xl">
               <PrismicNextImage

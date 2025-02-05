@@ -29,11 +29,9 @@ export const metadata: Metadata = {
 async function Posts({ page, category }: { page: number; category?: string[] }) {
   const client = createClient();
   let categories: any[] = [];
-  console.log('category', category);
 
   if (category) {
     categories = await client.getAllByUIDs('post_category', [...category]);
-    console.log('categories', categories);
   }
 
   const posts = await client

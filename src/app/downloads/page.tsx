@@ -2,11 +2,11 @@ import { Container } from '@/components/ui/container';
 import { GradientBackground } from '@/components/ui/gradient';
 import { Heading, Lead, Subheading } from '@/components/ui/text';
 import dayjs from 'dayjs';
-import type { Metadata } from 'next';
+import type { Metadata, ResolvingMetadata } from 'next';
 import { createClient } from '@/prismicio';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
-import { filter, ImageFieldImage } from '@prismicio/client';
+import { asText, filter, ImageFieldImage } from '@prismicio/client';
 import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
 import { Categories } from './_components/postsCategories';
@@ -14,26 +14,71 @@ import { Badge } from '@/components/ui/badge';
 import { FolderDownIcon } from 'lucide-react';
 import { Pagination } from '@/components/ui/pagination';
 import { DownloadLink } from '@/app/downloads/_components/downloadLink';
-import { CustomLinkToMediaField } from '@/types';
+import { CustomLinkToMediaField, OGImage } from '@/types';
+import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
+
+type Params = { uid: string };
 
 type Props = {
   params: Promise<{ uid: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export const metadata: Metadata = {
-  title: 'Downloads',
-  description: 'Downloads resources',
-};
+export async function generateMetadata(
+  { params }: { params: Promise<Params> },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const client = createClient();
+
+  const posts = await client
+    .getByType('download', {
+      pageSize: 1,
+      page: 0,
+      filters: [filter.at('my.download.featured', true)],
+      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name'],
+      orderings: [
+        {
+          field: 'my.download.publishing_date',
+          direction: 'desc',
+        },
+      ],
+    })
+    .then(response => {
+      return response.results;
+    });
+
+  const page = posts[0];
+  let image = null;
+
+  const parentMeta = await parent;
+  const parentOpenGraph: ResolvedOpenGraph | null = parentMeta.openGraph ?? null;
+
+  if (page?.data?.feature_image) {
+    image = `${page?.data.feature_image.url}?w=1200&h=630&fit=crop&fm=webp&q=80`;
+  }
+
+  return {
+    title: 'My Ankle - Downloads',
+    description:
+      asText(page?.data.description)! ??
+      'Download expert-written guides and brochures on ankle conditions, treatments, and recovery. Get the latest information in easy-to-read PDFs, available anytime you need them.',
+    openGraph: {
+      title: 'My Ankle - Downloads',
+      images: [
+        {
+          url: image ?? (parentOpenGraph?.images ? (parentOpenGraph.images[0] as OGImage).url : ''),
+        },
+      ],
+    },
+  };
+}
 
 async function Posts({ page, category }: { page: number; category?: string[] }) {
   const client = createClient();
   let categories: any[] = [];
-  console.log('category', category);
 
   if (category) {
     categories = await client.getAllByUIDs('post_category', [...category]);
-    console.log('categories', categories);
   }
 
   const posts = await client
@@ -64,8 +109,6 @@ async function Posts({ page, category }: { page: number; category?: string[] }) 
   if (posts.length === 0) {
     return <p className="mt-6 text-gray-500">No posts found.</p>;
   }
-
-  console.log('FILE', posts);
 
   return (
     <div className="mt-6">
