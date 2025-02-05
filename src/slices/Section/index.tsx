@@ -183,7 +183,7 @@ const Section = ({ slice }: SectionProps): JSX.Element => {
     console.log(slice.primary.links);
     return (
       <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-        <Container className="mt-32">
+        <Container className="mt-16 md:mt-24 lg:mt-32">
           <Subheading>{slice.primary.subheading}</Subheading>
           <Heading as="h3" className="mt-2">
             {slice.primary.heading}

@@ -16,7 +16,7 @@ export interface HeroProps {
 
 export function HeroSearch({ heading, subheading, links, image, fullWidthImage }: HeroProps) {
   return (
-    <div className="relative isolate p-2">
+    <div className="relative isolate overflow-hidden drop-shadow-xl">
       {!fullWidthImage ? (
         <>
           <Gradient className="absolute inset-2 bottom-0 rounded-4xl ring-1 ring-inset ring-black/5" />
@@ -37,15 +37,20 @@ export function HeroSearch({ heading, subheading, links, image, fullWidthImage }
         </>
       ) : (
         <>
+          <div className="sm:bg-[linear-gradient(145deg,var(--tw-gradient-stops))]ring-1 absolute top-0 z-10 h-full w-full rounded-b-4xl bg-[linear-gradient(180deg,var(--tw-gradient-stops))] from-[#ffffffcc] from-[10%] via-[#00FAFE40] via-[70%] to-[#2E5F9A00]" />
           {image && (
-            <div className="absolute inset-0 z-0 overflow-hidden opacity-70 ring-1 ring-inset ring-black/5">
-              <PrismicNextImage loading={'lazy'} field={image} className="block h-auto w-full object-cover" />
+            <div className="z-1 absolute inset-0 overflow-hidden rounded-b-4xl">
+              <PrismicNextImage
+                loading={'lazy'}
+                field={image}
+                className="relative w-full max-w-full object-cover object-center"
+              />
             </div>
           )}
         </>
       )}
 
-      <Container className="z-2 relative">
+      <Container className="relative z-20">
         <div className="pb-22 pt-32 sm:pb-24 sm:pt-32 md:pb-28 md:pt-52">
           <h1 className="font-display text-balance text-5xl/[0.9] font-medium tracking-tight text-gray-950 sm:text-8xl/[0.8] md:text-9xl/[0.8]">
             {heading}
