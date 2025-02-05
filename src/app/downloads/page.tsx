@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 import { createClient } from '@/prismicio';
 import { PrismicNextImage } from '@prismicio/next';
-import { PrismicLink, PrismicRichText } from '@prismicio/react';
+import { PrismicRichText } from '@prismicio/react';
 import { filter, ImageFieldImage } from '@prismicio/client';
 import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
@@ -13,6 +13,8 @@ import { Categories } from './_components/postsCategories';
 import { Badge } from '@/components/ui/badge';
 import { FolderDownIcon } from 'lucide-react';
 import { Pagination } from '@/components/ui/pagination';
+import { DownloadLink } from '@/app/downloads/_components/downloadLink';
+import { CustomLinkToMediaField } from '@/types';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -63,6 +65,8 @@ async function Posts({ page, category }: { page: number; category?: string[] }) 
     return <p className="mt-6 text-gray-500">No posts found.</p>;
   }
 
+  console.log('FILE', posts);
+
   return (
     <div className="mt-6">
       {posts.map(post => (
@@ -105,14 +109,12 @@ async function Posts({ page, category }: { page: number; category?: string[] }) 
             </div>
 
             <div className="mt-4">
-              <PrismicLink
-                field={post.data.file}
-                download={post.data.name}
-                target={'_blank'}
-                className="flex items-center gap-1 text-sm/5 font-medium">
+              <DownloadLink
+                className={'flex items-center gap-1 text-sm/5 font-medium'}
+                href={(post.data.file as CustomLinkToMediaField)?.url}>
                 <FolderDownIcon className={'h-6 w-6'} />
                 {post.data.file.text}
-              </PrismicLink>
+              </DownloadLink>
             </div>
           </div>
         </div>

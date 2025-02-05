@@ -8,6 +8,9 @@ import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { buttonVariants } from '@/components/ui/button';
 import cn from 'clsx';
+import { Download } from 'lucide-react';
+import { DownloadLink } from '@/app/downloads/_components/downloadLink';
+import { CustomLinkToMediaField } from '@/types';
 
 export async function FeaturedPosts() {
   const client = createClient();
@@ -62,10 +65,10 @@ export async function FeaturedPosts() {
                   {dayjs(post.data.publishing_date).format('dddd, MMMM D, YYYY')}
                 </div>
                 <div className="mt-2 text-base/7 font-medium">
-                  <PrismicLink field={post.data.file} download={post.data.name} target={'_blank'}>
+                  <DownloadLink href={(post.data.file as CustomLinkToMediaField)?.url}>
                     <span className="absolute inset-0" />
                     {post.data.name}
-                  </PrismicLink>
+                  </DownloadLink>
                 </div>
 
                 <div className="mt-2 flex-1 text-sm/6 text-gray-500">
@@ -73,9 +76,11 @@ export async function FeaturedPosts() {
                 </div>
 
                 <div className="mt-4">
-                  <PrismicLink field={post.data.file} className={cn(buttonVariants(), 'w-full')}>
+                  <DownloadLink
+                    href={(post.data.file as CustomLinkToMediaField)?.url}
+                    className={cn(buttonVariants(), 'w-full')}>
                     {post.data.file.text}
-                  </PrismicLink>
+                  </DownloadLink>
                 </div>
 
                 {post.data.author && 'data' in post.data.author && (
