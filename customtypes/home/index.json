@@ -30,7 +30,8 @@
           "select": null,
           "allowTargetBlank": true,
           "allowText": true,
-          "repeat": true
+          "repeat": true,
+          "variants": ["Primary", "Secondary", "Accent", "Link"]
         }
       },
       "latest_articles_heading": {
@@ -57,7 +58,8 @@
           "select": null,
           "allowTargetBlank": true,
           "allowText": true,
-          "repeat": true
+          "repeat": true,
+          "variants": ["Primary", "Secondary", "Accent", "Link"]
         }
       },
       "latest_download_heading": {
@@ -84,7 +86,8 @@
           "select": null,
           "allowTargetBlank": true,
           "allowText": true,
-          "repeat": true
+          "repeat": true,
+          "variants": ["Primary", "Secondary", "Accent", "Link"]
         }
       },
       "slices": {

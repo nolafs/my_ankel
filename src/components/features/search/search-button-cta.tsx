@@ -3,8 +3,15 @@ import { Button } from '@/components/button';
 import { useSearch } from './search-context';
 import React from 'react';
 import { SearchIcon } from 'lucide-react';
+import { ReactTyped } from 'react-typed';
 
-export const SearchButtonCta = () => {
+interface SearchButtonCtaProps {
+  searchCta?: string[];
+}
+
+export const SearchButtonCta = ({
+  searchCta = ['Search our resources', 'Here you can find anything'],
+}: SearchButtonCtaProps) => {
   const { setSearchDialog } = useSearch();
 
   return (
@@ -13,7 +20,9 @@ export const SearchButtonCta = () => {
       onClick={() => setSearchDialog(prevOpen => !prevOpen)}
       className="flex w-full justify-between space-x-2 !py-6">
       <SearchIcon className="h-6 w-6 shrink" />
-      <span className={'grow text-left text-xl'}>Search Resources</span>
+      <span className={'grow text-left text-xl'}>
+        <ReactTyped strings={searchCta} typeSpeed={40} loop />
+      </span>
       <div className={'shrink'}>
         <span className={'rounded-full bg-gray-500/20 px-3 text-base text-white'}>⌘k</span>
       </div>

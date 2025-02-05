@@ -68,7 +68,7 @@ export default async function HomePage() {
 
       {page.data.slices2 && <SliceZone slices={page.data.slices2} components={components} />}
 
-      <div className="my-32 bg-gradient-to-b from-white from-50% to-gray-100 pb-24">
+      <div className="bg-gradient-to-b from-white from-50% to-gray-100 pb-24">
         {videoPosts.length && (
           <SliderVideo
             subheading={'Videos'}

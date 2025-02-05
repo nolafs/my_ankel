@@ -162,6 +162,22 @@
             "placeholder_true": "true",
             "default_value": false
           }
+        },
+        "search_cta": {
+          "type": "Group",
+          "config": {
+            "label": "Search CTA",
+            "repeat": true,
+            "fields": {
+              "message": {
+                "type": "Text",
+                "config": {
+                  "label": "Message",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
         }
       },
       "items": {}

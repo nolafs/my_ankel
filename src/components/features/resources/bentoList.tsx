@@ -7,6 +7,7 @@ import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
 import ArrowLongRightIcon from '@heroicons/react/24/outline/ArrowLongRightIcon';
 import React from 'react';
+import ButtonSliceVariation from '@/components/ui/button-slice-variation';
 
 interface BentoSectionProps {
   dark?: boolean;
@@ -70,6 +71,32 @@ function BentoItemWhite({ listing, idx }: { listing: PostsDocument<string>; idx:
   );
 }
 
+function BentoHeading({
+  heading,
+  subheading,
+  links,
+  dark,
+}: {
+  heading: KeyTextField | string;
+  subheading: KeyTextField | string;
+  links: Repeatable<LinkField>;
+  dark: boolean;
+}) {
+  return (
+    <div className={'flex flex-wrap md:items-start md:justify-between'}>
+      <div>
+        <Subheading dark={dark}>{subheading}</Subheading>
+        <Heading as="h3" dark={dark} className="mt-2 max-w-3xl">
+          {heading}
+        </Heading>
+      </div>
+      <div className="mt-5 flex items-center md:mt-0">
+        {links?.map(link => <ButtonSliceVariation key={link.text} link={link} />)}
+      </div>
+    </div>
+  );
+}
+
 function BentoItemDark({ listing, idx }: { listing: PostsDocument<string>; idx: number }) {
   const graphicClass = [
     'h-80 bg-[size:851px_344px] bg-no-repeat',
@@ -110,10 +137,7 @@ export function BentoSection({ dark, heading, subheading, listings, links, body 
     return (
       <div className="mx-2 mt-2 rounded-4xl bg-gray-900 pb-20 pt-32">
         <Container>
-          <Subheading dark>{subheading}</Subheading>
-          <Heading as="h3" dark className="mt-2 max-w-3xl">
-            {heading}
-          </Heading>
+          <BentoHeading heading={heading} subheading={subheading} links={links} dark={true} />
           <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
             {listings.length > 1 &&
               listings.map((listing, idx) => <BentoItemDark key={`bento-${listing.id}`} listing={listing} idx={idx} />)}
@@ -125,12 +149,14 @@ export function BentoSection({ dark, heading, subheading, listings, links, body 
             </div>
             <div className="mt-5">
               {links?.map((link, index) => (
-                <PrismicNextLink
-                  field={link}
-                  key={index}
-                  className="inline-flex items-center gap-2 text-sm/6 font-medium text-pink-600">
-                  {link.text} <ArrowLongRightIcon className="size-5" />
-                </PrismicNextLink>
+                <ButtonSliceVariation
+                  key={
+                    link.text
+                      ? link?.text.toLowerCase().replace(/ /g, '-')
+                      : Math.random().toString(36).substring(2, 15)
+                  }
+                  link={link}
+                />
               ))}
             </div>
           </div>
@@ -139,11 +165,8 @@ export function BentoSection({ dark, heading, subheading, listings, links, body 
     );
   } else {
     return (
-      <Container className={'pt-32'}>
-        <Subheading>{subheading}</Subheading>
-        <Heading as="h3" className="mt-2 max-w-3xl">
-          {heading}
-        </Heading>
+      <Container className={'pt-16 md:pt-24 lg:pt-32'}>
+        <BentoHeading heading={heading} subheading={subheading} links={links} dark={false} />
         <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
           {listings.length > 1 &&
             listings.map((listing, idx) => <BentoItemWhite key={`bento-${listing.id}`} listing={listing} idx={idx} />)}
@@ -153,13 +176,13 @@ export function BentoSection({ dark, heading, subheading, listings, links, body 
             <PrismicRichText field={body} />
           </div>
           <div className="mt-5">
-            {links?.map((link, index) => (
-              <PrismicNextLink
-                field={link}
-                key={index}
-                className="inline-flex items-center gap-2 text-sm/6 font-medium text-pink-600">
-                {link.text} <ArrowLongRightIcon className="size-5" />
-              </PrismicNextLink>
+            {links?.map(link => (
+              <ButtonSliceVariation
+                key={
+                  link.text ? link?.text.toLowerCase().replace(/ /g, '-') : Math.random().toString(36).substring(2, 15)
+                }
+                link={link}
+              />
             ))}
           </div>
         </div>

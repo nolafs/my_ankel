@@ -2115,6 +2115,21 @@ type FaqsSliceVariation = FaqsSliceDefault | FaqsSliceGrid | FaqsSliceColumn | F
 export type FaqsSlice = prismic.SharedSlice<'faqs', FaqsSliceVariation>;
 
 /**
+ * Item in *Hero → Hero Search → Primary → Search CTA*
+ */
+export interface HeroSliceHeroSearchPrimarySearchCtaItem {
+  /**
+   * Message field in *Hero → Hero Search → Primary → Search CTA*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.heroSearch.primary.search_cta[].message
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  message: prismic.KeyTextField;
+}
+
+/**
  * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -2286,6 +2301,16 @@ export interface HeroSliceHeroSearchPrimary {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   full_width_image: prismic.BooleanField;
+
+  /**
+   * Search CTA field in *Hero → Hero Search → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.heroSearch.primary.search_cta[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  search_cta: prismic.GroupField<Simplify<HeroSliceHeroSearchPrimarySearchCtaItem>>;
 }
 
 /**
@@ -3020,6 +3045,7 @@ declare module '@prismicio/client' {
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceSimplePrimary,
+      HeroSliceHeroSearchPrimarySearchCtaItem,
       HeroSliceHeroSearchPrimary,
       HeroSliceVariation,
       HeroSliceDefault,

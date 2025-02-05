@@ -11,10 +11,11 @@ export interface HeroProps {
   subheading: KeyTextField | string;
   links?: LinkField[];
   image?: ImageField;
+  searchCta?: string[];
   fullWidthImage?: boolean;
 }
 
-export function HeroSearch({ heading, subheading, links, image, fullWidthImage }: HeroProps) {
+export function HeroSearch({ heading, subheading, links, image, fullWidthImage, searchCta }: HeroProps) {
   return (
     <div className="relative isolate overflow-hidden drop-shadow-xl">
       {!fullWidthImage ? (
@@ -43,7 +44,8 @@ export function HeroSearch({ heading, subheading, links, image, fullWidthImage }
               <PrismicNextImage
                 loading={'lazy'}
                 field={image}
-                className="relative w-full max-w-full object-cover object-center"
+                fallbackAlt={heading ? '' : undefined}
+                className="relative h-full w-full max-w-full object-cover object-center"
               />
             </div>
           )}
@@ -58,7 +60,7 @@ export function HeroSearch({ heading, subheading, links, image, fullWidthImage }
           <p className="mt-8 max-w-2xl text-xl/7 font-medium text-gray-950/75 sm:text-xl/8">{subheading}</p>
 
           <div className={'mt-12 w-full md:w-8/12 lg:w-7/12'}>
-            <SearchButtonCta />
+            <SearchButtonCta searchCta={searchCta?.length ? searchCta : undefined} />
           </div>
 
           <div className="mt-12 flex flex-col gap-x-3 gap-y-4 sm:flex-row">

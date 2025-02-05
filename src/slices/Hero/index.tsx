@@ -1,4 +1,4 @@
-import { Content } from '@prismicio/client';
+import { asText, Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 import { Hero as HeroComponent } from '@/components/features/hero/hero';
 import { Heading, Lead, Subheading } from '@/components/ui/text';
@@ -16,6 +16,17 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>;
  */
 const Hero = ({ slice }: HeroProps): JSX.Element => {
   if (slice.variation === 'heroSearch') {
+    // convert this slice.primary.search_cta to string array
+    let messages: string[] | undefined = undefined;
+
+    if (slice.primary?.search_cta) {
+      messages = slice.primary.search_cta?.map(cta => {
+        return cta.message!;
+      });
+    }
+
+    console.log('MESSAGES', messages);
+
     return (
       <HeroSearch
         heading={slice.primary.heading}
@@ -23,6 +34,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         image={slice.primary.image}
         links={slice.primary.links}
         fullWidthImage={slice.primary.full_width_image}
+        searchCta={messages ?? undefined}
       />
     );
   }

@@ -32,6 +32,7 @@ export function SliderVideoCard({
       {poster.url ? (
         <PrismicNextImage
           field={poster}
+          fallbackAlt={name ? '' : undefined}
           className="aspect-square absolute inset-x-0 top-0 h-full w-full object-cover"
         />
       ) : (

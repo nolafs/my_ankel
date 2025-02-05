@@ -48,8 +48,8 @@ export function SliderResources({
   }
 
   return (
-    <div className="overflow-hidden">
-      <Container>
+    <section className="overflow-hidden">
+      <Container className={'pt-16 md:pt-24 lg:pt-32'}>
         <div ref={setReferenceWindowRef}>
           <Subheading>{subheading}</Subheading>
           <Heading as="h3" className="mt-2">
@@ -105,6 +105,6 @@ export function SliderResources({
           </div>
         </div>
       </Container>
-    </div>
+    </section>
   );
 }

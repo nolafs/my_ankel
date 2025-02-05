@@ -20,7 +20,11 @@ export function SliderResourceCard({
   return (
     <>
       {img.url ? (
-        <PrismicNextImage field={img} className="aspect-square absolute inset-x-0 top-0 h-full w-full object-cover" />
+        <PrismicNextImage
+          field={img}
+          fallbackAlt={name ? '' : undefined}
+          className="aspect-square absolute inset-x-0 top-0 h-full w-full object-cover"
+        />
       ) : (
         <Image
           src={placeholderImage}
