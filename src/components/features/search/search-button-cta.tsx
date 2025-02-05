@@ -20,10 +20,10 @@ export const SearchButtonCta = ({
       onClick={() => setSearchDialog(prevOpen => !prevOpen)}
       className="flex w-full justify-between space-x-2 !py-6">
       <SearchIcon className="h-6 w-6 shrink" />
-      <span className={'grow text-left text-xl'}>
+      <span className={'grow overflow-hidden text-left text-sm lg:text-xl'}>
         <ReactTyped strings={searchCta} typeSpeed={40} loop />
       </span>
-      <div className={'shrink'}>
+      <div className={'hidden shrink lg:flex'}>
         <span className={'rounded-full bg-gray-500/20 px-3 text-base text-white'}>⌘k</span>
       </div>
     </Button>

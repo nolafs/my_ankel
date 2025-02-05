@@ -41,11 +41,11 @@ const getDescription = (listing: PostsDocument<string> | undefined) => {
 
 function BentoItemWhite({ listing, idx }: { listing: PostsDocument<string>; idx: number }) {
   const graphicClass = [
-    'h-80 bg-[size:1000px_560px] bg-[left_-109px_top_-112px] bg-no-repeat',
-    'absolute inset-0 bg-[size:1100px_650px] bg-[left_-38px_top_-73px] bg-no-repeat',
-    'flex size-full pl-10 pt-10',
-    'flex size-full pl-10 pt-10',
-    'flex size-full pl-10 pt-10',
+    'h-80 bg-[size:1000px_560px] bg-[left_-109px_top_-112px] bg-no-repeat bg-cover bg-center',
+    'absolute inset-0 bg-[size:1100px_650px] bg-[left_-38px_top_-73px] bg-no-repeat  bg-cover bg-center',
+    'flex size-full pl-10 pt-10  bg-cover bg-center',
+    'flex size-full pl-10 pt-10  bg-cover bg-center',
+    'flex size-full pl-10 pt-10  bg-cover bg-center',
   ];
 
   const cardClass = [

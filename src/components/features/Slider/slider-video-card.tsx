@@ -53,10 +53,12 @@ export function SliderVideoCard({
           </OverlaySheetTrigger>
           <OverlaySheetContent>
             {video && video.html && (
-              <div className={'w-screen max-w-7xl'}>
+              <div className={'w-screen max-w-7xl p-2'}>
                 <div
                   dangerouslySetInnerHTML={{ __html: video.html }}
-                  className={'aspect-h-9 aspect-w-16 w-full overflow-hidden rounded-3xl'}></div>
+                  className={
+                    'g:rounded-3xl aspect-h-9 aspect-w-16 w-full overflow-hidden rounded-xl md:rounded-2xl'
+                  }></div>
               </div>
             )}
           </OverlaySheetContent>

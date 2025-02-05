@@ -13,7 +13,7 @@ export const BackToTop = () => {
       type="button"
       className={cn(
         stick ? '-translate-y-0 opacity-100' : 'translate-y-[100px] opacity-0',
-        'shadow-3xl text-h3 group fixed bottom-[100px] right-10 z-40 inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-primary p-0 text-center text-white shadow-black/30 transition duration-500',
+        'shadow-3xl text-h3 group fixed bottom-10 right-3 z-40 inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-primary p-0 text-center text-white shadow-black/30 transition duration-500 lg:bottom-[100px] lg:right-10 lg:h-16 lg:w-16',
       )}
       onClick={onClickHandler}>
       <i
