@@ -62,7 +62,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
 
   return (
     <header id={'navbar'} className="fixed z-40 w-screen bg-transparent transition-all delay-150 duration-300">
-      <div className="mx-auto flex w-full max-w-2xl items-center justify-between px-6 pt-6 transition-all delay-150 duration-300 sm:px-2 md:pt-16 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto flex w-full max-w-2xl items-center justify-between px-6 pt-6 transition-all delay-150 duration-300 sm:px-2 md:pt-16 lg:max-w-7xl lg:px-0">
         <div className="flex lg:flex-1">
           <div className="relative z-40">
             <Link href="/">
