@@ -58,7 +58,7 @@ const ContactDetailBlock = ({ page, social }: { page: ContactDocument; social: S
                 </i>
               </div>
               <div className="mb-3 mt-5 text-xl font-bold text-accent md:text-2xl">Email</div>
-              <div className="text-white md:text-3xl">
+              <div className="text-2xl text-white md:text-3xl">
                 <a href={`mailto:${page.data.email_address}`}>{page.data.email_address}</a>
               </div>
             </div>
@@ -71,7 +71,7 @@ const ContactDetailBlock = ({ page, social }: { page: ContactDocument; social: S
                 </i>
               </div>
               <div className="mb-3 mt-5 text-xl font-bold text-accent md:text-2xl">Telephone</div>
-              <div className="text-white md:text-3xl">
+              <div className="text-2xl text-white md:text-3xl">
                 <a href={`tel:${page.data.phone_number}`}>{page.data.phone_number}</a>
               </div>
             </div>
@@ -104,7 +104,7 @@ const ContactFormBlock = ({ page, settings }: { page: ContactDocument; settings:
       </Heading>
 
       <Lead className="mt-6 max-w-3xl">{page.data.form_body}</Lead>
-      <div className="mb-24 mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
+      <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
         <div className={'max-lg:max-w-lg'}>
           <div className="aspect-3/2 overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1 outline-black/10">
             <PrismicImage
@@ -139,14 +139,16 @@ export default async function Page() {
   }));
 
   return (
-    <main className={'mb-24 w-full overflow-hidden'}>
+    <main className={'w-full overflow-hidden'}>
+      <GradientBackground />
       <div className="mb-24 mt-24 md:mb-24 md:mt-40">
-        <GradientBackground />
         <SliceZone slices={page.data.slices} components={components} />
       </div>
       {/* Contact page */}
-      <ContactDetailBlock page={page} social={social} />
-      <ContactFormBlock page={page} settings={settings} />
+      <div className="mb-16 md:mb-24">
+        <ContactDetailBlock page={page} social={social} />
+        <ContactFormBlock page={page} settings={settings} />
+      </div>
 
       <SliceZone slices={page.data.slices2} components={components} />
     </main>
