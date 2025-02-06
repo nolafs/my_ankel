@@ -19,7 +19,7 @@ const posts = await fetchPosts();
 posts.forEach(async (post: any) => {
   const { slug } = post;
 
-  const redirect = `/${slug}/ /blog/${slug} 301!\n`;
+  const redirect = `/${slug}/ /blog/${slug} \n`;
 
   // Append redirect to file
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

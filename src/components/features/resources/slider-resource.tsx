@@ -1,14 +1,6 @@
-import { Container } from '@/components/ui/container';
-import { Heading } from '@/components/ui/text';
-import cn from 'clsx';
-import { PrismicRichText } from '@prismicio/react';
-import { PrismicNextLink } from '@prismicio/next';
-import ArrowLongRightIcon from '@heroicons/react/24/outline/ArrowLongRightIcon';
 import React from 'react';
-import { Repeatable, RichTextField, LinkField, KeyTextField, EmbedField } from '@prismicio/client';
+import { Repeatable, RichTextField, LinkField, KeyTextField } from '@prismicio/client';
 import { SliderResources } from '@/components/features/Slider/slider-resources';
-import { AuthorDocumentData } from '../../../../prismicio-types';
-import SliderResourceCard from '../Slider/slider-resource-card';
 
 interface SliderProps {
   heading: KeyTextField | string;
