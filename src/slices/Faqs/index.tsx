@@ -75,7 +75,7 @@ const Faqs = async ({ slice }: FaqsProps) => {
 
   if (slice.variation === 'columnCollapsible') {
     return (
-      <Bounded as={'section'} yPadding={'sm'} data-slice-type={slice.slice_type}>
+      <Container className={'mb:mt-24 mb-24 mt-16'} data-slice-type={slice.slice_type}>
         {slice.primary.has_intro && (
           <>
             <Subheading className="text-center">{slice.primary.subtitle}</Subheading>
@@ -84,21 +84,19 @@ const Faqs = async ({ slice }: FaqsProps) => {
             </Heading>
           </>
         )}
-        <Container>
-          <Accordion type="single" collapsible>
-            {faqItems.map((faq, idx) => (
-              <AccordionItem key={`faq-key-${idx}`} value={`faq-${idx}`}>
-                <AccordionTrigger className={'text-left'}>{faq.data.heading}</AccordionTrigger>
-                <AccordionContent>
-                  <div className={'md:prose-md prose prose-sm prose-neutral'}>
-                    <PrismicRichText field={faq.data.body} />
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </Container>
-      </Bounded>
+        <Accordion type="single" collapsible className={'px-0'}>
+          {faqItems.map((faq, idx) => (
+            <AccordionItem key={`faq-key-${idx}`} value={`faq-${idx}`}>
+              <AccordionTrigger className={'text-left'}>{faq.data.heading}</AccordionTrigger>
+              <AccordionContent>
+                <div className={'md:prose-md prose prose-sm prose-neutral'}>
+                  <PrismicRichText field={faq.data.body} />
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </Container>
     );
   }
 
