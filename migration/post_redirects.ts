@@ -29,4 +29,21 @@ posts.forEach(async (post: any) => {
       console.error('Error writing to file:', err);
     }
   });
+
+  // create toml
+  const toml = `[[redirects]]
+  from = "/${slug}/"
+  to = "/blog/${slug}/"
+  status = 301
+  force = true
+ `;
+
+  // Append redirect to file
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  fs.appendFileSync('./migration/_redirects.toml', toml, (err: any) => {
+    if (err) {
+      console.error('Error writing to file:', err);
+    }
+  });
 });
