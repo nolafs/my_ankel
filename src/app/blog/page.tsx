@@ -166,10 +166,10 @@ async function Posts({ page, category, tags }: { page: number; category?: string
             <div className="mt-4">
               <Link
                 href={`/blog/${post.uid}`}
-                className="flex items-center gap-1 text-sm/5 font-medium group-hover:text-pink-600">
+                className="flex items-center gap-1 text-sm/5 font-medium group-hover:text-accent">
                 <span className="absolute inset-0" />
                 Read more
-                <ChevronRightIcon className="size-4 fill-gray-400 group-hover:text-pink-600" />
+                <ChevronRightIcon className="size-4 fill-gray-400 group-hover:fill-accent" />
               </Link>
             </div>
           </div>

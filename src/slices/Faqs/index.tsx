@@ -88,7 +88,7 @@ const Faqs = async ({ slice }: FaqsProps) => {
           <Accordion type="single" collapsible>
             {faqItems.map((faq, idx) => (
               <AccordionItem key={`faq-key-${idx}`} value={`faq-${idx}`}>
-                <AccordionTrigger>{faq.data.heading}</AccordionTrigger>
+                <AccordionTrigger className={'text-left'}>{faq.data.heading}</AccordionTrigger>
                 <AccordionContent>
                   <div className={'md:prose-md prose prose-sm prose-neutral'}>
                     <PrismicRichText field={faq.data.body} />
