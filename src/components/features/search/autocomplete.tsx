@@ -24,16 +24,21 @@ const AutocompleteItem = ({ item }: { item: HitBaseItem }) => {
     return '';
   };
 
+  const trimmedText = item.text.length > 100 ? item.text.substring(0, 200) + '...' : item.text;
+
   return (
-    <div className={'flex w-full items-center justify-between space-x-2'}>
-      <div className={'rounded-md bg-gray-900/30 p-1.5'}>
-        {item.type === 'video' && <Film className={'h-5 w-5 text-white'} />}
-        {item.type === 'article' && <Newspaper className={'h-5 w-5 text-white'} />}
-        {item.type === 'download' && <FileDown className={'h-5 w-5 text-white'} />}
+    <div className={'items-top flex w-full justify-between space-x-2 py-2'}>
+      <div>
+        <div className={'rounded-md bg-gray-900/30 p-1.5'}>
+          {item.type === 'video' && <Film className={'h-5 w-5 text-white'} />}
+          {item.type === 'article' && <Newspaper className={'h-5 w-5 text-white'} />}
+          {item.type === 'download' && <FileDown className={'h-5 w-5 text-white'} />}
+        </div>
       </div>
       <div className={'flex grow flex-col'}>
         <div className={'flex w-auto rounded-full text-[8px]'}>{item.category}</div>
         {item.title}
+        <p className={'mt-2 text-sm/5 text-gray-600'}>{trimmedText}</p>
       </div>
       <div>
         <Link href={getUrl(item)}>
