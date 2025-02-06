@@ -15,7 +15,7 @@ export const ButtonSliceVariation = ({ link }: { link: LinkField }) => {
   return (
     <>
       {link.variant === 'Link' && (
-        <PrismicNextLink field={link} className="inline-flex items-center gap-2 text-sm/6 font-medium text-pink-600">
+        <PrismicNextLink field={link} className="inline-flex items-center gap-2 text-sm/6 font-medium text-accent">
           {link.text} <ArrowLongRightIcon className="size-5" />
         </PrismicNextLink>
       )}
@@ -23,7 +23,7 @@ export const ButtonSliceVariation = ({ link }: { link: LinkField }) => {
       {link.variant === 'Accent' && (
         <PrismicNextLink
           field={link}
-          className={cn(buttonVariants({ variant: 'default', size: 'lg' }), '!bg-pink-600 text-white')}>
+          className={cn(buttonVariants({ variant: 'default', size: 'lg' }), '!bg-accent text-white hover:!bg-black')}>
           {link.text}
         </PrismicNextLink>
       )}

@@ -6,7 +6,7 @@ export function Gradient({ className, ...props }: React.ComponentPropsWithoutRef
       {...props}
       className={clsx(
         className,
-        'bg-[linear-gradient(115deg,var(--tw-gradient-stops))] from-[#7c4ddb] from-[28%] via-[#00FAFE] via-[70%] to-[#2E5F9A] sm:bg-[linear-gradient(145deg,var(--tw-gradient-stops))]',
+        'bg-[linear-gradient(115deg,var(--tw-gradient-stops))] from-[#baa2ec] from-[28%] via-[#00FAFE] via-[70%] to-[#2E5F9A] sm:bg-[linear-gradient(145deg,var(--tw-gradient-stops))]',
       )}
     />
   );
@@ -18,7 +18,7 @@ export function GradientBackground() {
       <div
         className={clsx(
           'absolute -right-60 -top-44 h-60 w-[36rem] transform-gpu md:right-0',
-          'bg-[linear-gradient(115deg,var(--tw-gradient-stops))] from-[#7c4ddb] from-[28%] via-[#00FAFE] via-[70%] to-[#2E5F9A]',
+          'bg-[linear-gradient(115deg,var(--tw-gradient-stops))] from-[#baa2ec] from-[28%] via-[#00FAFE] via-[70%] to-[#2E5F9A]',
           'rotate-[-10deg] rounded-full blur-3xl',
         )}
       />

@@ -51,7 +51,7 @@ export function SliderResourceCard({
         <figcaption className="mt-6 border-t border-white/20 pt-3">
           <p className="text-sm/6 font-medium text-white">Type: PDF</p>
           <p className="text-sm/6 font-medium">
-            <span className="bg-gradient-to-r from-[#fff1be] from-[28%] via-[#ee87cb] via-[70%] to-[#b060ff] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#5686cd] from-[28%] via-[#56bfcd] via-[70%] to-[#76cbd6] bg-clip-text text-transparent">
               by {title}
             </span>
           </p>

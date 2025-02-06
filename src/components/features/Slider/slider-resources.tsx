@@ -9,9 +9,10 @@ import React, { useRef, useState } from 'react';
 import useMeasure from 'react-use-measure';
 import { KeyTextField, LinkField, Repeatable, RichTextField } from '@prismicio/client';
 import { PrismicRichText } from 'node_modules/@prismicio/react/dist/PrismicRichText';
-import { PrismicNextLink } from '@prismicio/next';
 import { AuthorDocumentData } from '../../../../prismicio-types';
 import SliderCard from './slider-card';
+import ButtonSliceVariation from '@/components/ui/button-slice-variation';
+import { Button } from '@/components/ui/button';
 
 export interface SliderResourcesProps {
   heading: KeyTextField | string | null;
@@ -93,15 +94,33 @@ export function SliderResources({
               <PrismicRichText field={body} />
             </div>
             <div className="mt-2">
-              {links?.map((link, index) => (
-                <PrismicNextLink
-                  field={link}
-                  key={index}
-                  className="inline-flex items-center gap-2 text-sm/6 font-medium text-pink-600">
-                  {link.text} <ArrowLongRightIcon className="size-5" />
-                </PrismicNextLink>
+              {links?.map(link => (
+                <ButtonSliceVariation
+                  key={
+                    link.text
+                      ? link?.text.toLowerCase().replace(/ /g, '-')
+                      : Math.random().toString(36).substring(2, 15)
+                  }
+                  link={link}
+                />
               ))}
             </div>
+          </div>
+          <div className="hidden sm:flex sm:gap-2">
+            {listings.map(({ name }, idx) => (
+              <Button
+                key={`${String(name).replace(' ', '-')}-${idx}`}
+                onClick={() => scrollTo(idx)}
+                size={'icon'}
+                data-active={activeIndex === idx ? true : undefined}
+                aria-label={`Scroll to from ${name}`}
+                className={clsx(
+                  'size-2.5 rounded-full border border-transparent bg-gray-300 transition',
+                  'data-[active]:bg-gray-400 data-[hover]:bg-gray-400',
+                  'forced-colors:data-[active]:bg-[Highlight] forced-colors:data-[focus]:outline-offset-4',
+                )}
+              />
+            ))}
           </div>
         </div>
       </Container>
