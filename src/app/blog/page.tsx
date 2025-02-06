@@ -4,35 +4,91 @@ import { Link } from '@/components/ui/link';
 import { Heading, Lead, Subheading } from '@/components/ui/text';
 import { ChevronRightIcon } from '@heroicons/react/16/solid';
 import dayjs from 'dayjs';
-import type { Metadata } from 'next';
+import type { Metadata, ResolvingMetadata } from 'next';
 import { createClient } from '@/prismicio';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
-import { filter, ImageFieldImage } from '@prismicio/client';
+import { asText, filter, ImageFieldImage } from '@prismicio/client';
 import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
 import { Categories } from './_components/postsCategories';
 
 import { Badge } from '@/components/ui/badge';
 import { Pagination } from '@/components/ui/pagination';
+import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
+import { OGImage } from '@/types';
 
 type Props = {
   params: Promise<{ uid: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Stay informed',
-};
+type Params = { uid: string };
 
-async function Posts({ page, category }: { page: number; category?: string[] }) {
+export async function generateMetadata(
+  { params }: { params: Promise<Params> },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const client = createClient();
+
+  const posts = await client
+    .getByType('posts', {
+      pageSize: 1,
+      page: 0,
+      filters: [filter.at('my.posts.featured', true)],
+      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name'],
+      orderings: [
+        {
+          field: 'my.posts.publishing_date',
+          direction: 'desc',
+        },
+      ],
+    })
+    .then(response => {
+      return response.results;
+    });
+
+  const page = posts[0];
+  let image = null;
+
+  const parentMeta = await parent;
+  const parentOpenGraph: ResolvedOpenGraph | null = parentMeta.openGraph ?? null;
+
+  if (page?.data?.feature_image) {
+    image = `${page?.data.feature_image.url}?w=1200&h=630&fit=crop&fm=webp&q=80`;
+  }
+
+  return {
+    title: 'My Ankle - Articles',
+    description: asText(page?.data.excerpt)! ?? "Looking for resources on ankle pain? You're in the right place.",
+    openGraph: {
+      title: 'My Ankle - Articles',
+      images: [
+        {
+          url: image ?? (parentOpenGraph?.images ? (parentOpenGraph.images[0] as OGImage).url : ''),
+        },
+      ],
+    },
+  };
+}
+
+async function Posts({ page, category, tags }: { page: number; category?: string[]; tags?: string[] }) {
   const client = createClient();
   let categories: any[] = [];
+  let tagList: any[] = [];
 
   if (category) {
     categories = await client.getAllByUIDs('post_category', [...category]);
   }
+
+  if (tags) {
+    tagList = await client.getAllByUIDs('post_tags', [...tags]);
+  }
+
+  console.log(
+    'tags',
+    tagList.map(tag => tag.id),
+  );
 
   const posts = await client
     .getByType('posts', {
@@ -44,12 +100,16 @@ async function Posts({ page, category }: { page: number; category?: string[] }) 
               'my.posts.category',
               categories.map(cat => cat.id),
             ),
+            filter.any(
+              'my.posts.tags',
+              tagList.map(tag => tag.id),
+            ),
           ]
         : [],
-      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name', 'post_category.uid'],
+      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name', 'post_category.uid', 'post_tags'],
       orderings: [
         {
-          field: 'my.posts.published_date',
+          field: 'my.posts.publishing_date',
           direction: 'desc',
         },
       ],
@@ -124,9 +184,14 @@ export default async function Blog({ searchParams }: Props) {
 
   //
   let categories = typeof params.category === 'string' ? params.category.split(',') : undefined;
+  let tags = typeof params.tags === 'string' ? params.tags.split(',') : undefined;
 
   if (categories?.length === 0) {
     categories = undefined;
+  }
+
+  if (tags?.length === 0) {
+    tags = undefined;
   }
 
   return (
@@ -142,7 +207,7 @@ export default async function Blog({ searchParams }: Props) {
       {page === 1 && !categories && <FeaturedPosts />}
       <Container className="mt-16 pb-24">
         <Categories selected={categories ? categories[0] : undefined} />
-        <Posts page={page} category={categories} />
+        <Posts page={page} category={categories} tags={tags} />
         <Pagination contentType={'posts'} slug={'blog'} page={page} category={categories ? categories[0] : undefined} />
       </Container>
     </main>

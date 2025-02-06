@@ -1,24 +1,72 @@
 import { Container } from '@/components/ui/container';
 import { GradientBackground } from '@/components/ui/gradient';
 import { Heading, Lead, Subheading } from '@/components/ui/text';
-import type { Metadata } from 'next';
+import type { Metadata, ResolvingMetadata } from 'next';
 import { createClient } from '@/prismicio';
-import { filter } from '@prismicio/client';
+import { asText, filter } from '@prismicio/client';
 import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
 import { Categories } from './_components/postsCategories';
 import { Pagination } from '@/components/ui/pagination';
 import { VideoCard } from '@/app/videos/_components/postCard';
+import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
+import { OGImage } from '@/types';
 
 type Props = {
   params: Promise<{ uid: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Stay informed',
-};
+type Params = { uid: string };
+
+export async function generateMetadata(
+  { params }: { params: Promise<Params> },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const client = createClient();
+
+  const posts = await client
+    .getByType('video', {
+      pageSize: 1,
+      page: 0,
+      filters: [filter.at('my.posts.featured', true)],
+      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name'],
+      orderings: [
+        {
+          field: 'my.posts.publishing_date',
+          direction: 'desc',
+        },
+      ],
+    })
+    .then(response => {
+      return response.results;
+    });
+
+  const page = posts[0];
+  let image = null;
+
+  const parentMeta = await parent;
+  const parentOpenGraph: ResolvedOpenGraph | null = parentMeta.openGraph ?? null;
+
+  if (page?.data?.poster) {
+    image = `${page?.data.poster.url}?w=1200&h=630&fit=crop&fm=webp&q=80`;
+  }
+
+  return {
+    title: 'My Ankle - Videos',
+    description:
+      asText(page?.data.description)! ??
+      'Explore expert advice, treatment insights, and recovery tips through our curated video collection. Stay informed and take charge of your ankle health journey.',
+    openGraph: {
+      title: 'My Ankle - Videos',
+      images: [
+        {
+          url: image ?? (parentOpenGraph?.images ? (parentOpenGraph.images[0] as OGImage).url : ''),
+        },
+      ],
+    },
+  };
+}
 
 async function VideoPosts({ page, category }: { page: number; category?: string[] }) {
   const client = createClient();
