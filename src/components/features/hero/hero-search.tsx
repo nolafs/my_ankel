@@ -5,6 +5,7 @@ import { PrismicNextImage } from '@prismicio/next';
 import { SearchButtonCta } from '@/components/features/search/search-button-cta';
 import ButtonSliceVariation from '@/components/ui/button-slice-variation';
 import React from 'react';
+import cn from 'clsx';
 
 export interface HeroProps {
   heading: KeyTextField | string;
@@ -38,7 +39,7 @@ export function HeroSearch({ heading, subheading, links, image, fullWidthImage, 
         </>
       ) : (
         <>
-          <div className="absolute top-0 z-10 h-full w-full rounded-b-4xl bg-[linear-gradient(180deg,var(--tw-gradient-stops))] from-[#ffffffE6] from-[5%] via-[#00FAFE00] via-[50%] to-[#2E5F9A1A] ring-1 sm:bg-[linear-gradient(180deg,var(--tw-gradient-stops))]" />
+          <div className="absolute top-0 z-10 h-full w-full rounded-b-4xl bg-[linear-gradient(180deg,var(--tw-gradient-stops))] from-[#ffffffE6] from-[5%] via-[#00FAFE1a] via-[50%] to-[#2E5F9A1A] ring-1 sm:bg-[linear-gradient(180deg,var(--tw-gradient-stops))]" />
           {image && (
             <div className="z-1 absolute inset-0 overflow-hidden rounded-b-4xl">
               <PrismicNextImage
@@ -54,10 +55,20 @@ export function HeroSearch({ heading, subheading, links, image, fullWidthImage, 
 
       <Container className="relative z-20">
         <div className="pb-22 pt-32 sm:pb-24 sm:pt-32 md:pb-28 md:pt-52">
-          <h1 className="font-display text-balance text-5xl/[0.9] font-medium tracking-tight text-gray-950 sm:text-8xl/[0.8] md:text-9xl/[0.8]">
+          <h1
+            className={cn(
+              'font-display text-balance text-5xl/[0.9] font-medium tracking-tight text-gray-950 sm:text-8xl/[0.8] md:text-8xl/[0.8] lg:text-9xl/[0.8]',
+              fullWidthImage && 'drop-shadow-[0px_0px_10px_rgba(255,255,255,0.6)]',
+            )}>
             {heading}
           </h1>
-          <p className="mt-8 max-w-2xl text-xl/7 font-medium text-gray-950/75 sm:text-xl/8">{subheading}</p>
+          <p
+            className={cn(
+              'mt-8 max-w-2xl text-xl/7 font-medium text-gray-950/75 drop-shadow-[0px_0px_10px_rgba(255,255,255,1)] sm:text-xl/7',
+              fullWidthImage && 'drop-shadow-[0px_0px_10px_rgba(255,255,255,0.6)]',
+            )}>
+            {subheading}
+          </p>
 
           <div className={'mt-12 w-full md:w-8/12 lg:w-7/12'}>
             <SearchButtonCta searchCta={searchCta?.length ? searchCta : undefined} />

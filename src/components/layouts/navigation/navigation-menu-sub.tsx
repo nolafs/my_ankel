@@ -62,7 +62,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
 
   return (
     <header id={'navbar'} className="fixed z-40 w-screen bg-transparent transition-all delay-150 duration-300">
-      <div className="mx-auto flex w-full max-w-2xl items-center justify-between pt-6 transition-all delay-150 duration-300 md:pt-16 lg:max-w-7xl lg:px-0">
+      <div className="mx-auto flex w-full max-w-2xl items-center justify-between px-6 pt-6 transition-all delay-150 duration-300 sm:px-2 md:pt-16 lg:max-w-7xl lg:px-8">
         <div className="flex lg:flex-1">
           <div className="relative z-40">
             <Link href="/">
@@ -70,8 +70,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
               <Image
                 src={logo}
                 className={cn(
-                  'px-5 lg:px-0',
-                  'inline origin-left transition-all delay-150 duration-300',
+                  'inline origin-left scale-100 transition-all delay-150 duration-300',
                   scroll ? 'md:scale-100' : 'md:scale-[1.50]',
                 )}
                 alt="logo"
@@ -84,7 +83,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
         <div className="grid grid-cols-2 gap-2 lg:hidden">
           <NavigationMobileMenu navigation={navigation} logo={logo} />
         </div>
-        <NavigationMenu className={'hidden md:block'}>
+        <NavigationMenu className={'hidden lg:block'}>
           <NavigationMenuList>
             {navigation?.navigation_items.map((item: NavigationBarDocumentDataNavigationItemsItem, idx) => {
               const navigationItem = item.navigation_item as unknown as NavigationElementDocument;
