@@ -8,3 +8,4 @@ export type { Cta } from './cta.type';
 export type { TestimonialType } from './testimonial.type';
 export type { ContactFormInput } from './email.type';
 export type { HitProps } from './hit.type';
+export type { Author } from './author.type';

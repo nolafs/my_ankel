@@ -15,9 +15,9 @@ import { GradientBackground } from '@/components/ui/gradient';
 import React from 'react';
 import SharePage from '@/components/features/share-page/share-page';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
-import { AuthorDocumentData } from '../../../../prismicio-types';
 import { ImageFieldImage, LinkField, RichTextField } from '@prismicio/client';
 import ArrowLongRightIcon from '@heroicons/react/24/outline/ArrowLongRightIcon';
+import AuthorLink from '@/components/features/author/author-link';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -74,8 +74,6 @@ export default async function Page({ params }: Props) {
     .then(response => response.data)
     .catch(() => notFound());
 
-  console.log('post', post);
-
   if (post.author && 'data' in post.author) {
     const authorData = post.author.data as {
       name: string;
@@ -127,29 +125,7 @@ export default async function Page({ params }: Props) {
               <div className="flex flex-col flex-wrap gap-2">
                 <span className="text-sm font-medium text-gray-500">Author:</span>
                 <span className={'text-gray-700'}>
-                  <HoverCard>
-                    <HoverCardTrigger className={'underline'}>
-                      <div className={'flex items-center gap-2'}>
-                        {author.profile_image && (
-                          <PrismicNextImage
-                            field={author.profile_image}
-                            width={32}
-                            height={32}
-                            className="size-4 rounded-full object-cover"
-                          />
-                        )}
-                        {author.name}
-                      </div>
-                    </HoverCardTrigger>
-                    <HoverCardContent>
-                      <PrismicRichText field={author.description} />
-                      <PrismicLink
-                        field={author.link}
-                        className={'mt-3 inline-flex items-center gap-2 text-sm/6 font-medium text-pink-600'}>
-                        Go to profile <ArrowLongRightIcon className="size-5" />
-                      </PrismicLink>
-                    </HoverCardContent>
-                  </HoverCard>
+                  <AuthorLink author={author} />
                 </span>
               </div>
             )}

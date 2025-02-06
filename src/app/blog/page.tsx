@@ -16,7 +16,9 @@ import { Categories } from './_components/postsCategories';
 import { Badge } from '@/components/ui/badge';
 import { Pagination } from '@/components/ui/pagination';
 import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
-import { OGImage } from '@/types';
+import { Author, OGImage } from '@/types';
+import Filter from './_components/postsFilter';
+import AuthorLink from '@/components/features/author/author-link';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -94,19 +96,29 @@ async function Posts({ page, category, tags }: { page: number; category?: string
     .getByType('posts', {
       pageSize: 10,
       page: 1,
-      filters: categories.length
-        ? [
-            filter.any(
-              'my.posts.category',
-              categories.map(cat => cat.id),
-            ),
-            filter.any(
-              'my.posts.tags',
-              tagList.map(tag => tag.id),
-            ),
-          ]
-        : [],
-      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name', 'post_category.uid', 'post_tags'],
+      filters:
+        categories.length || tagList.length
+          ? [
+              filter.any(
+                'my.posts.category',
+                categories.map(cat => cat.id),
+              ),
+              filter.any(
+                'my.posts.tags.tag',
+                tagList.map(tag => tag.id),
+              ),
+            ]
+          : [],
+
+      fetchLinks: [
+        'author.name',
+        'author.profile_image',
+        'author.description',
+        'author.link',
+        'post_category.name',
+        'post_category.uid',
+        'post_tags',
+      ],
       orderings: [
         {
           field: 'my.posts.publishing_date',
@@ -141,33 +153,23 @@ async function Posts({ page, category, tags }: { page: number; category?: string
             )}
 
             {post.data.author && 'data' in post.data.author && (
-              <div className="mt-6 flex items-center gap-3">
-                {post.data.author && (
-                  <PrismicNextImage
-                    alt=""
-                    width={64}
-                    height={64}
-                    field={(post.data.author.data as { profile_image: ImageFieldImage }).profile_image}
-                    className="aspect-square size-6 rounded-full object-cover"
-                  />
-                )}
-
-                <div className="text-sm/5 text-gray-700">
-                  {(post.data.author.data as { name: string }).name || 'My Ankle'}
-                </div>
+              <div className="z-2 relative mt-6 flex items-center gap-3">
+                <AuthorLink author={post.data.author.data as Author} />
               </div>
             )}
           </div>
-          <div className="sm:col-span-2 sm:max-w-2xl">
-            <h2 className="text-sm/5 font-medium">{post.data.title}</h2>
+          <div className="group relative sm:col-span-2 sm:max-w-2xl">
+            <h2 className="text-md/5 font-medium group-hover:text-gray-700">{post.data.title}</h2>
             <div className="mt-3 text-sm/6 text-gray-500">
               <PrismicRichText field={post.data.excerpt} />
             </div>
             <div className="mt-4">
-              <Link href={`/blog/${post.uid}`} className="flex items-center gap-1 text-sm/5 font-medium">
+              <Link
+                href={`/blog/${post.uid}`}
+                className="flex items-center gap-1 text-sm/5 font-medium group-hover:text-pink-600">
                 <span className="absolute inset-0" />
                 Read more
-                <ChevronRightIcon className="size-4 fill-gray-400" />
+                <ChevronRightIcon className="size-4 fill-gray-400 group-hover:text-pink-600" />
               </Link>
             </div>
           </div>
@@ -204,9 +206,9 @@ export default async function Blog({ searchParams }: Props) {
         </Heading>
         <Lead className="mt-6 max-w-3xl">Looking for resources on ankle pain? You&apos;re in the right place.</Lead>
       </Container>
-      {page === 1 && !categories && <FeaturedPosts />}
+      {page === 1 && !categories && !tags && <FeaturedPosts />}
       <Container className="mt-16 pb-24">
-        <Categories selected={categories ? categories[0] : undefined} />
+        <Filter categorySelected={categories ? categories[0] : undefined} tagSelected={tags ? tags[0] : undefined} />
         <Posts page={page} category={categories} tags={tags} />
         <Pagination contentType={'posts'} slug={'blog'} page={page} category={categories ? categories[0] : undefined} />
       </Container>
