@@ -94,7 +94,11 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
 
                   <NavigationMenuContent>
                     <div id={'nav-content'} className={cn('relative block w-screen', scroll ? 'pt-14' : 'pt-24')}>
-                      <div className="mx-auto grid max-w-7xl grid-cols-4 gap-x-6 px-6 py-8 lg:px-8 xl:gap-x-10">
+                      <div
+                        className={cn(
+                          'mx-auto grid max-w-7xl gap-x-6 px-6 py-8 lg:px-8 xl:gap-x-10',
+                          `grid-cols-${navigationItem.data.subs.length}`,
+                        )}>
                         {navigationItem.data.subs.map((item, idx) => (
                           <div
                             key={`main-nav-item-${idx}`}
@@ -124,7 +128,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
                               <PrismicNextLink
                                 key={`cta-${idx}`}
                                 field={item.url}
-                                className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-white transition-all duration-500 hover:bg-gray-900/30">
+                                className="flex items-center justify-center gap-x-2.5 p-3 text-lg font-semibold text-white transition-all duration-500 hover:bg-gray-900/30">
                                 <PrismicImage field={item.icon} className="size-5 flex-none text-gray-400 invert" />
                                 {item.text}
                               </PrismicNextLink>

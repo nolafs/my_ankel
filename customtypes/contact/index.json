@@ -107,6 +107,25 @@
         },
         "type": "Image"
       }
+    },
+    "Bottom": {
+      "slices2": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "testimonial": {
+              "type": "SharedSlice"
+            },
+            "call_to_action": {
+              "type": "SharedSlice"
+            },
+            "faqs": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
     }
   }
 }

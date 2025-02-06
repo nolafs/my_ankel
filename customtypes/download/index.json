@@ -31,8 +31,8 @@
         "type": "Boolean",
         "config": {
           "label": "Featured",
-          "placeholder_false": "false",
-          "placeholder_true": "false",
+          "placeholder_false": "Off",
+          "placeholder_true": "On",
           "default_value": false
         }
       },

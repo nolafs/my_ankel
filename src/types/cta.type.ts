@@ -6,4 +6,5 @@ export type Cta = {
   body?: RichTextField;
   links: LinkField[];
   image?: ImageField;
+  dark?: boolean;
 };

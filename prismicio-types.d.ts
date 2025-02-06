@@ -81,6 +81,8 @@ export type AuthorDocument<Lang extends string = string> = prismic.PrismicDocume
 
 type ContactDocumentDataSlicesSlice = CallToActionSlice | SectionSlice | TestimonialSlice;
 
+type ContactDocumentDataSlices2Slice = TestimonialSlice | CallToActionSlice | FaqsSlice;
+
 /**
  * Content for Contact documents
  */
@@ -213,7 +215,16 @@ interface ContactDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  meta_image: prismic.ImageField<never>;
+  meta_image: prismic.ImageField<never> /**
+   * Slice Zone field in *Contact*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.slices2[]
+   * - **Tab**: Bottom
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices2: prismic.SliceZone<ContactDocumentDataSlices2Slice>;
 }
 
 /**
@@ -1469,6 +1480,17 @@ interface VideoDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#date
    */
   publishing_date: prismic.DateField;
+
+  /**
+   * Tags field in *Video*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.tags
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  tags: prismic.ContentRelationshipField<'post_tags'>;
 
   /**
    * Featured field in *Video*
@@ -2992,6 +3014,7 @@ declare module '@prismicio/client' {
       ContactDocument,
       ContactDocumentData,
       ContactDocumentDataSlicesSlice,
+      ContactDocumentDataSlices2Slice,
       DownloadDocument,
       DownloadDocumentData,
       DownloadDocumentDataSlicesSlice,

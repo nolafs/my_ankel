@@ -46,7 +46,7 @@ export async function generateMetadata(
 
 const ContactDetailBlock = ({ page, social }: { page: ContactDocument; social: SocialLinkItemType[] | undefined }) => {
   return (
-    <div className="mx-2 my-24 rounded-4xl bg-gray-900 bg-[url(/dot-texture.svg)] pb-16 pt-16 lg:pt-36">
+    <div className="mx-2 my-24 rounded-4xl bg-gray-900 bg-[url(/dot-texture.svg)] pb-16 pt-16">
       <Container>
         <div className={'grid grid-cols-1 justify-items-center gap-5 md:grid-cols-3'}>
           {page.data.email_address && (
@@ -57,8 +57,8 @@ const ContactDetailBlock = ({ page, social }: { page: ContactDocument; social: S
                   <LucideMailOpen width={24} height={24} />
                 </i>
               </div>
-              <div className="mb-3 mt-5 text-xl font-bold text-white md:text-3xl">Email</div>
-              <div className="text-accent">
+              <div className="mb-3 mt-5 text-xl font-bold text-accent md:text-2xl">Email</div>
+              <div className="text-white md:text-3xl">
                 <a href={`mailto:${page.data.email_address}`}>{page.data.email_address}</a>
               </div>
             </div>
@@ -70,8 +70,8 @@ const ContactDetailBlock = ({ page, social }: { page: ContactDocument; social: S
                   <PhoneCallIcon width={24} height={24} />
                 </i>
               </div>
-              <div className="mb-3 mt-5 text-xl font-bold text-white md:text-3xl">Telephone</div>
-              <div className="text-accent">
+              <div className="mb-3 mt-5 text-xl font-bold text-accent md:text-2xl">Telephone</div>
+              <div className="text-white md:text-3xl">
                 <a href={`tel:${page.data.phone_number}`}>{page.data.phone_number}</a>
               </div>
             </div>
@@ -83,8 +83,8 @@ const ContactDetailBlock = ({ page, social }: { page: ContactDocument; social: S
                   <Share2Icon width={24} height={24} />
                 </i>
               </div>
-              <div className="mb-3 mt-5 text-xl font-bold text-white md:text-3xl">Social</div>
-              <div className="text-accent">
+              <div className="mb-3 mt-5 text-xl font-bold text-accent md:text-2xl">Social</div>
+              <div className="text-white md:text-3xl">
                 <SocialList items={social} icons={true} variantList={0} variantButton={1} />
               </div>
             </div>
@@ -142,13 +142,13 @@ export default async function Page() {
     <main className={'mb-24 w-full overflow-hidden'}>
       <div className="mb-24 mt-24 md:mb-24 md:mt-40">
         <GradientBackground />
-        <ContactFormBlock page={page} settings={settings} />
+        <SliceZone slices={page.data.slices} components={components} />
       </div>
       {/* Contact page */}
-
       <ContactDetailBlock page={page} social={social} />
+      <ContactFormBlock page={page} settings={settings} />
 
-      <SliceZone slices={page.data.slices} components={components} />
+      <SliceZone slices={page.data.slices2} components={components} />
     </main>
   );
 }

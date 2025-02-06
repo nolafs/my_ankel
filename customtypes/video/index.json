@@ -35,12 +35,21 @@
           "placeholder": ""
         }
       },
+      "tags": {
+        "type": "Link",
+        "config": {
+          "label": "Tags",
+          "select": "document",
+          "repeat": false,
+          "customtypes": ["post_tags"]
+        }
+      },
       "featured": {
         "type": "Boolean",
         "config": {
           "label": "Featured",
-          "placeholder_false": "false",
-          "placeholder_true": "false",
+          "placeholder_false": "Off",
+          "placeholder_true": "On",
           "default_value": false
         }
       },

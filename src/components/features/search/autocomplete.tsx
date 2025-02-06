@@ -27,9 +27,9 @@ const AutocompleteItem = ({ item }: { item: HitBaseItem }) => {
   const trimmedText = item.text.length > 100 ? item.text.substring(0, 200) + '...' : item.text;
 
   return (
-    <div className={'items-top flex w-full justify-between space-x-2 py-2'}>
+    <div className={'items-top group relative flex w-full justify-between space-x-2 p-2'}>
       <div>
-        <div className={'rounded-md bg-gray-900/30 p-1.5'}>
+        <div className={'rounded-md bg-gray-900/30 p-1.5 group-hover:bg-pink-600'}>
           {item.type === 'video' && <Film className={'h-5 w-5 text-white'} />}
           {item.type === 'article' && <Newspaper className={'h-5 w-5 text-white'} />}
           {item.type === 'download' && <FileDown className={'h-5 w-5 text-white'} />}
@@ -42,7 +42,8 @@ const AutocompleteItem = ({ item }: { item: HitBaseItem }) => {
       </div>
       <div>
         <Link href={getUrl(item)}>
-          <SquareArrowOutUpRight className={'h-5 w-5 text-black'} />
+          <span className="absolute inset-0" />
+          <SquareArrowOutUpRight className={'h-5 w-5 text-black group-hover:text-pink-600'} />
         </Link>
       </div>
     </div>

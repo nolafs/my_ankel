@@ -25,13 +25,13 @@ export function Footer({ navigation, logo, footerCta, secondaryNavigation, socia
   const copyRightDate = new Date().getFullYear();
   return (
     <footer>
-      <div className="relative bg-[#8fde5d] bg-gradient-to-b from-[#a7e580] to-[#cef57a]">
+      <div className="relative bg-[#516fdc] bg-gradient-to-b from-[#889de7] to-[#1c348c]">
         <div className="absolute inset-2 z-0 rounded-4xl border-transparent bg-white/15 shadow-md ring-1 ring-[#8fde5d]/15 after:absolute after:inset-0 after:rounded-4xl after:shadow-[inset_0_0_2px_1px_#ffffff4d]" />
 
         <Container className={'relative z-10 block pb-10'}>
-          {footerCta && <CallToAction {...footerCta} />}
+          {footerCta && <CallToAction {...footerCta} dark={true} />}
 
-          <div className={'border-t border-gray-200 border-opacity-30'}>
+          <div>
             <BorderRow>
               <div className="mt-10 grid grid-cols-2 gap-y-10 pb-10 lg:grid-cols-6 lg:gap-8">
                 <div className="col-span-2 flex flex-col justify-between">
@@ -39,10 +39,10 @@ export function Footer({ navigation, logo, footerCta, secondaryNavigation, socia
                     <h2 id="footer-heading" className="sr-only">
                       My Ankle
                     </h2>
-                    <Image src={logo} className="inline" alt="logo" />
+                    <Image src={logo} className="inline contrast-200 grayscale invert" alt="logo" />
                   </Link>
                   <div className={'mt-12 shrink'}>
-                    {social && <SocialList items={social} icons={true} variantList={1} variantButton={2} />}
+                    {social && <SocialList items={social} icons={true} variantList={1} variantButton={3} />}
                   </div>
                 </div>
                 <div className="col-span-2 grid grid-cols-2 gap-x-8 gap-y-12 lg:col-span-4 lg:grid-cols-subgrid">
@@ -55,7 +55,7 @@ export function Footer({ navigation, logo, footerCta, secondaryNavigation, socia
                             <div className={'mb-10'}>
                               <PrismicNextLink
                                 field={navigationItem.data.link}
-                                className="text-base font-medium text-gray-400 transition-all hover:text-primary">
+                                className="text-base font-medium text-white transition-all hover:text-white/80">
                                 {navigationItem.data.label}
                               </PrismicNextLink>
                             </div>
@@ -64,7 +64,7 @@ export function Footer({ navigation, logo, footerCta, secondaryNavigation, socia
                                 <li key={subItem.label}>
                                   <PrismicNextLink
                                     field={subItem.link}
-                                    className="text-sm font-medium text-gray-700 transition-all hover:text-primary">
+                                    className="text-sm font-medium text-white/60 transition-all hover:text-white">
                                     {subItem.label}
                                   </PrismicNextLink>
                                 </li>
@@ -74,7 +74,7 @@ export function Footer({ navigation, logo, footerCta, secondaryNavigation, socia
                         ) : (
                           <PrismicNextLink
                             field={navigationItem.data.link}
-                            className="text-base font-medium text-gray-400 transition-all hover:text-primary">
+                            className="text-base font-medium text-white transition-all hover:text-white/80">
                             {navigationItem.data.label}
                           </PrismicNextLink>
                         )}
@@ -92,14 +92,14 @@ export function Footer({ navigation, logo, footerCta, secondaryNavigation, socia
                       <li key={item.label}>
                         <PrismicNextLink
                           field={item.link}
-                          className="font-medium text-gray-500 transition-all hover:text-primary">
+                          className="font-medium text-white/50 transition-all hover:text-primary">
                           {item.label}
                         </PrismicNextLink>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <p className="mt-8 leading-5 text-gray-400 md:order-1 md:mt-0">
+                <p className="mt-8 leading-5 text-white/60 md:order-1 md:mt-0">
                   &copy; {copyRightDate} {copyright}
                 </p>
               </div>
