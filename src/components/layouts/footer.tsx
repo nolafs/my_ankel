@@ -3,7 +3,7 @@ import { PrismicNextLink } from '@prismicio/next';
 import React from 'react';
 
 import Link from 'next/link';
-import Image from 'next/image';
+
 import SocialList from '../features/social-list/social-list';
 import { Container } from '@/components/ui/container';
 import { NavigationBarDocumentData, NavigationElementDocument } from '../../../prismicio-types';
