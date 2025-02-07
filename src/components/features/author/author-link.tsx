@@ -12,8 +12,8 @@ interface AuthorLinkProps {
 export const AuthorLink = ({ author }: AuthorLinkProps) => {
   return (
     <HoverCard>
-      <HoverCardTrigger className={'underline'}>
-        <div className={'flex items-center gap-2 text-sm/6 font-medium text-gray-700'}>
+      <HoverCardTrigger className={'underline'} asChild={true}>
+        <PrismicLink field={author.link} className={'flex items-center gap-2 text-sm/6 font-medium text-gray-700'}>
           {author.profile_image && (
             <PrismicNextImage
               field={author.profile_image}
@@ -29,7 +29,7 @@ export const AuthorLink = ({ author }: AuthorLinkProps) => {
             />
           )}
           {author.name}
-        </div>
+        </PrismicLink>
       </HoverCardTrigger>
       <HoverCardContent className={'z-30'}>
         <PrismicRichText field={author.description} />
