@@ -20,7 +20,7 @@ const emailSchema = z.object({
   agreeToTerms: z.boolean().refine(val => val, 'You must agree to the Terms & Conditions'),
 });
 
-type item = {
+export type ContactEnquiryItem = {
   value: string;
   label: string;
 };
@@ -28,7 +28,7 @@ type item = {
 export type EmailSchema = z.infer<typeof emailSchema>;
 
 interface ContactFormInputProps {
-  items: item[];
+  items: ContactEnquiryItem[];
 }
 
 export function ContactForm({ items }: ContactFormInputProps) {

@@ -10,11 +10,16 @@ import { LucideMailOpen, PhoneCallIcon, Share2Icon } from 'lucide-react';
 import SocialList from '@/components/features/social-list/social-list';
 import { PrismicImage, SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
-import ContactForm from '@/components/features/contact-form/contact-form';
+import ContactForm, { ContactEnquiryItem } from '@/components/features/contact-form/contact-form';
 import { Container } from '@/components/ui/container';
 import { type ContactDocument, type SettingsDocument } from '../../../prismicio-types';
 
-export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
+type Params = { uid: string };
+
+export async function generateMetadata(
+  { params }: { params: Promise<Params> },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle('contact').catch(() => notFound());
 
@@ -116,7 +121,7 @@ const ContactFormBlock = ({ page, settings }: { page: ContactDocument; settings:
           </div>
         </div>
         <div className={'max-w-lg'}>
-          <ContactForm items={settings.data.contact_form_enquiries} />
+          <ContactForm items={settings.data.contact_form_enquiries as ContactEnquiryItem[]} />
         </div>
       </div>
     </Container>

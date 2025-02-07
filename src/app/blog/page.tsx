@@ -25,7 +25,12 @@ type Props = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
+type Params = { uid: string };
+
+export async function generateMetadata(
+  { params }: { params: Promise<Params> },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const client = createClient();
 
   const posts = await client
