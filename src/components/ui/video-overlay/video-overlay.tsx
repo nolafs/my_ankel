@@ -31,6 +31,7 @@ export const VideoOverlay = ({ video, post, uid, url = 'video' }: VideoOverlayPr
     <OverlaySheet open={open} onOpenChange={() => setOpen(!open)}>
       <OverlaySheetTrigger asChild={true}>
         <button>
+          <span className={'sr-only'}>Watch {post?.name}</span>
           <CirclePlayIcon
             strokeWidth={1}
             fill={'#FFFFFF4d'}
