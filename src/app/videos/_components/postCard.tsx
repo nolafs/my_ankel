@@ -70,7 +70,7 @@ export const VideoCard = ({ video }: { video: VideoDocument }) => {
         <div className={'shrink'}>
           <div className="mt-4">
             <Link href={`/videos/${video.uid}`} className="flex items-center gap-1 text-sm/5 font-medium">
-              Details
+              View details <span className={'sr-only'}>of {video.data.name}</span>
               <ChevronRightIcon className="size-4 fill-gray-400" />
             </Link>
           </div>
