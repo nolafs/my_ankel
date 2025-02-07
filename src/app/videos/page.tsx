@@ -29,11 +29,11 @@ export async function generateMetadata(
     .getByType('video', {
       pageSize: 1,
       page: 0,
-      filters: [filter.at('my.posts.featured', true)],
+      filters: [filter.at('my.video.featured', true)],
       fetchLinks: ['author.name', 'author.profile_image', 'post_category.name'],
       orderings: [
         {
-          field: 'my.posts.publishing_date',
+          field: 'my.video.publishing_date',
           direction: 'desc',
         },
       ],
@@ -85,18 +85,19 @@ async function VideoPosts({ page, category, tags }: { page: number; category?: s
     .getByType('video', {
       pageSize: 9,
       page: 1,
-      filters: categories.length
-        ? [
-            filter.any(
-              'my.video.category',
-              categories.map(cat => cat.id),
-            ),
-            filter.any(
-              'my.video.tags.tag',
-              tagList.map(tag => tag.id),
-            ),
-          ]
-        : [],
+      filters:
+        categories.length || tagList.length
+          ? [
+              filter.any(
+                'my.video.category',
+                categories.map(cat => cat.id),
+              ),
+              filter.any(
+                'my.video.tags.tag',
+                tagList.map(tag => tag.id),
+              ),
+            ]
+          : [],
       fetchLinks: [
         'post_category.name',
         'author.name',
@@ -113,7 +114,7 @@ async function VideoPosts({ page, category, tags }: { page: number; category?: s
           direction: 'desc',
         },
         {
-          field: 'my.posts.last_publication_date',
+          field: 'my.video.last_publication_date',
           direction: 'desc',
         },
       ],
@@ -175,12 +176,7 @@ export default async function VBlog({ searchParams }: Props) {
           tagSelected={tags ? tags[0] : undefined}
         />
         <VideoPosts page={page} category={categories} tags={tags} />
-        <Pagination
-          slug={'videos'}
-          contentType={'video'}
-          page={page}
-          category={categories ? categories[0] : undefined}
-        />
+        <Pagination slug={'videos'} contentType={'video'} page={page} category={categories} tags={tags} />
       </Container>
     </main>
   );

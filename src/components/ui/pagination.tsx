@@ -4,6 +4,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/16/solid';
 import { Link } from '@/components/ui/link';
 import { clsx } from 'clsx';
 import React from 'react';
+import { filter } from '@prismicio/client';
 
 type PaginationData = {
   page: number;
@@ -17,16 +18,17 @@ export async function Pagination({
   slug,
   page,
   category,
+  tags,
 }: {
   contentType: 'posts' | 'video' | 'download';
   slug: string;
   page: number;
-  category?: string;
+  category?: string[];
+  tags?: string[];
 }) {
   function url(page: number) {
     const params = new URLSearchParams();
 
-    if (category) params.set('category', category);
     if (page > 1) params.set('page', page.toString());
 
     return params.size !== 0 ? `/${slug}?${params.toString()}` : `/${slug}`;
@@ -34,10 +36,34 @@ export async function Pagination({
 
   const client = createClient();
 
+  let categories: any[] = [];
+  let tagList: any[] = [];
+
+  if (category) {
+    categories = await client.getAllByUIDs('post_category', [...category]);
+  }
+
+  if (tags) {
+    tagList = await client.getAllByUIDs('post_tags', [...tags]);
+  }
+
   const data: PaginationData = await client
     .getByType(contentType, {
       pageSize: 10,
       page: 0,
+      filters:
+        categories.length || tagList.length
+          ? [
+              filter.any(
+                `my.${contentType}.category`,
+                categories.map(cat => cat.id),
+              ),
+              filter.any(
+                `my.${contentType}.tags.tag`,
+                tagList.map(tag => tag.id),
+              ),
+            ]
+          : [],
       orderings: [
         {
           field: `my.${contentType}.publishing_date`,
@@ -62,6 +88,8 @@ export async function Pagination({
         totalPages: 0,
       };
     });
+
+  console.log('data', data);
 
   const hasPreviousPage = data.page - 1;
   const previousPageUrl = hasPreviousPage ? url(data.page - 1) : undefined;

@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { OverlaySheet, OverlaySheetContent, OverlaySheetTrigger } from '@/components/ui/overlay';
-import { CirclePlayIcon, InfoIcon } from 'lucide-react';
+import { CirclePlayIcon } from 'lucide-react';
 import { asText, EmbedField } from '@prismicio/client';
 import { VideoDocumentData } from '../../../../prismicio-types';
 import PostAside from '@/components/features/blog/postAside';
@@ -32,9 +32,11 @@ export const VideoOverlay = ({ video, post, uid, url = 'video' }: VideoOverlayPr
       <OverlaySheetTrigger asChild={true}>
         <button>
           <CirclePlayIcon
+            strokeWidth={1}
+            fill={'#FFFFFF4d'}
             aria-label={'Play Video'}
             className={
-              'transform-all z-50 mt-20 h-20 w-20 cursor-pointer text-white opacity-75 transition-all hover:scale-110 hover:text-pink-600 hover:opacity-100'
+              'transform-all z-50 h-20 w-20 cursor-pointer text-white/90 transition-all hover:scale-110 hover:text-[#32c0ec] hover:opacity-100'
             }
           />
         </button>

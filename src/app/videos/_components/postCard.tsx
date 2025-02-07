@@ -50,11 +50,11 @@ export const VideoCard = ({ video }: { video: VideoDocument }) => {
               <Badge>{(video.data.category.data as { name: string }).name}</Badge>
             </div>
           )}
-        </div>
-        <div className={'absolute bottom-2 right-2'}>
-          {video.data && (
-            <VideoOverlay video={video.data.video_url} post={video?.data} uid={video?.uid} url={'videos'} />
-          )}
+          <div className={'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform'}>
+            {video.data && (
+              <VideoOverlay video={video.data.video_url} post={video?.data} uid={video?.uid} url={'videos'} />
+            )}
+          </div>
         </div>
       </div>
 
