@@ -149,6 +149,7 @@ export function ContactForm({ items }: ContactFormInputProps) {
         {errors.email && <p className="text-error">{errors.email.message}</p>}
 
         <select
+          aria-label={'Nature of Enquiry'}
           className={cn(
             `select select-bordered w-full ${errors.enquiryType ? 'select-error' : ''}`,
             'rounded-md border-gray-200',
