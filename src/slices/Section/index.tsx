@@ -57,13 +57,13 @@ function ListItem({
 const Section = ({ slice }: SectionProps): JSX.Element => {
   if (slice.variation === 'sectionList') {
     return (
-      <Container className="mt-32">
+      <Container className="mt-16 md:mt-24 lg:mt-32">
         <Subheading>{slice.primary.subheading}</Subheading>
         <Heading as="h3" className="mt-2">
           {slice.primary.heading}
         </Heading>
         <Lead className="mt-6 max-w-3xl">{slice.primary.lead}</Lead>
-        <Subheading as="h3" className="mt-24">
+        <Subheading as="h3" className="mt-16 md:mt-20 lg:mt-24">
           {slice.primary.list_title}
         </Subheading>
         <hr className="mt-6 border-t border-gray-200" />
