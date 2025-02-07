@@ -9,15 +9,13 @@ import { PrismicNextImage } from '@prismicio/next';
 import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { PrismicLink, PrismicRichText } from '@prismicio/react';
+import { PrismicRichText } from '@prismicio/react';
 import { asText } from '@prismicio/richtext';
 import { GradientBackground } from '@/components/ui/gradient';
 import React from 'react';
-import SharePage from '@/components/features/share-page/share-page';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import { ImageFieldImage, LinkField, RichTextField } from '@prismicio/client';
-import ArrowLongRightIcon from '@heroicons/react/24/outline/ArrowLongRightIcon';
-import AuthorLink from '@/components/features/author/author-link';
+import { Author } from '@/types';
+import PostAside from '../_components/postAside';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -53,12 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const client = createClient();
   const id = (await params).uid;
-  let author: {
-    name?: string;
-    description?: RichTextField;
-    link?: LinkField;
-    profile_image?: ImageFieldImage;
-  } | null = null;
+  let author: Author | null = null;
   const post = await client
     .getByUID('posts', id, {
       fetchLinks: [
@@ -92,7 +85,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <main className={'w-full'}>
-      <Container className="mb-24 mt-24 md:mb-24 md:mt-40">
+      <Container className="mb-16 mt-24 md:mb-24 md:mt-40">
         <GradientBackground />
         <div className={'relative z-30'}>
           <Subheading className="mt-16">{dayjs(post.publishing_date).format('dddd, MMMM D, YYYY')}</Subheading>
@@ -100,56 +93,15 @@ export default async function Page({ params }: Props) {
             {post.title}
           </Heading>
         </div>
-        <div className="mt-16 grid min-h-svh grid-cols-1 gap-8 pb-24 lg:grid-cols-[15rem_1fr] xl:grid-cols-[15rem_1fr_15rem]">
-          <div className="sticky top-28 flex h-full max-h-[800px] flex-wrap items-center gap-8 max-lg:justify-between lg:flex-col lg:items-start">
-            {post.category && (
-              <div className="flex flex-col flex-wrap gap-2">
-                <span className="text-sm font-medium text-gray-500">Category:</span>
-                <Link
-                  key="test"
-                  href={`/blog?category=${
-                    post.category &&
-                    'data' in post.category &&
-                    (
-                      post.category.data as {
-                        uid: string;
-                      }
-                    ).uid
-                  }`}
-                  className="rounded-full border border-dotted border-gray-300 bg-gray-50 px-2 text-sm/6 font-medium text-gray-500">
-                  {post.category && 'data' in post.category && (post.category.data as { name: string }).name}
-                </Link>
-              </div>
-            )}
-            {author && (
-              <div className="flex flex-col flex-wrap gap-2">
-                <span className="text-sm font-medium text-gray-500">Author:</span>
-                <span className={'text-gray-700'}>
-                  <AuthorLink author={author} />
-                </span>
-              </div>
-            )}
+        <div className="mt-10 grid min-h-svh grid-cols-1 gap-8 pb-24 sm:mt-10 md:mt-16 lg:grid-cols-[15rem_1fr] xl:grid-cols-[15rem_1fr_15rem]">
+          <PostAside
+            as={'aside'}
+            uid={id}
+            post={post}
+            author={author!}
+            classNames={'hidden lg:flex h-full max-h-[800px] lg:sticky lg:top-28 lg:flex-col lg:items-start'}
+          />
 
-            {post.tags && (
-              <div className="hidden flex-col flex-wrap gap-2 md:flex">
-                <span className="text-sm font-medium text-gray-500">Tags:</span>
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((item, idx) => (
-                    <Link
-                      href={'/blog?tags=' + (item && 'tag' in item && (item.tag as { uid: string }).uid)}
-                      key={'tags-' + idx}
-                      className="rounded-full border border-dotted border-gray-300 bg-gray-50 px-2 text-sm/6 font-medium capitalize text-gray-500">
-                      {item && 'tag' in item && (item.tag as { data: { name: string } }).data.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-            <div>
-              <div className="mb-2 text-sm font-medium text-gray-500">Share:</div>
-              <SharePage slug={id} title={post.title} />
-            </div>
-          </div>
           <div className="text-gray-700">
             <div className="max-w-2xl xl:mx-auto">
               <PrismicNextImage
@@ -162,6 +114,15 @@ export default async function Page({ params }: Props) {
               />
 
               <div className={'prose md:prose-lg'}>{post.content && <PrismicRichText field={post.content} />}</div>
+
+              <PostAside
+                as="section"
+                uid={id}
+                post={post}
+                author={author!}
+                classNames={'lg:hidden border-y mt-10 border-gray-600 py-5'}
+              />
+
               <div className="mt-10">
                 <Button variant="outline" href="/blog">
                   <ChevronLeftIcon className="size-4" />

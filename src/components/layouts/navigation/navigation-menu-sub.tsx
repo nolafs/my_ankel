@@ -102,7 +102,7 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
                         {navigationItem.data.subs.map((item, idx) => (
                           <div
                             key={`main-nav-item-${idx}`}
-                            className="duration-[800] group relative rounded-lg p-6 text-sm/6 transition-all ease-in-out hover:bg-accent/20">
+                            className="group relative rounded-lg p-6 text-sm/6 transition-all duration-500 ease-in-out hover:bg-accent/20">
                             <div className="mb-2 flex size-11 items-center justify-center rounded-lg bg-accent transition-all duration-300 ease-in-out group-hover:bg-white">
                               <PrismicImage
                                 field={item.icon}
