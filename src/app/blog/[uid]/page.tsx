@@ -1,6 +1,5 @@
 import { Button } from '@/components/button';
 import { Container } from '@/components/ui/container';
-import { Link } from '@/components/ui/link';
 import { Heading, Subheading } from '@/components/ui/text';
 import { createClient } from '@/prismicio';
 
@@ -15,7 +14,7 @@ import { GradientBackground } from '@/components/ui/gradient';
 import React from 'react';
 import { ImageFieldImage, LinkField, RichTextField } from '@prismicio/client';
 import { Author } from '@/types';
-import PostAside from '../_components/postAside';
+import PostAside from '@/components/features/blog/postAside';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -116,7 +115,7 @@ export default async function Page({ params }: Props) {
               <div className={'prose md:prose-lg'}>{post.content && <PrismicRichText field={post.content} />}</div>
 
               <PostAside
-                as="section"
+                as="aside"
                 uid={id}
                 post={post}
                 author={author!}

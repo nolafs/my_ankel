@@ -35,15 +35,6 @@
           "placeholder": ""
         }
       },
-      "tags": {
-        "type": "Link",
-        "config": {
-          "label": "Tags",
-          "select": "document",
-          "repeat": false,
-          "customtypes": ["post_tags"]
-        }
-      },
       "featured": {
         "type": "Boolean",
         "config": {
@@ -84,6 +75,24 @@
         "config": {
           "label": "Video Url",
           "placeholder": ""
+        }
+      },
+      "tags": {
+        "type": "Group",
+        "config": {
+          "label": "Tags",
+          "repeat": true,
+          "fields": {
+            "tag": {
+              "type": "Link",
+              "config": {
+                "label": "Tag",
+                "select": "document",
+                "repeat": false,
+                "customtypes": ["post_tags"]
+              }
+            }
+          }
         }
       },
       "slices": {

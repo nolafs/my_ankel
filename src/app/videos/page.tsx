@@ -6,11 +6,11 @@ import { createClient } from '@/prismicio';
 import { asText, filter } from '@prismicio/client';
 import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
-import { Categories } from './_components/postsCategories';
 import { Pagination } from '@/components/ui/pagination';
 import { VideoCard } from '@/app/videos/_components/postCard';
 import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { OGImage } from '@/types';
+import Filter from '@/components/features/blog/postsFilter';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -68,12 +68,17 @@ export async function generateMetadata(
   };
 }
 
-async function VideoPosts({ page, category }: { page: number; category?: string[] }) {
+async function VideoPosts({ page, category, tags }: { page: number; category?: string[]; tags?: string[] }) {
   const client = createClient();
   let categories: any[] = [];
+  let tagList: any[] = [];
 
   if (category) {
     categories = await client.getAllByUIDs('post_category', [...category]);
+  }
+
+  if (tags) {
+    tagList = await client.getAllByUIDs('post_tags', [...tags]);
   }
 
   const posts = await client
@@ -86,12 +91,29 @@ async function VideoPosts({ page, category }: { page: number; category?: string[
               'my.video.category',
               categories.map(cat => cat.id),
             ),
+            filter.any(
+              'my.video.tags.tag',
+              tagList.map(tag => tag.id),
+            ),
           ]
         : [],
-      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name', 'post_category.uid'],
+      fetchLinks: [
+        'post_category.name',
+        'author.name',
+        'author.description',
+        'author.profile_image',
+        'author.link',
+        'post_category.uid',
+        'post_tags.name',
+        'post_tags',
+      ],
       orderings: [
         {
-          field: 'my.video.published_date',
+          field: 'my.video.publishing_date',
+          direction: 'desc',
+        },
+        {
+          field: 'my.posts.last_publication_date',
           direction: 'desc',
         },
       ],
@@ -121,9 +143,14 @@ export default async function VBlog({ searchParams }: Props) {
 
   //
   let categories = typeof params.category === 'string' ? params.category.split(',') : undefined;
+  let tags = typeof params.tags === 'string' ? params.tags.split(',') : undefined;
 
   if (categories?.length === 0) {
     categories = undefined;
+  }
+
+  if (tags?.length === 0) {
+    tags = undefined;
   }
 
   return (
@@ -139,10 +166,15 @@ export default async function VBlog({ searchParams }: Props) {
           informed and take charge of your ankle health journey.
         </Lead>
       </Container>
-      {page === 1 && !categories && <FeaturedPosts />}
+      {page === 1 && !categories && !tags && <FeaturedPosts />}
       <Container className="mt-16 pb-24">
-        <Categories selected={categories ? categories[0] : undefined} />
-        <VideoPosts page={page} category={categories} />
+        <Filter
+          url={'videos'}
+          hasRss={false}
+          categorySelected={categories ? categories[0] : undefined}
+          tagSelected={tags ? tags[0] : undefined}
+        />
+        <VideoPosts page={page} category={categories} tags={tags} />
         <Pagination
           slug={'videos'}
           contentType={'video'}

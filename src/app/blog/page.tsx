@@ -11,13 +11,13 @@ import { PrismicRichText } from '@prismicio/react';
 import { asText, filter, ImageFieldImage } from '@prismicio/client';
 import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
-import { Categories } from './_components/postsCategories';
+import { Categories } from '../../components/features/blog/postsCategories';
 
 import { Badge } from '@/components/ui/badge';
 import { Pagination } from '@/components/ui/pagination';
 import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { Author, OGImage } from '@/types';
-import Filter from './_components/postsFilter';
+import Filter from '../../components/features/blog/postsFilter';
 import AuthorLink from '@/components/features/author/author-link';
 
 type Props = {
@@ -87,11 +87,6 @@ async function Posts({ page, category, tags }: { page: number; category?: string
     tagList = await client.getAllByUIDs('post_tags', [...tags]);
   }
 
-  console.log(
-    'tags',
-    tagList.map(tag => tag.id),
-  );
-
   const posts = await client
     .getByType('posts', {
       pageSize: 10,
@@ -124,6 +119,10 @@ async function Posts({ page, category, tags }: { page: number; category?: string
           field: 'my.posts.publishing_date',
           direction: 'desc',
         },
+        {
+          field: 'my.posts.last_publication_date',
+          direction: 'desc',
+        },
       ],
     })
     .then(response => {
@@ -143,7 +142,7 @@ async function Posts({ page, category, tags }: { page: number; category?: string
           className="relative grid grid-cols-1 border-b border-b-gray-100 py-10 first:border-t first:border-t-gray-200 max-sm:gap-3 sm:grid-cols-3">
           <div>
             <div className="text-sm/5 max-sm:text-gray-700 sm:font-medium">
-              {dayjs(post.data.publishing_date).format('dddd, MMMM D, YYYY')}
+              {dayjs(post.data.publishing_date ?? post.last_publication_date).format('dddd, MMMM D, YYYY')}
             </div>
 
             {post.data.category && 'data' in post.data.category && (

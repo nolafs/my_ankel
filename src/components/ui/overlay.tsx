@@ -42,8 +42,8 @@ const OverlaySheetContent = React.forwardRef<
       </OverlayPrimitive.Title>
       {children}
     </OverlayPrimitive.Content>
-    <OverlayPrimitive.Close className="fixed right-4 top-4 z-50">
-      <X className="h-4 w-4" />
+    <OverlayPrimitive.Close className="fixed right-4 top-4 z-50 rounded-full bg-black p-2 text-white shadow-md">
+      <X className="h-8 w-8" />
       <span className="sr-only">Close</span>
     </OverlayPrimitive.Close>
   </OverlaySheetPortal>

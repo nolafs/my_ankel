@@ -79,6 +79,24 @@
           "allowText": true
         }
       },
+      "tags": {
+        "type": "Group",
+        "config": {
+          "label": "Tags",
+          "repeat": true,
+          "fields": {
+            "tag": {
+              "type": "Link",
+              "config": {
+                "label": "Tag",
+                "select": "document",
+                "repeat": false,
+                "customtypes": ["post_tags"]
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

@@ -1,5 +1,5 @@
 'use client';
-import { PostsDocumentData } from '../../../../prismicio-types';
+import { PostsDocumentData, VideoDocumentData } from '../../../../prismicio-types';
 import { Author } from '@/types';
 import cn from 'clsx';
 import { Link } from '@/components/ui/link';
@@ -9,14 +9,25 @@ import React from 'react';
 
 type PostAsideProps = {
   as?: keyof JSX.IntrinsicElements;
-  uid: string;
-  post: PostsDocumentData;
+  uid?: string;
+  post: Partial<PostsDocumentData> | Partial<VideoDocumentData>;
   author?: Author;
+  url?: string;
   classNames?: string;
+  onNavigate?: () => void;
   [key: string]: any; // To accept additional props
 };
 
-export const PostAside = ({ as: Component = 'div', uid, post, author, classNames, ...props }: PostAsideProps) => {
+export const PostAside = ({
+  as: Component = 'div',
+  uid,
+  post,
+  author,
+  url = 'blog',
+  classNames,
+  onNavigate,
+  ...props
+}: PostAsideProps) => {
   return (
     <Component className={cn('flex flex-wrap items-center gap-8 max-lg:justify-between', classNames)}>
       {post.category && (
@@ -24,6 +35,7 @@ export const PostAside = ({ as: Component = 'div', uid, post, author, classNames
           <span className="text-sm font-medium text-gray-500">Category:</span>
           <Link
             key="test"
+            onClick={onNavigate}
             href={`/blog?category=${
               post.category &&
               'data' in post.category &&
@@ -53,19 +65,23 @@ export const PostAside = ({ as: Component = 'div', uid, post, author, classNames
           <div className="flex flex-wrap gap-2">
             {post.tags.map((item, idx) => (
               <Link
-                href={'/blog?tags=' + (item && 'tag' in item && (item.tag as { uid: string }).uid)}
+                onClick={onNavigate}
+                href={`/${url}?tags=` + (item && 'tag' in item && (item.tag as { uid: string }).uid)}
                 key={'tags-' + idx}
                 className="rounded-full border border-dotted border-gray-300 bg-gray-50 px-2 text-sm/6 font-medium capitalize text-gray-500">
-                {item && 'tag' in item && (item.tag as { data: { name: string } }).data.name}
+                {item && 'tag' in item && (item.tag as { data: { name: string } }).data?.name}
               </Link>
             ))}
           </div>
         </div>
       )}
-      <div>
-        <div className="mb-2 text-sm font-medium text-gray-500">Share:</div>
-        <SharePage slug={uid} title={post.title} />
-      </div>
+      {uid && (
+        <div>
+          <div className="mb-2 text-sm font-medium text-gray-500">Share:</div>
+          {'title' in post && post.title && <SharePage slug={uid} title={post?.title} />}
+          {'name' in post && post.name && <SharePage slug={uid} title={post?.name} />}
+        </div>
+      )}
     </Component>
   );
 };

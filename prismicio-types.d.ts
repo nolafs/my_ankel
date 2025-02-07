@@ -242,6 +242,21 @@ export type ContactDocument<Lang extends string = string> = prismic.PrismicDocum
   Lang
 >;
 
+/**
+ * Item in *Download → Tags*
+ */
+export interface DownloadDocumentDataTagsItem {
+  /**
+   * Tag field in *Download → Tags*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: download.tags[].tag
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  tag: prismic.ContentRelationshipField<'post_tags'>;
+}
+
 type DownloadDocumentDataSlicesSlice = never;
 
 /**
@@ -336,6 +351,17 @@ interface DownloadDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   file: prismic.LinkToMediaField;
+
+  /**
+   * Tags field in *Download*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: download.tags[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  tags: prismic.GroupField<Simplify<DownloadDocumentDataTagsItem>>;
 
   /**
    * Slice Zone field in *Download*
@@ -1082,17 +1108,6 @@ interface PostsDocumentData {
   category: prismic.ContentRelationshipField<'post_category'>;
 
   /**
-   * Tags field in *Posts*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: posts.tags[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  tags: prismic.GroupField<Simplify<PostsDocumentDataTagsItem>>;
-
-  /**
    * Publishing Date field in *Posts*
    *
    * - **Field Type**: Date
@@ -1135,6 +1150,17 @@ interface PostsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   content: prismic.RichTextField;
+
+  /**
+   * Tags field in *Posts*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: posts.tags[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  tags: prismic.GroupField<Simplify<PostsDocumentDataTagsItem>>;
 
   /**
    * Slice Zone field in *Posts*
@@ -1442,6 +1468,21 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
   Lang
 >;
 
+/**
+ * Item in *Video → Tags*
+ */
+export interface VideoDocumentDataTagsItem {
+  /**
+   * Tag field in *Video → Tags*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.tags[].tag
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  tag: prismic.ContentRelationshipField<'post_tags'>;
+}
+
 type VideoDocumentDataSlicesSlice = never;
 
 /**
@@ -1480,17 +1521,6 @@ interface VideoDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#date
    */
   publishing_date: prismic.DateField;
-
-  /**
-   * Tags field in *Video*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: video.tags
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  tags: prismic.ContentRelationshipField<'post_tags'>;
 
   /**
    * Featured field in *Video*
@@ -1547,6 +1577,17 @@ interface VideoDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#embed
    */
   video_url: prismic.EmbedField;
+
+  /**
+   * Tags field in *Video*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.tags[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  tags: prismic.GroupField<Simplify<VideoDocumentDataTagsItem>>;
 
   /**
    * Slice Zone field in *Video*
@@ -3017,6 +3058,7 @@ declare module '@prismicio/client' {
       ContactDocumentDataSlices2Slice,
       DownloadDocument,
       DownloadDocumentData,
+      DownloadDocumentDataTagsItem,
       DownloadDocumentDataSlicesSlice,
       FaqDocument,
       FaqDocumentData,
@@ -3052,6 +3094,7 @@ declare module '@prismicio/client' {
       SettingsDocumentDataSocialMediaItem,
       VideoDocument,
       VideoDocumentData,
+      VideoDocumentDataTagsItem,
       VideoDocumentDataSlicesSlice,
       AllDocumentTypes,
       CallToActionSlice,
