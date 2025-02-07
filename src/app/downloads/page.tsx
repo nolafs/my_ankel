@@ -9,13 +9,13 @@ import { PrismicRichText } from '@prismicio/react';
 import { asText, filter, ImageFieldImage } from '@prismicio/client';
 import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
-import { Categories } from './_components/postsCategories';
 import { Badge } from '@/components/ui/badge';
 import { FolderDownIcon } from 'lucide-react';
 import { Pagination } from '@/components/ui/pagination';
 import { DownloadLink } from '@/app/downloads/_components/downloadLink';
 import { CustomLinkToMediaField, OGImage } from '@/types';
 import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
+import Filter from '@/components/features/blog/postsFilter';
 
 type Params = { uid: string };
 
@@ -73,30 +73,47 @@ export async function generateMetadata(
   };
 }
 
-async function Posts({ page, category }: { page: number; category?: string[] }) {
+async function Posts({ page, category, tags }: { page: number; category?: string[]; tags?: string[] }) {
   const client = createClient();
   let categories: any[] = [];
-
+  let tagList: any[] = [];
   if (category) {
     categories = await client.getAllByUIDs('post_category', [...category]);
+  }
+
+  if (tags) {
+    tagList = await client.getAllByUIDs('post_tags', [...tags]);
   }
 
   const posts = await client
     .getByType('download', {
       pageSize: 10,
       page: 1,
-      filters: categories.length
-        ? [
-            filter.any(
-              'my.download.category',
-              categories.map(cat => cat.id),
-            ),
-          ]
-        : [],
-      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name', 'post_category.uid'],
+      filters:
+        categories.length || tagList.length
+          ? [
+              filter.any(
+                'my.download.category',
+                categories.map(cat => cat.id),
+              ),
+              filter.any(
+                'my.download.tags.tag',
+                tagList.map(tag => tag.id),
+              ),
+            ]
+          : [],
+      fetchLinks: [
+        'author.name',
+        'author.profile_image',
+        'author.description',
+        'author.link',
+        'post_category.name',
+        'post_category.uid',
+        'post_tags',
+      ],
       orderings: [
         {
-          field: 'my.posts.published_date',
+          field: 'my.download.published_date',
           direction: 'desc',
         },
       ],
@@ -173,11 +190,15 @@ export default async function Blog({ searchParams }: Props) {
 
   //
   let categories = typeof params.category === 'string' ? params.category.split(',') : undefined;
+  let tags = typeof params.tags === 'string' ? params.tags.split(',') : undefined;
 
   if (categories?.length === 0) {
     categories = undefined;
   }
 
+  if (tags?.length === 0) {
+    tags = undefined;
+  }
   return (
     <main className={'min-h-svh w-full overflow-hidden'}>
       <GradientBackground />
@@ -191,16 +212,16 @@ export default async function Blog({ searchParams }: Props) {
           information in easy-to-read PDFs, available anytime you need them.
         </Lead>
       </Container>
-      {page === 1 && !categories && <FeaturedPosts />}
+      {page === 1 && !categories && !tags && <FeaturedPosts />}
       <Container className="mt-24 pb-24">
-        <Categories selected={categories ? categories[0] : undefined} />
-        <Posts page={page} category={categories} />
-        <Pagination
-          slug={'downloads'}
-          contentType={'download'}
-          page={page}
-          category={categories ? categories[0] : undefined}
+        <Filter
+          url={'downloads'}
+          hasRss={false}
+          categorySelected={categories ? categories[0] : undefined}
+          tagSelected={tags ? tags[0] : undefined}
         />
+        <Posts page={page} category={categories} tags={tags} />
+        <Pagination slug={'downloads'} contentType={'download'} page={page} category={categories} tags={tags} />
       </Container>
     </main>
   );

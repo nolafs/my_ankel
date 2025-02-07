@@ -3,6 +3,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/16/solid';
 import { Link } from '@/components/ui/link';
 import React from 'react';
+import { PostTagLink } from '@/components/features/blog/postTagLink';
 
 export async function Tags({ selected, url = 'blog' }: { selected?: string; url?: string }) {
   const client = createClient();
@@ -22,6 +23,11 @@ export async function Tags({ selected, url = 'blog' }: { selected?: string; url?
   if (tags.length === 0) {
     return;
   }
+
+  //can i check current url and if category is query string is present then add it to the url
+
+  //if not then just add the tags query string
+  //if no query string then just add the tags query string
 
   return (
     <Menu>
@@ -43,13 +49,7 @@ export async function Tags({ selected, url = 'blog' }: { selected?: string; url?
         </MenuItem>
         {tags.map(tag => (
           <MenuItem key={tag.uid}>
-            <Link
-              href={`/${url}?tags=${tag.uid}`}
-              data-selected={tag.uid === selected ? true : undefined}
-              className="group grid grid-cols-[16px,1fr] items-center gap-2 rounded-md px-2 py-1 data-[focus]:bg-gray-950/5">
-              <CheckIcon className="hidden size-4 group-data-[selected]:block" />
-              <p className="col-start-2 text-sm/6 capitalize">{tag.data.name}</p>
-            </Link>
+            <PostTagLink tag={tag} selected={selected} url={url} />
           </MenuItem>
         ))}
       </MenuItems>

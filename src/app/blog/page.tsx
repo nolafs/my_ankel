@@ -209,7 +209,7 @@ export default async function Blog({ searchParams }: Props) {
       <Container className="mt-16 pb-24">
         <Filter categorySelected={categories ? categories[0] : undefined} tagSelected={tags ? tags[0] : undefined} />
         <Posts page={page} category={categories} tags={tags} />
-        <Pagination contentType={'posts'} slug={'blog'} page={page} category={categories ? categories[0] : undefined} />
+        <Pagination contentType={'posts'} slug={'blog'} page={page} category={categories} tags={tags} />
       </Container>
     </main>
   );
