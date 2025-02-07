@@ -10,7 +10,7 @@ import cn from 'clsx';
 import { sendMail, VerifyCaptcha } from '@/action';
 import ReCAPTCHA from 'react-google-recaptcha';
 
-const RECAPTCHA_ACTIVE = false;
+const RECAPTCHA_ACTIVE = true;
 
 const emailSchema = z.object({
   name: z.string().min(1, 'Please enter your name'),
@@ -20,10 +20,15 @@ const emailSchema = z.object({
   agreeToTerms: z.boolean().refine(val => val, 'You must agree to the Terms & Conditions'),
 });
 
+type item = {
+  value: string;
+  label: string;
+};
+
 export type EmailSchema = z.infer<typeof emailSchema>;
 
 interface ContactFormInputProps {
-  items: any[];
+  items: item[];
 }
 
 export function ContactForm({ items }: ContactFormInputProps) {
@@ -52,7 +57,7 @@ export function ContactForm({ items }: ContactFormInputProps) {
       formData.append('enquiryType', data.enquiryType || '');
       formData.append('agreeToTerms', data.agreeToTerms ? 'true' : 'false');
 
-      const { data: success, errors } = await sendMail(null, formData);
+      const { data: success, errors } = await sendMail(formData);
 
       if (success) {
         setIsSubmitting(false);
@@ -67,6 +72,7 @@ export function ContactForm({ items }: ContactFormInputProps) {
       }
     } catch (error) {
       setIsSubmitting(false);
+      console.error(error);
       toast.error('There was an error sending your message. Please try again later.');
       return;
     }
@@ -86,6 +92,7 @@ export function ContactForm({ items }: ContactFormInputProps) {
       }
     } catch (e) {
       setIsVerified(false);
+      console.error(e);
     }
   }
 

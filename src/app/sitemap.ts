@@ -47,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  const videoPosts = posts.map(post => {
+  const videoPosts = videos.map(post => {
     return {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/videos/${post.uid}`,
       lastModified: post.data.publishing_date?.toString() ?? new Date().toISOString(),

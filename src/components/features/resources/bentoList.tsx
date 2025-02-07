@@ -4,8 +4,6 @@ import { Heading, Subheading } from '@/components/ui/text';
 import { type PostsDocument } from '../../../../prismicio-types';
 import { asText, type KeyTextField, type Repeatable, type RichTextField, type LinkField } from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
-import { PrismicNextLink } from '@prismicio/next';
-import ArrowLongRightIcon from '@heroicons/react/24/outline/ArrowLongRightIcon';
 import React from 'react';
 import ButtonSliceVariation from '@/components/ui/button-slice-variation';
 
@@ -148,7 +146,7 @@ export function BentoSection({ dark, heading, subheading, listings, links, body 
               <PrismicRichText field={body} />
             </div>
             <div className="mt-5">
-              {links?.map((link, index) => (
+              {links?.map(link => (
                 <ButtonSliceVariation
                   key={
                     link.text

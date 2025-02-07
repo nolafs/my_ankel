@@ -4,9 +4,9 @@ import { PrismicRichText, SliceZone } from '@prismicio/react';
 
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
-import { Heading, Lead } from '@/components/ui/text';
+import { Heading } from '@/components/ui/text';
 import { Container } from '@/components/ui/container';
-import { Gradient, GradientBackground } from '@/components/ui/gradient';
+import { GradientBackground } from '@/components/ui/gradient';
 import React from 'react';
 
 type Params = { uid: string };

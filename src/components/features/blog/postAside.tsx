@@ -15,7 +15,6 @@ type PostAsideProps = {
   url?: string;
   classNames?: string;
   onNavigate?: () => void;
-  [key: string]: any; // To accept additional props
 };
 
 export const PostAside = ({
@@ -26,7 +25,6 @@ export const PostAside = ({
   url = 'blog',
   classNames,
   onNavigate,
-  ...props
 }: PostAsideProps) => {
   return (
     <Component className={cn('flex flex-wrap items-center gap-8 max-lg:justify-between', classNames)}>

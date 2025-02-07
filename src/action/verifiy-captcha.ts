@@ -1,11 +1,11 @@
-export async function VerifyCaptcha(token: string) {
+'use server';
+
+export async function VerifyCaptcha(token: string): Promise<JSON> {
   const response = await fetch(
     `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
     {
       method: 'POST',
     },
   );
-
-  const data = await response.json();
-  return data;
+  return await response.json();
 }

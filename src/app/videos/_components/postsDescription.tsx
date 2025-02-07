@@ -4,7 +4,6 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { PrismicRichText } from '@prismicio/react';
 import React from 'react';
 import { type RichTextField } from '@prismicio/client';
-import { Button } from '@/components/ui/button';
 import { ChevronsUpDown } from 'lucide-react';
 
 interface PostsDescriptionProps {

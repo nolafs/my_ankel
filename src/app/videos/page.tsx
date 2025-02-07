@@ -11,18 +11,14 @@ import { VideoCard } from '@/app/videos/_components/postCard';
 import { type ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { type OGImage } from '@/types';
 import Filter from '@/components/features/blog/postsFilter';
+import type { PostCategoryDocument, PostTagsDocument } from '../../../prismicio-types';
 
 type Props = {
   params: Promise<{ uid: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-type Params = { uid: string };
-
-export async function generateMetadata(
-  { params }: { params: Promise<Params> },
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient();
 
   const posts = await client
@@ -70,8 +66,8 @@ export async function generateMetadata(
 
 async function VideoPosts({ page, category, tags }: { page: number; category?: string[]; tags?: string[] }) {
   const client = createClient();
-  let categories: any[] = [];
-  let tagList: any[] = [];
+  let categories: PostCategoryDocument[] = [];
+  let tagList: PostTagsDocument[] = [];
 
   if (category) {
     categories = await client.getAllByUIDs('post_category', [...category]);
@@ -84,7 +80,7 @@ async function VideoPosts({ page, category, tags }: { page: number; category?: s
   const posts = await client
     .getByType('video', {
       pageSize: 9,
-      page: 1,
+      page: page,
       filters:
         categories.length || tagList.length
           ? [

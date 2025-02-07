@@ -1,18 +1,14 @@
-import { type EmbedField, type ImageField, type KeyTextField, LinkToMediaField } from '@prismicio/client';
+import { type EmbedField, type ImageField, type KeyTextField } from '@prismicio/client';
 import React from 'react';
 import { PrismicNextImage } from '@prismicio/next';
 import Image from 'next/image';
 import placeholderImage from '@/assets/placeholder.jpg';
-import { PrismicLink } from '@prismicio/react';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
 import cn from 'clsx';
-import { OverlaySheet, OverlaySheetContent, OverlaySheetTrigger } from '@/components/ui/overlay';
-import placeholder from '@/assets/placeholder.jpg';
-import { CirclePlayIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import VideoOverlay from '@/components/ui/video-overlay/video-overlay';
-import { PostCategoryDocument } from '../../../../prismicio-types';
+import type { PostCategoryDocument } from '../../../../prismicio-types';
 
 export function SliderVideoCard({
   name,

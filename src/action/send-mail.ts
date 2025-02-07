@@ -17,8 +17,7 @@ const emailSchema = z.object({
   message: z.string().min(1, 'Please enter your message'),
   agreeToTerms: z.boolean().refine(val => val, 'You must agree to the Terms & Conditions'),
 });
-
-export async function sendMail(prevState: any, formData: FormData) {
+export async function sendMail(formData: FormData) {
   const mailerSend = new MailerSend({
     apiKey: process.env.MAILERSEND_API_KEY ?? '',
   });
@@ -47,7 +46,7 @@ export async function sendMail(prevState: any, formData: FormData) {
         .setText('Message:')
         .setHtml(`${(formData.get('message') as string) ?? ''}`);
 
-      const mailer = await mailerSend.email.send(emailParams);
+      await mailerSend.email.send(emailParams);
     }
 
     return {

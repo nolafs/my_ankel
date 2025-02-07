@@ -3,7 +3,7 @@ import { type Cta } from '@/types';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
-export function CallToActionImage({ label, heading, body, links, image }: Cta) {
+export function CallToActionImage({ body, links, image }: Cta) {
   return (
     <div className="mx-2 my-24 rounded-4xl bg-gray-900 bg-[url(/dot-texture.svg)] pb-24 pt-72 lg:pt-36">
       <Container>

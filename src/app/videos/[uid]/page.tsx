@@ -1,6 +1,5 @@
 import { Button } from '@/components/button';
 import { Container } from '@/components/ui/container';
-import { Link } from '@/components/ui/link';
 import { Heading, Subheading } from '@/components/ui/text';
 import { createClient } from '@/prismicio';
 import { ChevronLeftIcon } from '@heroicons/react/16/solid';
@@ -118,7 +117,7 @@ export default async function Page({ params }: Props) {
               <div className="mt-10">
                 <Button variant="outline" href="/videos">
                   <ChevronLeftIcon className="size-4" />
-                  Back to Vblog
+                  Back to all Videos
                 </Button>
               </div>
             </div>
