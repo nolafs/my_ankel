@@ -1,8 +1,9 @@
-import { EmbedField, ImageField, KeyTextField, LinkToMediaField } from '@prismicio/client';
+import { type EmbedField, type ImageField, type KeyTextField, type LinkToMediaField } from '@prismicio/client';
 import type { RectReadOnly } from 'react-use-measure';
-import { HTMLMotionProps, motion, MotionValue, useMotionValueEvent, useSpring } from 'framer-motion';
+import { type HTMLMotionProps, motion, type MotionValue, useMotionValueEvent, useSpring } from 'framer-motion';
 import React, { useCallback, useLayoutEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
+import type { PostCategoryDocument } from '../../../../prismicio-types';
 // dynamic import
 const SliderResourceCard = dynamic(() => import('@/components/features/Slider/slider-resource-card'));
 const SliderVideoCard = dynamic(() => import('@/components/features/Slider/slider-video-card'));
@@ -20,10 +21,10 @@ export function SliderCard({
   variation,
   ...props
 }: {
-  img: ImageField;
+  img?: ImageField;
   name: KeyTextField | string;
   title: KeyTextField | string | null;
-  category?: KeyTextField | string;
+  category?: PostCategoryDocument;
   file?: LinkToMediaField;
   video?: EmbedField;
   slug?: string;

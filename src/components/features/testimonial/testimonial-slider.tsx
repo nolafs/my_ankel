@@ -1,10 +1,10 @@
 'use client';
 
-import { TestimonialType } from '@/types';
+import { type TestimonialType } from '@/types';
 import { Container } from '@/components/ui/container';
 import { StarIcon } from 'lucide-react';
 import Image from 'next/image';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextImage } from '@prismicio/next';
 import Placeholder from '@/assets/placeholder-512x512.png';

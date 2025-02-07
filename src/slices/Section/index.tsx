@@ -1,5 +1,5 @@
-import { Content, ImageField, LinkField, RichTextField } from '@prismicio/client';
-import { PrismicImage, PrismicRichText, SliceComponentProps } from '@prismicio/react';
+import { type Content, type ImageField, type LinkField, type RichTextField } from '@prismicio/client';
+import { PrismicImage, PrismicRichText, type SliceComponentProps } from '@prismicio/react';
 import { Container } from '@/components/ui/container';
 
 import { Heading, Lead, Subheading } from '@/components/ui/text';
@@ -8,7 +8,6 @@ import React from 'react';
 import { AnimatedNumber } from '@/components/ui/animated-number';
 import { PrismicNextLink } from '@prismicio/next';
 import { buttonVariants } from '@/components/ui/button';
-import ArrowLongRightIcon from '@heroicons/react/24/outline/ArrowLongRightIcon';
 import ButtonSliceVariation from '@/components/ui/button-slice-variation';
 import Animate from '@/lib/animation';
 
@@ -194,7 +193,7 @@ const Section = ({ slice }: SectionProps): JSX.Element => {
                   <PrismicRichText field={slice.primary.body} />
                 </div>
                 <div className="mt-10 flex flex-col flex-wrap gap-3 md:flex-row">
-                  {slice.primary.links?.map((link, index) => (
+                  {slice.primary.links?.map(link => (
                     <ButtonSliceVariation
                       key={
                         link.text

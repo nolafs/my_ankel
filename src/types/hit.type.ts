@@ -1,5 +1,5 @@
-import { Hit as AlgoliaHit } from 'instantsearch.js/es/types/results';
-import { BaseItem } from '@algolia/autocomplete-core';
+import { type Hit as AlgoliaHit } from 'instantsearch.js/es/types/results';
+import { type BaseItem } from '@algolia/autocomplete-core';
 export type HitProps = {
   hit: AlgoliaHit<{
     author: string;

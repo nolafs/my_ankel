@@ -12,8 +12,8 @@ import { PrismicRichText } from '@prismicio/react';
 import { asText } from '@prismicio/richtext';
 import { GradientBackground } from '@/components/ui/gradient';
 import React from 'react';
-import { ImageFieldImage, LinkField, RichTextField } from '@prismicio/client';
-import { Author } from '@/types';
+import { type ImageFieldImage, type LinkField, type RichTextField } from '@prismicio/client';
+import { type Author } from '@/types';
 import PostAside from '@/components/features/blog/postAside';
 
 type Props = {

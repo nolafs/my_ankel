@@ -1,10 +1,9 @@
-
+import { type KeyTextField, type LinkField } from '@prismicio/client';
 
 export type Link = {
-  label: any;
-  link: any;
+  label: KeyTextField | string;
+  link: LinkField;
 };
-
 
 export interface NavigationProps {
   items: Link[];

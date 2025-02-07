@@ -1,16 +1,15 @@
 import { createClient } from '@/prismicio';
-import { filter, ImageFieldImage } from '@prismicio/client';
+import { filter, type ImageFieldImage } from '@prismicio/client';
 import { Container } from '@/components/ui/container';
 import { PrismicNextImage } from '@prismicio/next';
 import dayjs from 'dayjs';
-import { PrismicLink, PrismicRichText } from '@prismicio/react';
+import { PrismicRichText } from '@prismicio/react';
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { buttonVariants } from '@/components/ui/button';
 import cn from 'clsx';
-import { Download } from 'lucide-react';
 import { DownloadLink } from '@/app/downloads/_components/downloadLink';
-import { CustomLinkToMediaField } from '@/types';
+import { type CustomLinkToMediaField } from '@/types';
 
 export async function FeaturedPosts() {
   const client = createClient();

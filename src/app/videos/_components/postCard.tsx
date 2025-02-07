@@ -5,12 +5,12 @@ import { ChevronRightIcon } from '@heroicons/react/16/solid';
 import { PrismicNextImage } from '@prismicio/next';
 import { asText } from '@prismicio/client';
 import React from 'react';
-import { VideoDocument } from '../../../../prismicio-types';
+import { type VideoDocument } from '../../../../prismicio-types';
 import Image from 'next/image';
 import placeholder from '@/assets/placeholder.jpg';
 import VideoOverlay from '@/components/ui/video-overlay/video-overlay';
 import AuthorLink from '@/components/features/author/author-link';
-import { Author } from '@/types';
+import { type Author } from '@/types';
 
 import { trimString } from '@/lib/trimString';
 

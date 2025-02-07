@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import { Roboto } from 'next/font/google';
-import { type Metadata, ResolvingMetadata } from 'next';
+import { type Metadata, type ResolvingMetadata } from 'next';
 import { PrismicPreview } from '@prismicio/next';
 import { repositoryName } from '@/prismicio';
 import CookieConsent from '@/components/features/cookie-consent/cookie-consent';
@@ -9,8 +9,8 @@ import Footer from '@/components/layouts/footer';
 import { createClient } from '@/prismicio';
 import logo from '@/assets/myankle-logo.svg';
 import NextTopLoader from 'nextjs-toploader';
-import { SocialLinkItemType } from '@/types/socialLinkItem.type';
-import { Cta, LinkPrismicType } from '@/types';
+import type { SocialLinkItemType } from '@/types/socialLinkItem.type';
+import type { Cta, LinkPrismicType } from '@/types';
 import NavigationMenuSub from '@/components/layouts/navigation/navigation-menu-sub';
 import BackToTop from '@/components/ui/BackToTop';
 import { Suspense } from 'react';
@@ -37,7 +37,7 @@ function isURL(string: string | null | undefined): boolean {
   return pattern.test(string);
 }
 
-export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata({}: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient();
   const settings = await client.getSingle('settings');
   const defaultImages = ['/share-img.jpg'];
@@ -147,7 +147,6 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           {/* Footer consent */}
           <Footer
             navigation={navigation.data}
-            logo={logo}
             secondaryNavigation={{ items: settings.data.secondary_navigation }}
             social={social}
             copyright={settings.data.copyright_line}

@@ -1,4 +1,3 @@
-import { type Content } from '@prismicio/client';
 import { PrismicRichText, type SliceComponentProps } from '@prismicio/react';
 import { Bounded } from '@/components/ui/bounded';
 import { SectionFaqs } from '@/components/features/section-faqs/section-faqs';
@@ -6,6 +5,7 @@ import { createClient } from '@/prismicio';
 import { Heading, Subheading } from '@/components/ui/text';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Container } from '@/components/ui/container';
+import { type Content } from '@prismicio/client';
 
 /**
  * Props for `Faqs`.
@@ -17,7 +17,7 @@ export type FaqsProps = SliceComponentProps<Content.FaqsSlice>;
  */
 const Faqs = async ({ slice }: FaqsProps) => {
   const client = createClient();
-  const faqItems: any[] = [];
+  const faqItems: Content.FaqDocument[] = [];
 
   if (!slice.primary.faqs.length) {
     console.log('No faqs found');
@@ -34,7 +34,7 @@ const Faqs = async ({ slice }: FaqsProps) => {
             console.log(`FAQ with id not found`);
           });
         if (faq) {
-          faqItems.push(faq);
+          faqItems.push(faq as Content.FaqDocument);
         }
       }
     }

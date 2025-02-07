@@ -1,4 +1,4 @@
-import { ImageFieldImage, LinkField, RichTextField } from '@prismicio/client';
+import { type ImageFieldImage, type LinkField, type RichTextField } from '@prismicio/client';
 
 export type Author = {
   name?: string;

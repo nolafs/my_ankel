@@ -1,12 +1,12 @@
 'use client';
 import '@algolia/autocomplete-theme-classic';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
-import { autocomplete, getAlgoliaResults, AutocompleteApi } from '@algolia/autocomplete-js';
-import { BaseItem } from '@algolia/autocomplete-core';
-import { createRoot, Root } from 'react-dom/client';
-import React, { useEffect, useRef, ReactNode, createElement, Fragment } from 'react';
+import { autocomplete, getAlgoliaResults, type AutocompleteApi } from '@algolia/autocomplete-js';
+import { type BaseItem } from '@algolia/autocomplete-core';
+import { createRoot, type Root } from 'react-dom/client';
+import React, { useEffect, useRef, type ReactNode, createElement, Fragment } from 'react';
 import { useSearch } from '@/components/features/search/search-context';
-import { HitBaseItem } from '@/types/hit.type';
+import type { HitBaseItem } from '@/types/hit.type';
 import Link from 'next/link';
 import { FileDown, Film, Newspaper, SquareArrowOutUpRight } from 'lucide-react';
 

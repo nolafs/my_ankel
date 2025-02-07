@@ -5,9 +5,9 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  NavigationBarDocumentData,
-  NavigationBarDocumentDataNavigationItemsItem,
-  NavigationElementDocument,
+  type NavigationBarDocumentData,
+  type NavigationBarDocumentDataNavigationItemsItem,
+  type NavigationElementDocument,
 } from '../../../../prismicio-types';
 import { PrismicNextLink } from '@prismicio/next';
 import { PrismicImage, PrismicRichText } from '@prismicio/react';
@@ -23,10 +23,11 @@ import {
 import { NavigationMobileMenu } from '@/components/layouts/navigation/navigation-mobile-menu';
 import cn from 'clsx';
 import { SearchButton } from '@/components/features/search/search-button';
+import type { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
 interface NavigationSubProps {
   navigation: NavigationBarDocumentData;
-  logo: React.ComponentProps<typeof Image>['src'];
+  logo: string | StaticImport;
 }
 
 export default function NavigationMenuSub({ navigation, logo }: NavigationSubProps) {
@@ -40,10 +41,10 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
     document.addEventListener('scroll', () => {
       if (window.scrollY > 5) {
         elementId?.classList.add(style.sticky!);
-        setScroll(prev => true);
+        setScroll(true);
       } else {
         elementId?.classList.remove(style.sticky!);
-        setScroll(prev => false);
+        setScroll(false);
       }
     });
 
@@ -51,10 +52,10 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
       document.removeEventListener('scroll', () => {
         if (window.scrollY > 5) {
           elementId?.classList.add(style.sticky!);
-          setScroll(prev => true);
+          setScroll(true);
         } else {
           elementId?.classList.remove(style.sticky!);
-          setScroll(prev => false);
+          setScroll(false);
         }
       });
     };

@@ -13,8 +13,8 @@ import React from 'react';
 import { GradientBackground } from '@/components/ui/gradient';
 import { trimString } from '@/lib/trimString';
 import PostAside from '@/components/features/blog/postAside';
-import { ImageFieldImage, LinkField, RichTextField } from '@prismicio/client';
-import { Author } from '@/types';
+import { type ImageFieldImage, type LinkField, type RichTextField } from '@prismicio/client';
+import { type Author } from '@/types';
 
 type Props = {
   params: Promise<{ uid: string }>;

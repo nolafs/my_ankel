@@ -1,6 +1,6 @@
 import styles from './label.module.scss';
 import cn from 'clsx';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 /* eslint-disable-next-line */
 interface LabelProps {

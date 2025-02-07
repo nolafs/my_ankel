@@ -2,9 +2,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import {
-  NavigationBarDocumentData,
-  NavigationBarDocumentDataNavigationItemsItem,
-  NavigationElementDocument,
+  type NavigationBarDocumentData,
+  type NavigationBarDocumentDataNavigationItemsItem,
+  type NavigationElementDocument,
 } from '../../../../prismicio-types';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { PrismicNextLink } from '@prismicio/next';
@@ -65,7 +65,7 @@ export const NavigationMobileMenu = ({ logo, navigation }: NavigationSubProps) =
                         </div>
                       </CollapsibleTrigger>
                       <CollapsibleContent className="mt-2 flex flex-col space-y-2">
-                        {navigationItem.data.subs.map((item, index) => (
+                        {navigationItem.data.subs.map(item => (
                           <PrismicNextLink
                             key={`main-mobile-nav-${item.label}}`}
                             field={item.link}

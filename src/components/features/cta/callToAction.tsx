@@ -1,5 +1,5 @@
 import { Subheading } from '@/components/ui/text';
-import { Cta } from '@/types';
+import { type Cta } from '@/types';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
 import cn from 'clsx';

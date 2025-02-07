@@ -6,28 +6,24 @@ import type { Metadata, ResolvingMetadata } from 'next';
 import { createClient } from '@/prismicio';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
-import { asText, filter, ImageFieldImage } from '@prismicio/client';
+import { asText, filter, type ImageFieldImage } from '@prismicio/client';
 import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
 import { Badge } from '@/components/ui/badge';
 import { FolderDownIcon } from 'lucide-react';
 import { Pagination } from '@/components/ui/pagination';
 import { DownloadLink } from '@/app/downloads/_components/downloadLink';
-import { CustomLinkToMediaField, OGImage } from '@/types';
-import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
+import { type CustomLinkToMediaField, type OGImage } from '@/types';
+import { type ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import Filter from '@/components/features/blog/postsFilter';
-
-type Params = { uid: string };
+import type { PostCategoryDocument, PostTagsDocument } from '../../../prismicio-types';
 
 type Props = {
   params: Promise<{ uid: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export async function generateMetadata(
-  { params }: { params: Promise<Params> },
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient();
 
   const posts = await client
@@ -75,8 +71,8 @@ export async function generateMetadata(
 
 async function Posts({ page, category, tags }: { page: number; category?: string[]; tags?: string[] }) {
   const client = createClient();
-  let categories: any[] = [];
-  let tagList: any[] = [];
+  let categories: PostCategoryDocument[] = [];
+  let tagList: PostTagsDocument[] = [];
   if (category) {
     categories = await client.getAllByUIDs('post_category', [...category]);
   }
@@ -88,7 +84,7 @@ async function Posts({ page, category, tags }: { page: number; category?: string
   const posts = await client
     .getByType('download', {
       pageSize: 10,
-      page: 1,
+      page: page,
       filters:
         categories.length || tagList.length
           ? [

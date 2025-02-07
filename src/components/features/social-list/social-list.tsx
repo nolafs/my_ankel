@@ -1,7 +1,7 @@
 import SocialLink from './social-link';
 import cn from 'clsx';
 
-import { SocialLinkItemType } from '@/types';
+import { type SocialLinkItemType } from '@/types';
 
 /* eslint-disable-next-line */
 export interface SocialListProps {

@@ -6,31 +6,26 @@ import { ChevronRightIcon } from '@heroicons/react/16/solid';
 import dayjs from 'dayjs';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { createClient } from '@/prismicio';
-import { PrismicNextImage } from '@prismicio/next';
+
 import { PrismicRichText } from '@prismicio/react';
-import { asText, filter, ImageFieldImage } from '@prismicio/client';
+import { asText, filter } from '@prismicio/client';
 import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
-import { Categories } from '../../components/features/blog/postsCategories';
 
 import { Badge } from '@/components/ui/badge';
 import { Pagination } from '@/components/ui/pagination';
-import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
-import { Author, OGImage } from '@/types';
+import type { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
+import type { Author, OGImage } from '@/types';
 import Filter from '../../components/features/blog/postsFilter';
 import AuthorLink from '@/components/features/author/author-link';
+import { type PostCategoryDocument, type PostTagsDocument } from '../../../prismicio-types';
 
 type Props = {
   params: Promise<{ uid: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-type Params = { uid: string };
-
-export async function generateMetadata(
-  { params }: { params: Promise<Params> },
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient();
 
   const posts = await client
@@ -76,8 +71,8 @@ export async function generateMetadata(
 
 async function Posts({ page, category, tags }: { page: number; category?: string[]; tags?: string[] }) {
   const client = createClient();
-  let categories: any[] = [];
-  let tagList: any[] = [];
+  let categories: PostCategoryDocument[] = [];
+  let tagList: PostTagsDocument[] = [];
 
   if (category) {
     categories = await client.getAllByUIDs('post_category', [...category]);
@@ -90,7 +85,7 @@ async function Posts({ page, category, tags }: { page: number; category?: string
   const posts = await client
     .getByType('posts', {
       pageSize: 10,
-      page: 1,
+      page: page,
       filters:
         categories.length || tagList.length
           ? [

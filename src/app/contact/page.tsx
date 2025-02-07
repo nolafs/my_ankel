@@ -2,23 +2,19 @@ import { createClient } from '@/prismicio';
 import { Heading, Lead, Subheading } from '@/components/ui/text';
 import React from 'react';
 import { GradientBackground } from '@/components/ui/gradient';
-import { LinkPrismicType, OGImage, SocialLinkItemType } from '@/types';
+import { type LinkPrismicType, type OGImage, type SocialLinkItemType } from '@/types';
 import { notFound } from 'next/navigation';
 import type { Metadata, ResolvingMetadata } from 'next';
-import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
+import { type ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { LucideMailOpen, PhoneCallIcon, Share2Icon } from 'lucide-react';
 import SocialList from '@/components/features/social-list/social-list';
 import { PrismicImage, SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 import ContactForm from '@/components/features/contact-form/contact-form';
 import { Container } from '@/components/ui/container';
-import { ContactDocument, SettingsDocument } from '../../../prismicio-types';
+import { type ContactDocument, type SettingsDocument } from '../../../prismicio-types';
 
-type Params = { uid: string };
-export async function generateMetadata(
-  { params }: { params: Promise<Params> },
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle('contact').catch(() => notFound());
 

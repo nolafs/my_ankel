@@ -1,4 +1,4 @@
-import { RichTextField, KeyTextField, ImageField } from '@prismicio/client';
+import { type RichTextField, type KeyTextField, type ImageField } from '@prismicio/client';
 
 export type TestimonialType = {
   body?: RichTextField;

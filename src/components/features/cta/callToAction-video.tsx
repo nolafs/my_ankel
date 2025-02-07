@@ -5,7 +5,7 @@ import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
 import ArrowLongRightIcon from '@heroicons/react/24/outline/ArrowLongRightIcon';
 import React from 'react';
-import { Repeatable, RichTextField, LinkField, KeyTextField, EmbedField } from '@prismicio/client';
+import { type Repeatable, type RichTextField, type LinkField, type KeyTextField, type EmbedField } from '@prismicio/client';
 
 interface CallToActionVideoProps {
   heading: KeyTextField | string;

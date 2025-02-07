@@ -1,7 +1,7 @@
 import { Container } from '@/components/ui/container';
 import { Gradient } from '@/components/ui/gradient';
 import cn from 'clsx';
-import { ImageField, KeyTextField, LinkField } from '@prismicio/client';
+import { type ImageField, type KeyTextField, type LinkField } from '@prismicio/client';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { buttonVariants } from '@/components/ui/button';
 import { SearchButtonCta } from '@/components/features/search/search-button-cta';

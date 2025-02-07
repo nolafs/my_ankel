@@ -1,6 +1,6 @@
 'use client';
-import { PostsDocumentData, VideoDocumentData } from '../../../../prismicio-types';
-import { Author } from '@/types';
+import { type PostsDocumentData, type VideoDocumentData } from '../../../../prismicio-types';
+import { type Author } from '@/types';
 import cn from 'clsx';
 import { Link } from '@/components/ui/link';
 import AuthorLink from '@/components/features/author/author-link';

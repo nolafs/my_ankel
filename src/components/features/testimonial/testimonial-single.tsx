@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/container';
-import { TestimonialType } from '@/types';
+import { type TestimonialType } from '@/types';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 

@@ -1,4 +1,4 @@
-import { LinkToMediaField } from '@prismicio/client';
+import { type LinkToMediaField } from '@prismicio/client';
 
 export type LinkPrismicType = {
   link_type: string;

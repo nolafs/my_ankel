@@ -1,5 +1,5 @@
-import { Content } from '@prismicio/client';
-import { SliceComponentProps } from '@prismicio/react';
+import { type Content } from '@prismicio/client';
+import { type SliceComponentProps } from '@prismicio/react';
 import { Bounded } from '@/components/ui/bounded';
 import { CallToAction as CallToActionComponent } from '@/components/features/cta/callToAction';
 import { CallToActionImage } from '@/components/features/cta/callToAction-Image';

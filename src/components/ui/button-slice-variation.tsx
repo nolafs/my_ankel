@@ -1,9 +1,9 @@
-import { LinkField } from '@prismicio/client';
+import { type LinkField } from '@prismicio/client';
 import { PrismicNextLink } from '@prismicio/next';
 import ArrowLongRightIcon from '@heroicons/react/24/outline/ArrowLongRightIcon';
 import cn from 'clsx';
 import { buttonVariants } from '@/components/ui/button';
-import React, { Key } from 'react';
+import React from 'react';
 
 export const ButtonSliceVariation = ({ link }: { link: LinkField }) => {
   // create key from link name

@@ -1,5 +1,5 @@
-import { asText, Content } from '@prismicio/client';
-import { SliceComponentProps } from '@prismicio/react';
+import { type Content } from '@prismicio/client';
+import { type SliceComponentProps } from '@prismicio/react';
 import { Hero as HeroComponent } from '@/components/features/hero/hero';
 import { Heading, Lead, Subheading } from '@/components/ui/text';
 import React from 'react';

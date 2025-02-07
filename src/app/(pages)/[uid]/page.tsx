@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation';
 import { SliceZone } from '@prismicio/react';
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
-import { OGImage } from '@/types';
-import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
+import type { OGImage } from '@/types';
+import type { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import { GradientBackground } from '@/components/ui/gradient';
 import React from 'react';
 

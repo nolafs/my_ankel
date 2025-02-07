@@ -1,8 +1,8 @@
-import { Content } from '@prismicio/client';
-import { SliceComponentProps } from '@prismicio/react';
+import { type Content } from '@prismicio/client';
+import { type SliceComponentProps } from '@prismicio/react';
 import { TestimonialSingle } from '@/components/features/testimonial/testimonial-single';
 import { TestimonialSlider } from '@/components/features/testimonial/testimonial-slider';
-import { TestimonialType as TestimonialType } from '@/types';
+import { type TestimonialType as TestimonialType } from '@/types';
 
 /**
  * Props for `Testimonial`.

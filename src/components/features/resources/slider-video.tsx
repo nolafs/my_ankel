@@ -1,11 +1,12 @@
 import React from 'react';
-import { Repeatable, RichTextField, LinkField, KeyTextField } from '@prismicio/client';
+import { type Repeatable, type RichTextField, type LinkField, type KeyTextField } from '@prismicio/client';
 import { SliderResources } from '@/components/features/Slider/slider-resources';
+import type { VideoDocument } from '../../../../prismicio-types';
 
 interface SliderVideoProps {
   heading: KeyTextField | string;
   subheading: KeyTextField | string;
-  listings: any[];
+  listings: VideoDocument[];
   body: RichTextField;
   links: Repeatable<LinkField>;
 }

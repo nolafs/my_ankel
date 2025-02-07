@@ -1,4 +1,4 @@
-import { EmbedField, ImageField, KeyTextField, LinkToMediaField } from '@prismicio/client';
+import { type EmbedField, type ImageField, type KeyTextField, LinkToMediaField } from '@prismicio/client';
 import React from 'react';
 import { PrismicNextImage } from '@prismicio/next';
 import Image from 'next/image';
@@ -12,6 +12,7 @@ import placeholder from '@/assets/placeholder.jpg';
 import { CirclePlayIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import VideoOverlay from '@/components/ui/video-overlay/video-overlay';
+import { PostCategoryDocument } from '../../../../prismicio-types';
 
 export function SliderVideoCard({
   name,
@@ -21,16 +22,16 @@ export function SliderVideoCard({
   slug,
   category,
 }: {
-  poster: ImageField;
+  poster?: ImageField;
   name: KeyTextField | string;
   title: KeyTextField | string | null;
   video?: EmbedField;
-  category?: any;
+  category?: PostCategoryDocument;
   slug?: string;
 }) {
   return (
     <>
-      {poster.url ? (
+      {poster?.url ? (
         <PrismicNextImage
           field={poster}
           fallbackAlt={name ? '' : undefined}

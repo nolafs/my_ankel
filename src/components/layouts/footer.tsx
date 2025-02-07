@@ -1,4 +1,4 @@
-import { Cta, NavigationProps, SocialLinkItemType } from '@/types';
+import type { Cta, NavigationProps, SocialLinkItemType } from '@/types';
 import { PrismicNextLink } from '@prismicio/next';
 import React from 'react';
 
@@ -6,9 +6,7 @@ import Link from 'next/link';
 
 import SocialList from '../features/social-list/social-list';
 import { Container } from '@/components/ui/container';
-import { NavigationBarDocumentData, NavigationElementDocument } from '../../../prismicio-types';
-
-import { StaticImageData } from 'next/image';
+import type { NavigationBarDocumentData, NavigationElementDocument } from '../../../prismicio-types';
 import { CallToAction } from '@/components/features/cta/callToAction';
 import { BorderRow } from '@/components/ui/border-row';
 
@@ -16,12 +14,11 @@ export interface FooterProps {
   navigation: NavigationBarDocumentData;
   secondaryNavigation?: NavigationProps;
   social?: SocialLinkItemType[] | undefined;
-  logo: StaticImageData | string;
   copyright: string | undefined | null;
   footerCta?: Cta | undefined;
 }
 
-export function Footer({ navigation, logo, footerCta, secondaryNavigation, social, copyright }: FooterProps) {
+export function Footer({ navigation, footerCta, secondaryNavigation, social, copyright }: FooterProps) {
   const copyRightDate = new Date().getFullYear();
   return (
     <footer>
@@ -53,7 +50,7 @@ export function Footer({ navigation, logo, footerCta, secondaryNavigation, socia
                   </div>
                 </div>
                 <div className="col-span-2 grid grid-cols-2 gap-x-8 gap-y-12 lg:col-span-4 lg:grid-cols-subgrid">
-                  {navigation?.navigation_items.map((item, idx) => {
+                  {navigation?.navigation_items.map(item => {
                     const navigationItem = item.navigation_item as unknown as NavigationElementDocument;
                     return (
                       <div key={navigationItem.data.label}>

@@ -2,7 +2,7 @@
 import SocialIcons from './social-icons';
 import cn from 'clsx';
 
-import { LinkPrismicType, SocialLinkItemType } from '@/types';
+import { type LinkPrismicType, type SocialLinkItemType } from '@/types';
 import ButtonSimple from '@/components/ui/button-simple';
 
 interface SocialLinkProps {
@@ -19,7 +19,7 @@ export const SocialLink = ({ item, className, icons, iconsClass }: SocialLinkPro
     }
 
     const userAgent = navigator.userAgent || navigator.vendor;
-    let appUrl: any = link.url; // Default to the provided URL as a fallback.
+    let appUrl: string = link.url; // Default to the provided URL as a fallback.
 
     if (/iPad|iPhone|iPod|android/i.test(userAgent)) {
       // Detect the platform based on the URL

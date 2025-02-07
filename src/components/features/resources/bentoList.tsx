@@ -1,8 +1,8 @@
 import { BentoCard } from '@/components/features/resources/bentoCard';
 import { Container } from '@/components/ui/container';
 import { Heading, Subheading } from '@/components/ui/text';
-import { PostsDocument } from '../../../../prismicio-types';
-import { asText, KeyTextField, Repeatable, RichTextField, LinkField } from '@prismicio/client';
+import { type PostsDocument } from '../../../../prismicio-types';
+import { asText, type KeyTextField, type Repeatable, type RichTextField, type LinkField } from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
 import ArrowLongRightIcon from '@heroicons/react/24/outline/ArrowLongRightIcon';

@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { OverlaySheet, OverlaySheetContent, OverlaySheetTrigger } from '@/components/ui/overlay';
 import { CirclePlayIcon } from 'lucide-react';
-import { asText, EmbedField } from '@prismicio/client';
-import { VideoDocumentData } from '../../../../prismicio-types';
+import { asText, type EmbedField } from '@prismicio/client';
+import { type VideoDocumentData } from '../../../../prismicio-types';
 import PostAside from '@/components/features/blog/postAside';
 import { trimString } from '@/lib/trimString';
 import VideoInfo from '@/components/ui/video-overlay/video-info';

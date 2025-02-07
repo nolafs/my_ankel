@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/container';
-import { Cta } from '@/types';
+import { type Cta } from '@/types';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 

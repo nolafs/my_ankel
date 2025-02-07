@@ -1,4 +1,4 @@
-import { ImageField, KeyTextField, LinkToMediaField } from '@prismicio/client';
+import { type ImageField, type KeyTextField, type LinkToMediaField } from '@prismicio/client';
 import React from 'react';
 import { PrismicNextImage } from '@prismicio/next';
 import Image from 'next/image';
@@ -12,14 +12,14 @@ export function SliderResourceCard({
   img,
   file,
 }: {
-  img: ImageField;
+  img?: ImageField;
   name: KeyTextField | string;
   title: KeyTextField | string | null;
   file?: LinkToMediaField;
 }) {
   return (
     <>
-      {img.url ? (
+      {img?.url ? (
         <PrismicNextImage
           field={img}
           fallbackAlt={name ? '' : undefined}

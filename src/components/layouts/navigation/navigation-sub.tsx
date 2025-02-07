@@ -18,9 +18,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Search } from '@/components/features/search/search';
 import {
-  NavigationBarDocumentData,
-  NavigationBarDocumentDataNavigationItemsItem,
-  NavigationElementDocument,
+  type NavigationBarDocumentData,
+  type NavigationBarDocumentDataNavigationItemsItem,
+  type NavigationElementDocument,
 } from '../../../../prismicio-types';
 import { PrismicNextLink } from '@prismicio/next';
 import { PrismicImage, PrismicRichText } from '@prismicio/react';
@@ -33,8 +33,6 @@ interface NavigationSubProps {
 export default function NavigationSub({ navigation, logo }: NavigationSubProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openPopover, setOpenPopover] = useState<string | null>(null);
-
-  console.log(navigation);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;

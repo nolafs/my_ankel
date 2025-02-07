@@ -5,6 +5,7 @@ import { Link } from '@/components/ui/link';
 import { clsx } from 'clsx';
 import React from 'react';
 import { filter } from '@prismicio/client';
+import type { PostCategoryDocument, PostTagsDocument } from '../../../prismicio-types';
 
 type PaginationData = {
   page: number;
@@ -36,8 +37,8 @@ export async function Pagination({
 
   const client = createClient();
 
-  let categories: any[] = [];
-  let tagList: any[] = [];
+  let categories: PostCategoryDocument[] = [];
+  let tagList: PostTagsDocument[] = [];
 
   if (category) {
     categories = await client.getAllByUIDs('post_category', [...category]);

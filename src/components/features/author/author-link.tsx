@@ -3,7 +3,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/h
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicLink, PrismicRichText } from '@prismicio/react';
 import ArrowLongRightIcon from '@heroicons/react/24/outline/ArrowLongRightIcon';
-import { Author } from '@/types';
+import { type Author } from '@/types';
 
 interface AuthorLinkProps {
   author: Author;

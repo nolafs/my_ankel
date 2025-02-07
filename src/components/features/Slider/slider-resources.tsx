@@ -2,24 +2,31 @@
 
 import { Container } from '@/components/ui/container';
 import { Heading, Subheading } from '@/components/ui/text';
-import { ArrowLongRightIcon } from '@heroicons/react/20/solid';
+
 import { clsx } from 'clsx';
 import { useMotionValueEvent, useScroll } from 'framer-motion';
 import React, { useRef, useState } from 'react';
 import useMeasure from 'react-use-measure';
-import { KeyTextField, LinkField, Repeatable, RichTextField } from '@prismicio/client';
+import { type KeyTextField, type LinkField, type Repeatable, type RichTextField } from '@prismicio/client';
 import { PrismicRichText } from 'node_modules/@prismicio/react/dist/PrismicRichText';
-import { AuthorDocumentData } from '../../../../prismicio-types';
+import {
+  type AuthorDocumentData,
+  type VideoDocument,
+  type DownloadDocument,
+  type PostCategoryDocument,
+} from '../../../../prismicio-types';
 import SliderCard from './slider-card';
 import ButtonSliceVariation from '@/components/ui/button-slice-variation';
 import { Button } from '@/components/ui/button';
+
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 export interface SliderResourcesProps {
   heading: KeyTextField | string | null;
   subheading: KeyTextField | string;
   body: RichTextField;
   links: Repeatable<LinkField>;
-  listings: any[];
+  listings: VideoDocument[] | DownloadDocument[];
   variation?: 'resource' | 'video';
 }
 
@@ -75,11 +82,15 @@ export function SliderResources({
                 ? ((item.data.author?.data as AuthorDocumentData).name ?? 'My Ankle')
                 : 'My Ankle'
             }
-            img={item.data.feature_image || item.data.poster}
-            file={item?.data?.file || null}
-            video={item?.data.video_url || null}
+            img={
+              ('feature_image' in item.data && item.data.feature_image) ||
+              ('poster' in item.data && item.data.poster) ||
+              undefined
+            }
+            file={('file' in item.data && item?.data?.file) || undefined}
+            video={'video_url' in item.data ? item.data.video_url || undefined : undefined}
             slug={item.uid}
-            category={item.data.category}
+            category={item.data.category as unknown as PostCategoryDocument}
             bounds={bounds}
             scrollX={scrollX}
             variation={variation}
@@ -107,19 +118,27 @@ export function SliderResources({
             </div>
           </div>
           <div className="hidden sm:flex sm:gap-2">
-            {listings.map(({ name }, idx) => (
-              <Button
-                key={`${String(name).replace(' ', '-')}-${idx}`}
-                onClick={() => scrollTo(idx)}
-                size={'icon'}
-                data-active={activeIndex === idx ? true : undefined}
-                aria-label={`Scroll to from ${name}`}
-                className={clsx(
-                  'size-2.5 rounded-full border border-transparent bg-gray-300 transition',
-                  'data-[active]:bg-gray-400 data-[hover]:bg-gray-400',
-                  'forced-colors:data-[active]:bg-[Highlight] forced-colors:data-[focus]:outline-offset-4',
-                )}
-              />
+            {listings.map((item, idx) => (
+              <TooltipProvider key={`${String(item.data.name).replace(' ', '-')}-${idx}`}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={() => scrollTo(idx)}
+                      size={'icon'}
+                      data-active={activeIndex === idx ? true : undefined}
+                      aria-label={`Scroll to from ${item.data.name}`}
+                      className={clsx(
+                        'size-2.5 rounded-full border border-transparent bg-gray-300 transition',
+                        'data-[active]:bg-gray-400 data-[hover]:bg-gray-400',
+                        'forced-colors:data-[active]:bg-[Highlight] forced-colors:data-[focus]:outline-offset-4',
+                      )}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{item.data.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             ))}
           </div>
         </div>

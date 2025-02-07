@@ -3,7 +3,7 @@
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { PrismicRichText } from '@prismicio/react';
 import React from 'react';
-import { RichTextField } from '@prismicio/client';
+import { type RichTextField } from '@prismicio/client';
 import { Button } from '@/components/ui/button';
 import { ChevronsUpDown } from 'lucide-react';
 

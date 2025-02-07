@@ -1,5 +1,5 @@
 import { createClient } from '@/prismicio';
-import { filter, ImageFieldImage } from '@prismicio/client';
+import { filter, type ImageFieldImage } from '@prismicio/client';
 import { Container } from '@/components/ui/container';
 import { PrismicNextImage } from '@prismicio/next';
 import dayjs from 'dayjs';

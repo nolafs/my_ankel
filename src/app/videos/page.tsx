@@ -8,8 +8,8 @@ import React from 'react';
 import { FeaturedPosts } from './_components/postsFeatured';
 import { Pagination } from '@/components/ui/pagination';
 import { VideoCard } from '@/app/videos/_components/postCard';
-import { ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
-import { OGImage } from '@/types';
+import { type ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
+import { type OGImage } from '@/types';
 import Filter from '@/components/features/blog/postsFilter';
 
 type Props = {

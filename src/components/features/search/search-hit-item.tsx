@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { FileDown, Film, Newspaper, SquareArrowOutUpRight } from 'lucide-react';
 import { Highlight } from 'react-instantsearch';
-import { HitProps } from '@/types';
+import { type HitProps } from '@/types';
 
 export const SearchHitItem = ({ hit }: HitProps) => {
   return (

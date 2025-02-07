@@ -1,8 +1,8 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ContactFormInput } from '@/types';
+import { type ContactFormInput } from '@/types';
 import React, { useRef, useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, type SubmitHandler } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { Button } from '@/components/ui/button';
 import { z } from 'zod';
