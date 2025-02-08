@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SearchInput } from '@/components/features/search/search-input';
 import { useSearch } from '@/components/features/search/search-context';
+import { Button } from '@/components/ui/button';
 
 export function SearchOverlay() {
   const { openSearchDialog, setSearchDialog } = useSearch();
@@ -45,9 +46,9 @@ export function SearchOverlay() {
           )}
           onClick={e => e.stopPropagation()} // ✅ Prevent closing when clicking inside
         >
-          <button onClick={handleClose} className="absolute right-4 top-4 text-gray-600 hover:text-gray-900">
-            <X className="h-6 w-6" />
-          </button>
+          <Button onClick={handleClose} className="absolute right-4 top-4" variant={'default'} size={'icon'}>
+            <X className="size-8" />
+          </Button>
           <div className="relative w-full max-w-3xl">
             {/* Close Button */}
 
