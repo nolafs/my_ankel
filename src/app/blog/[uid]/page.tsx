@@ -84,8 +84,10 @@ export default async function Page({ params }: Props) {
 
   return (
     <main className={'w-full'}>
-      <Container className="mb-16 mt-24 md:mb-24 md:mt-40">
+      <div className={'absolute top-0 h-full w-full overflow-x-hidden'}>
         <GradientBackground />
+      </div>
+      <Container className="mb-16 mt-24 md:mb-24 md:mt-40">
         <div className={'relative z-30'}>
           <Subheading className="mt-16">{dayjs(post.publishing_date).format('dddd, MMMM D, YYYY')}</Subheading>
           <Heading as="h1" className="mt-2 max-w-6xl">

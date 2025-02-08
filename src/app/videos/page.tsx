@@ -130,7 +130,7 @@ async function VideoPosts({ page, category, tags }: { page: number; category?: s
   }
 
   return (
-    <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+    <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {posts.map(post => (
         <VideoCard video={post} key={post.uid} />
       ))}
