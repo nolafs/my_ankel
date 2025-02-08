@@ -39,7 +39,7 @@ export function Search() {
       </OverlaySheetTrigger>
       <OverlaySheetContent className={'flex w-full flex-col items-center justify-center'}>
         <div className={'relative isolate'}>
-          <SearchInput />
+          <SearchInput isSearchPage={false} />
         </div>
       </OverlaySheetContent>
     </OverlaySheet>

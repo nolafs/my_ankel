@@ -16,6 +16,7 @@ import BackToTop from '@/components/ui/BackToTop';
 import { Suspense } from 'react';
 import { SearchProvider } from '@/components/features/search/search-context';
 import { AutoComplete } from '@/components/features/search/autocomplete';
+import { SearchOverlay } from '@/components/features/search/search-overlay';
 
 const roboto = Roboto({
   weight: ['400', '500', '700', '900'],
@@ -161,7 +162,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
           <PrismicPreview repositoryName={repositoryName} />
 
-          <AutoComplete />
+          <SearchOverlay />
         </SearchProvider>
       </body>
 
