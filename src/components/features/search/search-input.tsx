@@ -6,7 +6,7 @@ import SearchHitItem from '@/components/features/search/search-hit-item';
 import { InstantSearchNext } from 'react-instantsearch-nextjs';
 import { Subheading } from '@/components/ui/text';
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import cn from 'clsx';
 import { useSearch } from '@/components/features/search/search-context';
@@ -14,8 +14,8 @@ import { FacetDropdown } from '@/lib/FacetDropdown';
 
 export function SearchInput({ isSearchPage = true }: { isSearchPage: boolean }) {
   const router = useRouter();
-  const [query, setQuery] = useState('');
   const { openSearchDialog, setSearchDialog } = useSearch();
+  const searchParams = useSearchParams();
 
   const closeOnChange = () => window.innerWidth > 375;
 
@@ -51,11 +51,14 @@ export function SearchInput({ isSearchPage = true }: { isSearchPage: boolean }) 
             submit: 'absolute z-40  right-2 text-gray-500 hover:text-gray-700',
             reset: 'absolute z-40  right-10 text-gray-500 hover:text-gray-700',
           }}
-          onSubmit={async event => {
-            console.log('Search query:', query);
+          onSubmit={event => {
             if (!isSearchPage) {
-              event.preventDefault(); // ✅ Prevents default form submission
-              router.push(`/search?q=${encodeURIComponent(query)}`);
+              console.log('Search submitted:', searchParams.getAll('blog[query]'));
+              //router.push(`/search`);
+              //take curren query params and add route
+              const query = searchParams.getAll('blog[query]')?.join(' ');
+              router.push(`/search/?blog%5Bquery%5D=${query}`);
+
               setSearchDialog(false);
             }
           }}
@@ -71,10 +74,12 @@ export function SearchInput({ isSearchPage = true }: { isSearchPage: boolean }) 
             }}
           />
         </div>
-        <Subheading as="div" className="mt-16 flex items-center justify-between md:mt-10 lg:mt-16">
+        <Subheading
+          as="div"
+          className="mt-16 flex flex-col items-start justify-between gap-3 md:mt-10 md:flex-row lg:mt-16">
           <h3>Search Results</h3>
 
-          <div className={'relative z-20 flex flex-wrap gap-2'}>
+          <div className={'relative z-20 order-1 flex flex-wrap gap-2 md:order-2'}>
             <FacetDropdown closeOnChange={closeOnChange} classNames={{ root: 'my-CategoryDropdown' }}>
               <RefinementList attribute="category" searchable={true} searchablePlaceholder="Search..." />
             </FacetDropdown>

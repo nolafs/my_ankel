@@ -49,7 +49,7 @@ export function SearchOverlay() {
           <Button onClick={handleClose} className="absolute right-4 top-4" variant={'default'} size={'icon'}>
             <X className="size-8" />
           </Button>
-          <div className="relative w-full max-w-3xl">
+          <div className="py-y relative w-full max-w-3xl px-5">
             {/* Close Button */}
 
             {/* Search Input */}
