@@ -1,7 +1,16 @@
 'use client';
 import 'instantsearch.css/themes/satellite-min.css';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
-import { Hits, SearchBox, Configure, Pagination, RefinementList, CurrentRefinements } from 'react-instantsearch';
+import {
+  Hits,
+  SearchBox,
+  Configure,
+  Pagination,
+  RefinementList,
+  CurrentRefinements,
+  PoweredBy,
+  Stats,
+} from 'react-instantsearch';
 import SearchHitItem from '@/components/features/search/search-hit-item';
 import { InstantSearchNext } from 'react-instantsearch-nextjs';
 import { Subheading } from '@/components/ui/text';
@@ -70,7 +79,14 @@ export function SearchInput({ isSearchPage = true }: { isSearchPage: boolean }) 
                 }
               }}
             />
-
+            <div className={'mt-2 flex justify-between px-5'}>
+              <div className={'text-[10px] text-gray-500'}>
+                <Stats />
+              </div>
+              <div className={'origin-right scale-50'}>
+                <PoweredBy />
+              </div>
+            </div>
             <div className={'mt-5 hidden gap-2 lg:flex'}>
               <CurrentRefinements
                 classNames={{
