@@ -48,9 +48,9 @@ export default async function Page() {
           resources. Stay informed and take charge of your ankle health journey.
         </Lead>
       </Container>
-      <Container className="mb-24 mt-10 md:mb-24 md:mt-16">
+      <div className="mb-24 mt-10 md:mb-24 md:mt-16">
         <SearchInput isSearchPage={true} />
-      </Container>
+      </div>
     </main>
   );
 }

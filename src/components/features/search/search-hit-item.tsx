@@ -26,12 +26,12 @@ export const SearchHitItem = ({ hit }: HitProps) => {
   return (
     <div
       className={
-        'group relative flex w-full flex-col items-start justify-between space-y-3 rounded-md p-2 hover:bg-gray-200/10 md:space-x-3 lg:flex-row'
+        'group relative flex w-full flex-col items-start justify-between space-y-3 rounded-md px-2 py-2 hover:bg-gray-200/5 md:space-x-3 lg:flex-row'
       }>
       <div className={'relative'}>
         {imageUrl ? (
           <div className={'relative w-full md:w-[200px]'}>
-            <div className={'absolute left-2 top-2 h-fit w-fit rounded-md bg-accent/60 p-2'}>
+            <div className={'relative h-fit w-fit rounded-md bg-accent/60 p-2 md:absolute md:left-2 md:top-2'}>
               {hit.type === 'video' && <Film className={'h-5 w-5 text-white'} />}
               {hit.type === 'article' && <Newspaper className={'h-5 w-5 text-white'} />}
               {hit.type === 'download' && <FileDown className={'h-5 w-5 text-white'} />}
@@ -42,14 +42,14 @@ export const SearchHitItem = ({ hit }: HitProps) => {
               alt={hit.title}
               width={300}
               height={169}
-              className={'aspect-[16/9] h-full w-full rounded-md object-cover object-center'}
+              className={'hidden aspect-[16/9] h-full w-full rounded-md object-cover object-center sm:hidden md:block'}
             />
           </div>
         ) : (
-          <div className={'h-fit w-fit rounded-md bg-accent/60 p-3'}>
-            {hit.type === 'video' && <Film className={'h-7 w-7 text-white'} />}
-            {hit.type === 'article' && <Newspaper className={'h-7 w-7 text-white'} />}
-            {hit.type === 'download' && <FileDown className={'h-7 w-7 text-white'} />}
+          <div className={'h-fit w-fit rounded-md bg-accent/60 p-2 md:p-3'}>
+            {hit.type === 'video' && <Film className={'h-5 w-5 text-white sm:h-5 sm:w-5 md:h-7 md:w-7'} />}
+            {hit.type === 'article' && <Newspaper className={'h-5 w-5 text-white md:h-7 md:w-7'} />}
+            {hit.type === 'download' && <FileDown className={'h-5 w-5 text-white md:h-7 md:w-7'} />}
           </div>
         )}
       </div>
@@ -70,7 +70,7 @@ export const SearchHitItem = ({ hit }: HitProps) => {
         </div>
       </div>
       <div>
-        <Link href={getUrl(hit)}>
+        <Link href={getUrl(hit)} className={''}>
           <span className="absolute inset-0" />
           {hit.type !== 'download' ? (
             <SquareArrowOutUpRight className={'h-5 w-5 text-black group-hover:text-pink-600'} />

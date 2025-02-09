@@ -21,7 +21,7 @@ export async function POST() {
 
     // Get all articles from Prismic
     const articles: PostsDocument[] = await client.getAllByType('posts', {
-      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name', 'post_tags.tag, post_tags.tag.name'],
+      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name', 'post_tags, post_tags.name'],
     });
 
     // Map articles to Algolia records
@@ -57,7 +57,7 @@ export async function POST() {
 
     // Get all articles from Prismic
     const video = await client.getAllByType('video', {
-      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name', 'post_tags.tag, post_tags.tag.name'],
+      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name', 'post_tags', 'post_tags.name'],
     });
 
     // Map articles to Algolia records
@@ -82,6 +82,8 @@ export async function POST() {
         const slug = item && 'tag' in item && (item.tag as { uid: string }).uid;
         const name = item && 'tag' in item && (item.tag as { data: { name: string } }).data?.name;
 
+        console.log(item);
+
         return {
           slug,
           name,
@@ -98,7 +100,7 @@ export async function POST() {
 
     // Get all articles from Prismic
     const downloads = await client.getAllByType('download', {
-      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name', 'post_tags.tag, post_tags.tag.name'],
+      fetchLinks: ['author.name', 'author.profile_image', 'post_category.name', 'post_tags', 'post_tags.name'],
     });
 
     // Map articles to Algolia records
