@@ -102,11 +102,8 @@ export function SearchInput({ isSearchPage = true }: { isSearchPage: boolean }) 
             </div>
             <Subheading
               as="div"
-              className={cn(
-                'flex flex-wrap items-center justify-between gap-2 md:mt-10',
-                isSearchPage ? 'mt-16' : 'mt-5',
-              )}>
-              <h3>Search Results</h3>
+              className={cn('flex flex-wrap items-center justify-between gap-2', isSearchPage ? 'mt-16' : 'mt-5')}>
+              <h3 className={'tracking-tight md:tracking-widest'}>Search Results</h3>
 
               <div className={'relative z-20 flex flex-wrap gap-2'}>
                 <FacetDropdown closeOnChange={closeOnChange} classNames={{ root: 'my-CategoryDropdown' }}>

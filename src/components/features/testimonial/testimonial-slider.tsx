@@ -17,8 +17,6 @@ interface TestimonialsProps {
 }
 
 const TestimonialItem = ({ name, position, body, image, stars }: TestimonialType) => {
-  console.log({ name, position, body, image, stars });
-
   const renderStars = (stars = 0) => {
     const starsArray = Array.from({ length: 5 }, (_, i) => i + 1);
 
