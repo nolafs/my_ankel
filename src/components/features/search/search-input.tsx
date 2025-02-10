@@ -56,13 +56,15 @@ export function SearchInput({ isSearchPage = true }: { isSearchPage: boolean }) 
         )}>
         <div
           className={
-            !isSearchPage ? 'sticky top-0 z-20 shrink border-b border-gray-200 bg-white/60 pt-24 backdrop-blur-sm' : ''
+            !isSearchPage
+              ? 'sticky top-0 z-20 shrink border-b border-gray-200 bg-white/60 pt-16 backdrop-blur-sm sm:pt-12 md:pt-24'
+              : ''
           }>
           <Container>
             <SearchBox
-              placeholder="Search for resources"
+              placeholder="Search resources"
               classNames={{
-                root: 'relative w-full px-4 !py-3 rounded-full  glass1 text-base font-medium text-gray-950 shadow-md !ring-1 !ring-[#48b2e0]/15 after:absolute after:!inset-0 after:rounded-full after:!shadow-[inset_0_0_2px_1px_#ffffff4d]',
+                root: 'relative w-full px-4 !py-2 md:!py-3 rounded-full  glass1 text-base font-medium text-gray-950 shadow-md !ring-1 !ring-[#48b2e0]/15 after:absolute after:!inset-0 after:rounded-full after:!shadow-[inset_0_0_2px_1px_#ffffff4d]',
                 form: 'relative inline-flex items-center !bg-transparent justify-center focus:!outline-none focus:!border-white before:!border-none rounded-full',
                 input:
                   'w-full rounded-full pl-10 font-bold text-gray-900 !bg-transparent !shadow-none !border-none focus:!outline-none focus:!border-white outline-none focus:font-bold focus:bg-transparent placeholder-gray-400',
@@ -101,7 +103,7 @@ export function SearchInput({ isSearchPage = true }: { isSearchPage: boolean }) 
             <Subheading
               as="div"
               className={cn(
-                'flex flex-col items-start justify-between gap-3 md:mt-10 md:flex-row',
+                'flex flex-wrap items-center justify-between gap-3 md:mt-10',
                 isSearchPage ? 'mt-16' : 'mt-5',
               )}>
               <h3>Search Results</h3>

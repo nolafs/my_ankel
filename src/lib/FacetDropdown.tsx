@@ -107,7 +107,7 @@ export function FacetDropdown({ children, buttonText, closeOnChange, classNames 
       variant={'outline'}
       type="button"
       className={cn(
-        'font-sans',
+        'font-sans text-[12px] font-medium tracking-tight text-gray-900',
         isRefined && cn('ais-Dropdown-button--refined', classNames.buttonRefined),
         isDisabled && 'ais-Dropdown-button--disabled',
       )}
