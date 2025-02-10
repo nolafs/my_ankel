@@ -10,6 +10,7 @@ export const env = createEnv({
     NODE_ENV: z.enum(['development', 'test', 'production']),
     ALGOLIA_ADMIN_KEY: z.string(),
     MAILERSEND_API_KEY: z.string(),
+    MAILERSEND_DOMAIN: z.string(),
   },
 
   /**
@@ -32,6 +33,7 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     ALGOLIA_ADMIN_KEY: process.env.ALGOLIA_ADMIN_KEY,
     MAILERSEND_API_KEY: process.env.MAILERSEND_API_KEY,
+    MAILERSEND_DOMAIN: process.env.MAILERSEND_DOMAIN,
     NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY: process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY,
     NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
     NEXT_PUBLIC_ALGOLIA_APPLICATION_ID: process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID,
