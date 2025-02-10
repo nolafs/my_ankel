@@ -18,8 +18,6 @@ const emailSchema = z.object({
   agreeToTerms: z.boolean().refine(val => val, 'You must agree to the Terms & Conditions'),
 });
 export async function sendMail(formData: FormData) {
-  console.log('formData', formData);
-
   const mailerSend = new MailerSend({
     apiKey: process.env.MAILERSEND_API_KEY ?? '',
   });
@@ -47,8 +45,6 @@ export async function sendMail(formData: FormData) {
         .setText(`Enquiry Type: ${formData.get('enquiryType') as string}`)
         .setText('Message:')
         .setHtml(`${(formData.get('message') as string) ?? ''}`);
-
-      console.log('sending email');
 
       const mailer = await mailerSend.email.send(emailParams);
 
