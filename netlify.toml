@@ -148,6 +148,22 @@
   to = "/blog/ankle-arthritis-osteoarthritis/"
   status = 301
   force = true
+[[redirects]]
+  from = "/ankle-condition/:slug"
+  to = "/blog/:slug"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/ankle-treatments/:slug"
+  to = "/blog/:slug"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/uncategorized/:slug"
+  to = "/blog/:slug"
+  status = 301
+  force = true
+
 
 
 [[headers]]
