@@ -154,6 +154,11 @@
   status = 301
   force = true
 [[redirects]]
+    from = "/ankle-conditions/:slug"
+    to = "/blog/:slug"
+    status = 301
+    force = true
+[[redirects]]
   from = "/ankle-treatments/:slug"
   to = "/blog/:slug"
   status = 301
