@@ -22,12 +22,12 @@ export function SharePage({ title, slug, align = 'right' }: SharePageProps) {
   return (
     <ul className={cn('m-0 flex space-x-2 p-0', align === 'right' && 'items-end justify-end')}>
       <li>
-        <FacebookShareButton url={shareUrl} quote={titleToShare} hashtag={'#myelemental'}>
+        <FacebookShareButton url={shareUrl} quote={titleToShare} hashtag={'#myankle'}>
           <FacebookIcon size={32} borderRadius={100} />
         </FacebookShareButton>
       </li>
       <li>
-        <TwitterShareButton url={shareUrl} title={titleToShare}>
+        <TwitterShareButton url={shareUrl} title={titleToShare} hashtags={['#myankle']}>
           <TwitterIcon size={32} borderRadius={100} />
         </TwitterShareButton>
       </li>

@@ -1,5 +1,3 @@
-import { LinkPrismicType } from '@/types';
-
 interface SocialIconsProps {
   type?: 'facebook' | 'instagram' | 'twitter' | 'gitHub' | 'youtube' | 'tiktok' | 'linkedin' | undefined | null;
   props?: any;
