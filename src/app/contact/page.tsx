@@ -13,6 +13,7 @@ import { components } from '@/slices';
 import ContactForm, { ContactEnquiryItem } from '@/components/features/contact-form/contact-form';
 import { Container } from '@/components/ui/container';
 import { type ContactDocument, type SettingsDocument } from '../../../prismicio-types';
+import { CONTACTJSONLD } from '@/types/schema';
 
 type Params = { uid: string };
 
@@ -152,6 +153,9 @@ export default async function Page() {
       </div>
 
       <SliceZone slices={page.data.slices2} components={components} />
+
+      {/* Add JSON-LD to your page */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(CONTACTJSONLD) }} />
     </main>
   );
 }

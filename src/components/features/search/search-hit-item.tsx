@@ -6,8 +6,11 @@ import { type HitProps } from '@/types';
 import { Badge } from '@/components/ui/badge';
 import type { HitBaseItem } from '@/types/hit.type';
 import Image from 'next/image';
+import { useSearch } from '@/components/features/search/search-context';
+import { DownloadLink } from '@/components/ui/downloadLink';
 
 export const SearchHitItem = ({ hit }: HitProps) => {
+  const { openSearchDialog, setSearchDialog } = useSearch();
   const imageUrl: string | null = hit.image?.url as string | null;
 
   const getUrl = (item: HitBaseItem) => {
@@ -70,14 +73,16 @@ export const SearchHitItem = ({ hit }: HitProps) => {
         </div>
       </div>
       <div>
-        <Link href={getUrl(hit)} className={''}>
-          <span className="absolute inset-0" />
-          {hit.type !== 'download' ? (
+        {hit.type !== 'download' ? (
+          <Link href={getUrl(hit)} className={''} onClick={() => hit.type !== 'download' && setSearchDialog(false)}>
+            <span className="absolute inset-0" />
             <SquareArrowOutUpRight className={'h-5 w-5 text-black group-hover:text-pink-600'} />
-          ) : (
-            <Download />
-          )}
-        </Link>
+          </Link>
+        ) : (
+          <DownloadLink href={getUrl(hit)}>
+            <Download className={'h-5 w-5 text-black group-hover:text-pink-600'} />
+          </DownloadLink>
+        )}
       </div>
     </div>
   );

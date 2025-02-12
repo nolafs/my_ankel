@@ -8,7 +8,7 @@ import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { buttonVariants } from '@/components/ui/button';
 import cn from 'clsx';
-import { DownloadLink } from '@/app/downloads/_components/downloadLink';
+import { DownloadLink } from '@/components/ui/downloadLink';
 import { type CustomLinkToMediaField } from '@/types';
 
 export async function FeaturedPosts() {

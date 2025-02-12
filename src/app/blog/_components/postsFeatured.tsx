@@ -8,6 +8,7 @@ import { Link } from '@/components/ui/link';
 import { PrismicRichText } from '@prismicio/react';
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
+import { BLOGJSONLD } from '@/types/schema';
 
 export async function FeaturedPosts() {
   const client = createClient();
@@ -31,6 +32,8 @@ export async function FeaturedPosts() {
   if (featuredPosts.length === 0) {
     return;
   }
+
+  const JSONLD = BLOGJSONLD(featuredPosts);
 
   return (
     <div className="mt-24 bg-gradient-to-t from-gray-100 pb-14">
@@ -91,6 +94,8 @@ export async function FeaturedPosts() {
             </div>
           ))}
         </div>
+        {/* Add JSON-LD to your page */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSONLD) }} />
       </Container>
     </div>
   );

@@ -15,7 +15,6 @@ import NavigationMenuSub from '@/components/layouts/navigation/navigation-menu-s
 import BackToTop from '@/components/ui/BackToTop';
 import { Suspense } from 'react';
 import { SearchProvider } from '@/components/features/search/search-context';
-import { AutoComplete } from '@/components/features/search/autocomplete';
 import { SearchOverlay } from '@/components/features/search/search-overlay';
 
 const roboto = Roboto({

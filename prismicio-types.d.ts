@@ -1059,6 +1059,21 @@ export interface PostsDocumentDataTagsItem {
 type PostsDocumentDataSlicesSlice = never;
 
 /**
+ * Item in *Posts → Keywords*
+ */
+export interface PostsDocumentDataKeywordsItem {
+  /**
+   * Word field in *Posts → Keywords*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: posts.keywords[].word
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  word: prismic.KeyTextField;
+}
+
+/**
  * Content for Posts documents
  */
 interface PostsDocumentData {
@@ -1203,6 +1218,17 @@ interface PostsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never>;
+
+  /**
+   * Keywords field in *Posts*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: posts.keywords[]
+   * - **Tab**: SEO & Meta Data
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  keywords: prismic.GroupField<Simplify<PostsDocumentDataKeywordsItem>>;
 }
 
 /**
@@ -3087,6 +3113,7 @@ declare module '@prismicio/client' {
       PostsDocumentData,
       PostsDocumentDataTagsItem,
       PostsDocumentDataSlicesSlice,
+      PostsDocumentDataKeywordsItem,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataContactFormEnquiriesItem,

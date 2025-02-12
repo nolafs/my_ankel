@@ -127,6 +127,22 @@
           "constraint": {},
           "thumbnails": []
         }
+      },
+      "keywords": {
+        "type": "Group",
+        "config": {
+          "label": "Keywords",
+          "repeat": true,
+          "fields": {
+            "word": {
+              "type": "Text",
+              "config": {
+                "label": "Word",
+                "placeholder": ""
+              }
+            }
+          }
+        }
       }
     }
   }

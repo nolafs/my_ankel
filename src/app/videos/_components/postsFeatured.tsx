@@ -8,6 +8,7 @@ import { Link } from '@/components/ui/link';
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { PostsDescription } from '@/app/videos/_components/postsDescription';
+import { VIDEO_BLOG_JSONLD } from '@/types/schema';
 
 export async function FeaturedPosts() {
   const client = createClient();
@@ -31,6 +32,8 @@ export async function FeaturedPosts() {
   if (featuredPosts.length === 0) {
     return;
   }
+
+  const jsonLd = VIDEO_BLOG_JSONLD(featuredPosts);
 
   return (
     <div className="mt-16 bg-gradient-to-t from-gray-100 pb-14">
@@ -87,6 +90,8 @@ export async function FeaturedPosts() {
             </div>
           ))}
         </div>
+        {/* Add JSON-LD to your page */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </Container>
     </div>
   );

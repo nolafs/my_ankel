@@ -12,11 +12,12 @@ import { FeaturedPosts } from './_components/postsFeatured';
 import { Badge } from '@/components/ui/badge';
 import { FolderDownIcon } from 'lucide-react';
 import { Pagination } from '@/components/ui/pagination';
-import { DownloadLink } from '@/app/downloads/_components/downloadLink';
+import { DownloadLink } from '@/components/ui/downloadLink';
 import { type CustomLinkToMediaField, type OGImage } from '@/types';
 import { type ResolvedOpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
 import Filter from '@/components/features/blog/postsFilter';
 import type { PostCategoryDocument, PostTagsDocument } from '../../../prismicio-types';
+import { CONTACTJSONLD, DOWNLOADS_JSONLD } from '@/types/schema';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -128,6 +129,8 @@ async function Posts({ page, category, tags }: { page: number; category?: string
     return <p className="mt-6 text-gray-500">No posts found.</p>;
   }
 
+  const JSONLD = DOWNLOADS_JSONLD(posts);
+
   return (
     <div className="mt-6">
       {posts.map(post => (
@@ -180,6 +183,8 @@ async function Posts({ page, category, tags }: { page: number; category?: string
           </div>
         </div>
       ))}
+      {/* Add JSON-LD to your page */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSONLD) }} />
     </div>
   );
 }

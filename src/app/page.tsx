@@ -9,6 +9,7 @@ import { SliderResource } from '@/components/features/resources/slider-resource'
 import SliderVideo from '@/components/features/resources/slider-video';
 
 import Animate from '@/lib/animation';
+import JSONLD from '@/types/schema';
 
 export default async function HomePage() {
   const client = createClient();
@@ -64,6 +65,8 @@ export default async function HomePage() {
       return response.results;
     });
 
+  const jsonLd = JSONLD;
+
   return (
     <main className={'min-h-svh w-full overflow-hidden'}>
       {/* SliceZone 1 */}
@@ -108,6 +111,9 @@ export default async function HomePage() {
 
       {/* SliceZone 2 */}
       {page.data.slices && <SliceZone slices={page.data.slices} components={components} />}
+
+      {/* Add JSON-LD to your page */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </main>
   );
 }

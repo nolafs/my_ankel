@@ -14,6 +14,7 @@ import React from 'react';
 import { type ImageFieldImage, type LinkField, type RichTextField } from '@prismicio/client';
 import { type Author } from '@/types';
 import PostAside from '@/components/features/blog/postAside';
+import { WithContext, Article } from 'schema-dts';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -81,6 +82,32 @@ export default async function Page({ params }: Props) {
     };
   }
 
+  const jsonLd: WithContext<Article> = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${process.env.NEXT_PUBLIC_BASE_UR}/blog/${id}` || '', // Ensure this links to the actual article URL
+    },
+    headline: post.title ?? '',
+    image: post.feature_image?.url ? [post.feature_image.url] : [], // Make image an array
+    author: {
+      '@type': 'Person',
+      name: author?.name,
+      url: author?.profile_image?.url ?? '', // Use a valid author profile URL
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'MyAnkle.co.uk', // Replace with your site name
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://myankle.co.uk/share-img.png', // Add your actual logo URL
+      },
+    },
+    description: asText(post.excerpt) || '',
+    datePublished: post.publishing_date ?? '',
+    dateModified: post.publishing_date ?? '',
+  };
   return (
     <main className={'w-full'}>
       <div className={'absolute top-0 h-full w-full overflow-x-hidden'}>
@@ -133,6 +160,8 @@ export default async function Page({ params }: Props) {
           </div>
         </div>
       </Container>
+      {/* Add JSON-LD to your page */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </main>
   );
 }
