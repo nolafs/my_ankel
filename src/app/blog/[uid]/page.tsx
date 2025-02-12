@@ -15,6 +15,8 @@ import { type ImageFieldImage, type LinkField, type RichTextField } from '@prism
 import { type Author } from '@/types';
 import PostAside from '@/components/features/blog/postAside';
 import { WithContext, Article } from 'schema-dts';
+import { ContentRelationshipField } from '@prismicio/types';
+import { AuthorDocument, AuthorDocumentData } from '../../../../prismicio-types';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -26,25 +28,72 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const client = createClient();
   const post = await client
     .getByUID('posts', id, {
-      fetchLinks: ['post_category.name', 'post_category.uid', 'post_tags', 'author.name', 'author.uid'],
+      fetchLinks: [
+        'post_category.name',
+        'post_category.uid',
+        'post_tags',
+        'post_tags.name',
+        'author.name',
+        'author.description',
+        'author.profile_image',
+        'author.link',
+        'author',
+      ],
     })
     .catch(() => notFound());
 
-  return post
-    ? {
-        title: post.data.title,
-        openGraph: {
-          title: post.data.meta_title ?? undefined,
-          description:
-            typeof post.data.meta_description === 'string'
-              ? post.data.meta_description
-              : (asText(post.data.meta_description ?? post.data.excerpt) ?? ''),
-          images: [{ url: post.data.meta_image.url ?? post.data.feature_image.url ?? '' }],
-        },
-      }
-    : {
-        title: 'Blog Post',
-      };
+  let tags = post.data.tags.map(item => {
+    const tag = item && 'tag' in item && (item.tag as { data: { name: string } }).data?.name;
+    return tag ?? '';
+  });
+
+  if (post.data.keywords) {
+    const postKeywords: string[] = post.data.keywords.map(item => {
+      const keyword = item;
+      return keyword.word! ?? '';
+    });
+    if (postKeywords.length) {
+      tags = [...tags, ...postKeywords];
+    }
+  }
+
+  let author = null;
+
+  if (post.data.author && 'data' in post.data.author) {
+    const authorData = post.data.author.data as {
+      name: string;
+      description: RichTextField;
+      link: LinkField;
+      profile_image: ImageFieldImage;
+    };
+
+    author = {
+      name: authorData.name,
+      description: authorData.description,
+      link: authorData.link,
+      profile_image: authorData.profile_image,
+    };
+  }
+
+  return {
+    title: post.data.title,
+    description: asText(post.data.excerpt) ?? '',
+    authors: [{ name: author?.name ?? '' }],
+    alternates: {
+      canonical: `/blog/${id}`,
+    },
+    creator: author?.name,
+    publisher: author?.name,
+    keywords: tags.filter(tag => tag !== false).length ? tags.filter(tag => tag !== false) : null,
+    openGraph: {
+      title: post.data.meta_title ?? undefined,
+      description:
+        typeof post.data.meta_description === 'string'
+          ? post.data.meta_description
+          : (asText(post.data.meta_description ?? post.data.excerpt) ?? ''),
+      images: [{ url: post.data.meta_image.url ?? post.data.feature_image.url ?? '' }],
+    },
+  };
 }
 
 export default async function Page({ params }: Props) {

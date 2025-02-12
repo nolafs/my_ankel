@@ -25,7 +25,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const client = createClient();
   const post = await client
     .getByUID('video', id, {
-      fetchLinks: ['post_category.name', 'post_category.uid'],
+      fetchLinks: [
+        'post_category.name',
+        'post_category.uid',
+        'author.name',
+        'author.description',
+        'author.profile_image',
+        'author.link',
+        'post_category.uid',
+        'post_tags.name',
+      ],
     })
     .catch(() => notFound());
 
@@ -35,9 +44,53 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description = trimString(asText(post.data.description), 160);
   }
 
+  let tags = post.data.tags.map(item => {
+    const tag = item && 'tag' in item && (item.tag as { data: { name: string } }).data?.name;
+    return tag ?? '';
+  });
+
+  if (post.data.keywords) {
+    const postKeywords: string[] = post.data.keywords.map(item => {
+      const keyword = item;
+      return keyword.word! ?? '';
+    });
+    if (postKeywords.length) {
+      tags = [...tags, ...postKeywords];
+    }
+  }
+
+  let author = null;
+
+  if (post.data.author && 'data' in post.data.author) {
+    const authorData = post.data.author.data as {
+      name: string;
+      description: RichTextField;
+      link: LinkField;
+      profile_image: ImageFieldImage;
+    };
+
+    author = {
+      name: authorData.name,
+      description: authorData.description,
+      link: authorData.link,
+      profile_image: authorData.profile_image,
+    };
+  }
+
   return post
     ? {
         title: post.data.name,
+        authors: [{ name: author?.name ?? '' }],
+        description:
+          typeof post.data.meta_description === 'string'
+            ? post.data.meta_description
+            : (post.data.meta_description ?? description ?? ''),
+        alternates: {
+          canonical: `/videos/${id}`,
+        },
+        creator: author?.name,
+        publisher: author?.name,
+        keywords: tags.filter(tag => tag !== false).length ? tags.filter(tag => tag !== false) : null,
         openGraph: {
           title: post.data.meta_title ?? undefined,
           description:

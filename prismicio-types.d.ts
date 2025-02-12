@@ -1512,6 +1512,21 @@ export interface VideoDocumentDataTagsItem {
 type VideoDocumentDataSlicesSlice = never;
 
 /**
+ * Item in *Video → Keywords*
+ */
+export interface VideoDocumentDataKeywordsItem {
+  /**
+   * Word field in *Video → Keywords*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.keywords[].word
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  word: prismic.KeyTextField;
+}
+
+/**
  * Content for Video documents
  */
 interface VideoDocumentData {
@@ -1656,6 +1671,17 @@ interface VideoDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never>;
+
+  /**
+   * Keywords field in *Video*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.keywords[]
+   * - **Tab**: SEO & Meta Data
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  keywords: prismic.GroupField<Simplify<VideoDocumentDataKeywordsItem>>;
 }
 
 /**
@@ -3123,6 +3149,7 @@ declare module '@prismicio/client' {
       VideoDocumentData,
       VideoDocumentDataTagsItem,
       VideoDocumentDataSlicesSlice,
+      VideoDocumentDataKeywordsItem,
       AllDocumentTypes,
       CallToActionSlice,
       CallToActionSliceDefaultPrimary,
