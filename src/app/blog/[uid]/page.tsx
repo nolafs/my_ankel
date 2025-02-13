@@ -75,9 +75,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  let description =
+    typeof post.data.meta_description === 'string'
+      ? post.data.meta_description
+      : (asText(post.data.meta_description ?? post.data.excerpt).toString() ?? '');
+
+  if (description.length > 160) {
+    description = description.substring(0, 160) + '...';
+  }
+
   return {
     title: post.data.title,
-    description: asText(post.data.excerpt) ?? '',
+    description: description,
     authors: [{ name: author?.name ?? '' }],
     alternates: {
       canonical: `/blog/${id}`,
@@ -87,10 +96,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: tags.filter(tag => tag !== false).length ? tags.filter(tag => tag !== false) : null,
     openGraph: {
       title: post.data.meta_title ?? undefined,
-      description:
-        typeof post.data.meta_description === 'string'
-          ? post.data.meta_description
-          : (asText(post.data.meta_description ?? post.data.excerpt) ?? ''),
+      description: description,
       images: [{ url: post.data.meta_image.url ?? post.data.feature_image.url ?? '' }],
     },
   };
