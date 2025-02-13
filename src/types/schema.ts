@@ -6,7 +6,6 @@ import {
   BlogPosting,
   VideoObject,
   CollectionPage,
-  CreativeWork,
   MedicalScholarlyArticle,
 } from 'schema-dts';
 import { DownloadDocument, PostsDocument, VideoDocument } from '../../prismicio-types';
@@ -36,6 +35,13 @@ const JSONLD: WithContext<MedicalWebPage> = {
     logo: {
       '@type': 'ImageObject',
       url: 'https://myankle.co.uk/share-img.png',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+44 20 1234 5678',
+      contactType: 'Clinical Support',
+      areaServed: 'GB',
+      availableLanguage: ['English'],
     },
   },
   potentialAction: {

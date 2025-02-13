@@ -58,7 +58,7 @@ export async function generateMetadata({}: Props, parent: ResolvingMetadata): Pr
         'application/rss+xml': `${process.env.NEXT_PUBLIC_BASE_URL}feed.xml`,
       },
     },
-    title: settings?.data.meta_title ?? (await parent).title ?? '-= My Ankle =-',
+    title: settings?.data.meta_title ?? (await parent).title ?? 'My Ankle – Trusted Resource for Ankle Health',
     description: settings?.data.meta_description ?? (await parent).description,
     keywords: settings?.data.meta_keywords ?? (await parent).keywords ?? '',
     openGraph: {

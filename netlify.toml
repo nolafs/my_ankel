@@ -168,6 +168,11 @@
   to = "/blog/:slug"
   status = 301
   force = true
+[[redirects]]
+    from = "/ankle-specialists/:slug"
+    to = "/blog/:slug"
+    status = 301
+    force = true
 
 
 
