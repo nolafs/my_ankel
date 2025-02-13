@@ -173,6 +173,11 @@
     to = "/blog/:slug"
     status = 301
     force = true
+[[redirects]]
+    from = "/treatments/*"
+    to = "/blog"
+    status = 301
+    force = true
 
 
 
