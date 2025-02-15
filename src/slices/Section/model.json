@@ -264,6 +264,15 @@
                   ]
                 }
               },
+              "style": {
+                "type": "Boolean",
+                "config": {
+                  "label": "style",
+                  "placeholder_false": "Icon Style",
+                  "placeholder_true": "Image Style",
+                  "default_value": false
+                }
+              },
               "heading": {
                 "type": "Text",
                 "config": {

@@ -22,23 +22,32 @@ function ListItem({
   image,
   link,
   imageSize = '60',
+  imageStyle = false,
 }: {
   heading?: string;
   description: RichTextField;
   image: ImageField;
   imageSize?: string;
+  imageStyle?: boolean;
   link?: LinkField;
 }) {
   return (
     <li>
-      <div className={cn(`aspect-1 max-w-[${imageSize}px]`)}>
-        <PrismicImage
-          field={image}
-          className="block size-full object-contain"
-          width={Number(imageSize)}
-          height={Number(imageSize)}
-        />
-      </div>
+      {imageStyle ? (
+        <div className={cn(`aspect-h-9 aspect-w-16 overflow-hidden rounded-xl shadow-xl outline-1 -outline-offset-1`)}>
+          <PrismicImage field={image} className="block size-full object-cover object-center" />
+        </div>
+      ) : (
+        <div className={cn(`aspect-1 max-w-[${imageSize}px]`)}>
+          <PrismicImage
+            field={image}
+            className="block size-full object-contain"
+            width={Number(imageSize)}
+            height={Number(imageSize)}
+          />
+        </div>
+      )}
+
       <div className="mt-6 max-w-lg text-sm/6 text-gray-500">
         <h3 className={'mb-3 text-lg font-medium text-gray-900'}>{heading}</h3>
         <PrismicRichText field={description} />
@@ -74,6 +83,7 @@ const Section = ({ slice }: SectionProps): JSX.Element => {
                 heading={item.heading!}
                 description={item.body}
                 image={item.icon}
+                imageStyle={item.style}
                 imageSize={item.icon_width ?? '100'}
                 link={item.link}
               />

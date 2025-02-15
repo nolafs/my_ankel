@@ -50,10 +50,10 @@ export async function generateMetadata({}: Props, parent: ResolvingMetadata): Pr
     metadataBase: new URL(
       isURL(settings.data?.canonical_url ?? '')
         ? settings.data.canonical_url!
-        : (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.myankle.co.uk'),
+        : (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://myankle.co.uk'),
     ),
     alternates: {
-      canonical: settings.data?.canonical_url ?? process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.myankle.co.uk',
+      canonical: settings.data?.canonical_url ?? process.env.NEXT_PUBLIC_BASE_URL ?? 'https://myankle.co.uk',
       types: {
         'application/rss+xml': `${process.env.NEXT_PUBLIC_BASE_URL}feed.xml`,
       },
