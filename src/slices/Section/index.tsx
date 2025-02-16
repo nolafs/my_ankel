@@ -66,7 +66,7 @@ const Section = ({ slice }: SectionProps): JSX.Element => {
   if (slice.variation === 'sectionList' || slice.variation === 'sectionListImage') {
     let imageSize = '100';
 
-    if (slice.variation === 'sectionList') {
+    if (slice.variation === 'sectionListImage') {
       imageSize = 'auto';
     }
 

@@ -441,13 +441,6 @@
 									"value": "60",
 									"type": "Select"
 								}
-							],
-							[
-								"style",
-								{
-									"__TYPE__": "BooleanContent",
-									"value": true
-								}
 							]
 						]
 					}

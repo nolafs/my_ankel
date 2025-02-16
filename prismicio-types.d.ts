@@ -2585,17 +2585,6 @@ export interface SectionSliceSectionListPrimaryListItem {
   icon_width: prismic.SelectField<'60' | '100' | 'auto'>;
 
   /**
-   * style field in *Section → Section List → Primary → List*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: section.sectionList.primary.list[].style
-   * - **Documentation**: https://prismic.io/docs/field#boolean
-   */
-  style: prismic.BooleanField;
-
-  /**
    * Heading field in *Section → Section List → Primary → List*
    *
    * - **Field Type**: Text
