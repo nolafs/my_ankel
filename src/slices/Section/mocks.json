@@ -543,5 +543,118 @@
 				"value": []
 			}
 		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "sectionListImage",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "longer",
+				"type": "Text"
+			},
+			"subheading": {
+				"__TYPE__": "FieldContent",
+				"value": "neighborhood",
+				"type": "Text"
+			},
+			"lead": {
+				"__TYPE__": "FieldContent",
+				"value": "suppose",
+				"type": "Text"
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Magna adipisicing quis ad eu fugiat excepteur aliquip."
+						}
+					}
+				]
+			},
+			"list_title": {
+				"__TYPE__": "FieldContent",
+				"value": "discuss",
+				"type": "Text"
+			},
+			"list": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"icon",
+								{
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1547082299-de196ea013d6",
+										"width": 4272,
+										"height": 2848
+									},
+									"url": "https://images.unsplash.com/photo-1547082299-de196ea013d6",
+									"width": 4272,
+									"height": 2848,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"credits": null,
+									"alt": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							],
+							[
+								"heading",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "religious",
+									"type": "Text"
+								}
+							],
+							[
+								"body",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Ipsum magna ipsum reprehenderit sit excepteur non dolore amet non deserunt minim ullamco deserunt dolore sit. Lorem sunt quis ea id minim. Elit irure culpa do excepteur enim ad ullamco labore labore labore ullamco excepteur tempor."
+											}
+										}
+									]
+								}
+							],
+							[
+								"link",
+								{
+									"key": "7ba0e750-3ccc-450d-9733-79bb3e8bd602",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://google.com",
+										"text": "warm"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

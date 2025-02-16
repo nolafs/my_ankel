@@ -63,7 +63,13 @@ function ListItem({
  * Component for "Section" Slices.
  */
 const Section = ({ slice }: SectionProps): JSX.Element => {
-  if (slice.variation === 'sectionList') {
+  if (slice.variation === 'sectionList' || slice.variation === 'sectionListImage') {
+    let imageSize = '100';
+
+    if (slice.variation === 'sectionList') {
+      imageSize = 'auto';
+    }
+
     return (
       <Container className="mt-16 md:mt-24 lg:mt-32">
         <Subheading>{slice.primary.subheading}</Subheading>
@@ -83,8 +89,8 @@ const Section = ({ slice }: SectionProps): JSX.Element => {
                 heading={item.heading!}
                 description={item.body}
                 image={item.icon}
-                imageStyle={item.style}
-                imageSize={item.icon_width ?? '100'}
+                imageStyle={slice.variation !== 'sectionList'}
+                imageSize={imageSize}
                 link={item.link}
               />
             ))}

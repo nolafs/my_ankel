@@ -2627,6 +2627,51 @@ export interface SectionSliceSectionListPrimaryListItem {
 }
 
 /**
+ * Item in *Section → Section List Image → Primary → List*
+ */
+export interface SectionSliceSectionListImagePrimaryListItem {
+  /**
+   * Image field in *Section → Section List Image → Primary → List*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionListImage.primary.list[].icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * Heading field in *Section → Section List Image → Primary → List*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionListImage.primary.list[].heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Body field in *Section → Section List Image → Primary → List*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionListImage.primary.list[].body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Link field in *Section → Section List Image → Primary → List*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionListImage.primary.list[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
  * Primary content in *Section → Default → Primary*
  */
 export interface SectionSliceDefaultPrimary {
@@ -2926,13 +2971,92 @@ export type SectionSliceSectionEmbed = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Section → Section List Image → Primary*
+ */
+export interface SectionSliceSectionListImagePrimary {
+  /**
+   * Heading field in *Section → Section List Image → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionListImage.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Subheading field in *Section → Section List Image → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionListImage.primary.subheading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subheading: prismic.KeyTextField;
+
+  /**
+   * Lead field in *Section → Section List Image → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionListImage.primary.lead
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  lead: prismic.KeyTextField;
+
+  /**
+   * Body field in *Section → Section List Image → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionListImage.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * List Title field in *Section → Section List Image → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionListImage.primary.list_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  list_title: prismic.KeyTextField;
+
+  /**
+   * List field in *Section → Section List Image → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section.sectionListImage.primary.list[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  list: prismic.GroupField<Simplify<SectionSliceSectionListImagePrimaryListItem>>;
+}
+
+/**
+ * Section List Image variation for Section Slice
+ *
+ * - **API ID**: `sectionListImage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SectionSliceSectionListImage = prismic.SharedSliceVariation<
+  'sectionListImage',
+  Simplify<SectionSliceSectionListImagePrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Section*
  */
 type SectionSliceVariation =
   | SectionSliceDefault
   | SectionSliceSectionNumbers
   | SectionSliceSectionList
-  | SectionSliceSectionEmbed;
+  | SectionSliceSectionEmbed
+  | SectionSliceSectionListImage;
 
 /**
  * Section Shared Slice
@@ -3202,11 +3326,14 @@ declare module '@prismicio/client' {
       SectionSliceSectionListPrimaryListItem,
       SectionSliceSectionListPrimary,
       SectionSliceSectionEmbedPrimary,
+      SectionSliceSectionListImagePrimaryListItem,
+      SectionSliceSectionListImagePrimary,
       SectionSliceVariation,
       SectionSliceDefault,
       SectionSliceSectionNumbers,
       SectionSliceSectionList,
       SectionSliceSectionEmbed,
+      SectionSliceSectionListImage,
       TestimonialSlice,
       TestimonialSliceDefaultPrimary,
       TestimonialSliceTestimonialsPrimaryItemsItem,
