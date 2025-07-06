@@ -20,7 +20,7 @@ export async function FeaturedPosts() {
       fetchLinks: ['author.name', 'author.profile_image', 'post_category.name'],
       orderings: [
         {
-          field: 'my.posts.publishing_date',
+          field: 'my.video.publishing_date',
           direction: 'desc',
         },
       ],
