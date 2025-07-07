@@ -3,7 +3,7 @@ import { Container } from '@/components/ui/container';
 import { Heading, Subheading } from '@/components/ui/text';
 import { createClient } from '@/prismicio';
 import { ChevronLeftIcon } from '@heroicons/react/16/solid';
-import { PrismicNextImage } from '@prismicio/next';
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import dayjs from 'dayjs';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -112,6 +112,7 @@ export default async function Page({ params }: Props) {
         'post_category.name',
         'author.name',
         'author.description',
+        'author.footer',
         'author.profile_image',
         'author.link',
         'post_category.uid',
@@ -127,6 +128,7 @@ export default async function Page({ params }: Props) {
       description: RichTextField;
       link: LinkField;
       profile_image: ImageFieldImage;
+      footer: RichTextField;
     };
 
     author = {
@@ -134,6 +136,7 @@ export default async function Page({ params }: Props) {
       description: authorData.description,
       link: authorData.link,
       profile_image: authorData.profile_image,
+      footer: authorData.footer,
     };
   }
 
@@ -195,7 +198,28 @@ export default async function Page({ params }: Props) {
                 imgixParams={{ fm: 'webp', fit: 'crop', crop: ['focalpoint'], q: 70 }}
               />
 
-              <div className={'prose md:prose-lg'}>{post.content && <PrismicRichText field={post.content} />}</div>
+              <div className={'prose md:prose-lg'}>
+                {post.content && <PrismicRichText field={post.content} />}
+
+                {post.author_footer && author && (
+                  <div className="mt-10">{author.footer && <PrismicRichText field={author.footer} />}</div>
+                )}
+
+                {post.further_readings.length !== 0 && (
+                  <div className="mt-10">
+                    If you liked this article please consider reading:
+                    <ul className={'mt-2 flex list-disc flex-col gap-2'}>
+                      {post.further_readings.map((item, index) => (
+                        <PrismicNextLink
+                          key={(item?.text ? item?.text.replace(/[^a-z0-9]+/gi, '-') : 'further_read') + index}
+                          field={item}
+                          className="text-blue-600 hover:underline"
+                        />
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
 
               <PostAside
                 as="aside"

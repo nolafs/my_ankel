@@ -142,11 +142,13 @@ export default function NavigationMenuSub({ navigation, logo }: NavigationSubPro
                 </NavigationMenuItem>
               ) : (
                 <NavigationMenuItem key={`main-nav-${idx}`}>
-                  <PrismicNextLink field={navigationItem.data.link} passHref legacyBehavior>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), '!text-lg font-bold')}>
+                  <NavigationMenuLink asChild>
+                    <PrismicNextLink
+                      field={navigationItem.data.link}
+                      className={cn(navigationMenuTriggerStyle(), '!text-lg font-bold')}>
                       {navigationItem.data.label}
-                    </NavigationMenuLink>
-                  </PrismicNextLink>
+                    </PrismicNextLink>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               );
             })}

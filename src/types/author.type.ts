@@ -5,4 +5,5 @@ export type Author = {
   description?: RichTextField;
   link?: LinkField;
   profile_image?: ImageFieldImage;
+  footer: RichTextField;
 };

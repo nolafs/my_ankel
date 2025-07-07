@@ -95,6 +95,26 @@
           }
         }
       },
+      "author_footer": {
+        "type": "Boolean",
+        "config": {
+          "label": "Author Footer",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": true
+        }
+      },
+      "further_readings": {
+        "type": "Link",
+        "config": {
+          "label": "Further Readings",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

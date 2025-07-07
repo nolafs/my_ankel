@@ -14,6 +14,7 @@ import { trimString } from '@/lib/trimString';
 import PostAside from '@/components/features/blog/postAside';
 import { type ImageFieldImage, type LinkField, type RichTextField } from '@prismicio/client';
 import { type Author } from '@/types';
+import { PrismicNextLink } from '@prismicio/next';
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -32,6 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'author.description',
         'author.profile_image',
         'author.link',
+        'author.footer',
         'post_category.uid',
         'post_tags.name',
       ],
@@ -67,6 +69,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: RichTextField;
       link: LinkField;
       profile_image: ImageFieldImage;
+      author_footer: RichTextField;
     };
 
     author = {
@@ -74,6 +77,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: authorData.description,
       link: authorData.link,
       profile_image: authorData.profile_image,
+      footer: authorData.author_footer,
     };
   }
 
@@ -117,6 +121,7 @@ export default async function Page({ params }: Props) {
         'author.description',
         'author.profile_image',
         'author.link',
+        'author.footer',
         'post_category.uid',
         'post_tags.name',
       ],
@@ -130,6 +135,7 @@ export default async function Page({ params }: Props) {
       description: RichTextField;
       link: LinkField;
       profile_image: ImageFieldImage;
+      footer: RichTextField;
     };
 
     author = {
@@ -137,6 +143,7 @@ export default async function Page({ params }: Props) {
       description: authorData.description,
       link: authorData.link,
       profile_image: authorData.profile_image,
+      footer: authorData.footer,
     };
   }
 
@@ -166,6 +173,25 @@ export default async function Page({ params }: Props) {
 
               <div className={'prose mt-10 md:prose-lg lg:prose-xl'}>
                 {post.description && <PrismicRichText field={post.description} />}
+
+                {post.author_footer && author && (
+                  <div className="mt-10">{author.footer && <PrismicRichText field={author.footer} />}</div>
+                )}
+
+                {post.further_readings.length !== 0 && (
+                  <div className="mt-10">
+                    If you liked this article please consider reading:
+                    <ul className={'mt-2 flex list-disc flex-col gap-2'}>
+                      {post.further_readings.map((item, index) => (
+                        <PrismicNextLink
+                          key={(item?.text ? item?.text.replace(/[^a-z0-9]+/gi, '-') : 'further_read') + index}
+                          field={item}
+                          className="text-blue-600 hover:underline"
+                        />
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
               <div className="mt-10">
                 <Button variant="outline" href="/videos">
