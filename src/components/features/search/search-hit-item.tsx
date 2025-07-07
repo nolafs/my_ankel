@@ -74,7 +74,11 @@ export const SearchHitItem = ({ hit }: HitProps) => {
       </div>
       <div>
         {hit.type !== 'download' ? (
-          <Link href={getUrl(hit)} className={''} onClick={() => hit.type !== 'download' && setSearchDialog(false)}>
+          <Link
+            href={getUrl(hit)}
+            className={''}
+            onClick={() => hit.type !== 'download' && setSearchDialog(false)}
+            legacyBehavior>
             <span className="absolute inset-0" />
             <SquareArrowOutUpRight className={'h-5 w-5 text-black group-hover:text-pink-600'} />
           </Link>

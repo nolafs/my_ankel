@@ -55,7 +55,6 @@ export function CookieConsent() {
           </p>
         </Link>
       </div>
-
       <div className="flex gap-2">
         <button className="rounded-md border-gray-900 px-5 py-2 text-gray-300" onClick={() => declineCookie()}>
           Decline

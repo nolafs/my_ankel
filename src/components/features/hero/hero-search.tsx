@@ -52,7 +52,6 @@ export function HeroSearch({ heading, subheading, links, image, fullWidthImage, 
           )}
         </>
       )}
-
       <Container className="relative z-20">
         <div className="pb-22 pt-32 sm:pb-24 sm:pt-32 md:pb-28 md:pt-52">
           <h1

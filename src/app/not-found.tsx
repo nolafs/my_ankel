@@ -18,7 +18,8 @@ const Page404 = () => (
 
         <Link
           href="/"
-          className="inline-block rounded-lg bg-black px-[38px] py-[15px] text-[14px] font-medium uppercase text-white transition duration-500 ease-in-out hover:bg-[#EF4335]">
+          className="inline-block rounded-lg bg-black px-[38px] py-[15px] text-[14px] font-medium uppercase text-white transition duration-500 ease-in-out hover:bg-[#EF4335]"
+          legacyBehavior>
           Back To Home <ArrowBigRight className="relative -top-[2px] inline-block" size={20} />
         </Link>
       </div>

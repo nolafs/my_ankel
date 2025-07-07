@@ -24,7 +24,6 @@ export const NavigationMobileMenu = ({ logo, navigation }: NavigationSubProps) =
   return (
     <>
       <SearchButton />
-
       <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
         <SheetTrigger asChild>
           <button

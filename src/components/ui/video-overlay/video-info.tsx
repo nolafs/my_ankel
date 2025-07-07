@@ -22,26 +22,23 @@ export const VideoInfo = ({ description, uid }: VideoInfoProps) => {
     return null;
   }
 
-  return (
-    description && (
-      <HoverCard open={open} onOpenChange={() => setOpen(!open)}>
-        <HoverCardTrigger asChild={true}>
-          <Button variant={'outline'} className={'w-auto'}>
-            <InfoIcon className={'mr-2 size-5'} />
-            Info
-          </Button>
-        </HoverCardTrigger>
-        <HoverCardContent>
-          <div>{description}</div>
-          <Link
-            href={'/videos/' + uid}
-            className={'mt-3 inline-flex items-center gap-2 text-sm/6 font-medium text-accent'}>
-            Go to video <ArrowLongRightIcon className="size-5" />
-          </Link>
-        </HoverCardContent>
-      </HoverCard>
-    )
-  );
+  return (description && (<HoverCard open={open} onOpenChange={() => setOpen(!open)}>
+    <HoverCardTrigger asChild={true}>
+      <Button variant={'outline'} className={'w-auto'}>
+        <InfoIcon className={'mr-2 size-5'} />
+        Info
+      </Button>
+    </HoverCardTrigger>
+    <HoverCardContent>
+      <div>{description}</div>
+      <Link
+        href={'/videos/' + uid}
+        className={'mt-3 inline-flex items-center gap-2 text-sm/6 font-medium text-accent'}
+        legacyBehavior>
+        Go to video <ArrowLongRightIcon className="size-5" />
+      </Link>
+    </HoverCardContent>
+  </HoverCard>));
 };
 
 export default VideoInfo;
