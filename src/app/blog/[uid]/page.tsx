@@ -15,9 +15,6 @@ import { type ImageFieldImage, type LinkField, type RichTextField } from '@prism
 import { type Author } from '@/types';
 import PostAside from '@/components/features/blog/postAside';
 import { WithContext, Article } from 'schema-dts';
-import { ContentRelationshipField } from '@prismicio/types';
-import { AuthorDocument, AuthorDocumentData } from '../../../../prismicio-types';
-
 type Props = {
   params: Promise<{ uid: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;

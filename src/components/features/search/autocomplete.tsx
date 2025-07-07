@@ -41,7 +41,7 @@ const AutocompleteItem = ({ item }: { item: HitBaseItem }) => {
         <p className={'mt-2 text-sm/5 text-gray-600'}>{trimmedText}</p>
       </div>
       <div>
-        <Link href={getUrl(item)} legacyBehavior>
+        <Link href={getUrl(item)}>
           <span className="absolute inset-0" />
           <SquareArrowOutUpRight className={'h-5 w-5 text-black group-hover:text-pink-600'} />
         </Link>
