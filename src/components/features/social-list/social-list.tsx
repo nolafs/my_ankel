@@ -28,7 +28,7 @@ const VARIANTS_LIST = [
 export function SocialList({ items, className, icons = true, variantButton = 0, variantList = 0 }: SocialListProps) {
   if (!items?.length) return null;
   return (
-    <ul className={cn(className ? className : VARIANTS_LIST[variantList])}>
+    <ul className={cn(className ?? className, VARIANTS_LIST[variantList])}>
       {items.map((item, id) => {
         return (
           item?.url && (

@@ -153,8 +153,8 @@ export const VIDEO_BLOG_JSONLD = (videoPosts: VideoDocument[]): WithContext<Blog
       description: video.data.description || '',
       uploadDate: video.data.publishing_date ?? '',
       thumbnailUrl: video.data.poster?.url ?? '',
-      contentUrl: video.data.video_url || '', // Ensure this is an actual video file or page URL
-      embedUrl: video.data.video_url.url || '', // If it's an embedded video (YouTube/Vimeo)
+      contentUrl: video.data.video_url ?? '', // Ensure this is an actual video file or page URL
+      embedUrl: video.data.video_url.url ?? '', // If it's an embedded video (YouTube/Vimeo)
       author: {
         '@type': 'Person',
         name: 'Mr. Andrew Goldberg OBE',
