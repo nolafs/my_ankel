@@ -27,10 +27,13 @@ export const VideoOverlay = ({ video, post, uid, url = 'video' }: VideoOverlayPr
     setOpen(false);
   };
 
+  // Ensure consistent rendering by using a static ID for aria-controls
+  const ariaControlsId = `radix-dialog-${uid ?? 'default'}`;
+
   return (
     <OverlaySheet open={open} onOpenChange={() => setOpen(!open)}>
       <OverlaySheetTrigger asChild={true}>
-        <button>
+        <button aria-controls={ariaControlsId}>
           <span className={'sr-only'}>Watch {post?.name}</span>
           <CirclePlayIcon
             strokeWidth={1}
