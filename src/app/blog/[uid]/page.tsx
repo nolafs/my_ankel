@@ -181,7 +181,7 @@ export default async function Page({ params }: Props) {
             uid={id}
             post={post}
             author={author!}
-            classNames={'hidden lg:flex h-full max-h-[800px] lg:sticky lg:top-28 lg:flex-col lg:items-start'}
+            classNames={'hidden lg:flex h-full max-h-[1000px] lg:sticky lg:top-28 lg:flex-col lg:items-start'}
           />
 
           <div className="text-gray-700">
